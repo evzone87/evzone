@@ -30,8 +30,8 @@
             font-family: "Helvetica Neue", Arial, sans-serif;
             color: #fff;
             background: url('images/photos/confolens01.jpg') center center / cover no-repeat;
-            min-height: 100vh;
             position: relative;
+            min-height: 100vh;
         }
 
         body::before {
@@ -42,30 +42,6 @@
             background: rgba(0, 0, 0, var(--overlay));
         }
 
-        /* NAVIGATION (desktop) */
-        header {
-            position: absolute;
-            top: 20px;
-            right: 28px;
-            z-index: 3;
-            display: flex;
-            gap: 26px;
-            align-items: center;
-        }
-
-        header a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            padding: 8px 0;
-            transition: opacity .25s ease;
-        }
-
-        header a:hover {
-            opacity: .8;
-        }
-
         /* CONTENU */
         .content {
             position: relative;
@@ -73,7 +49,7 @@
             height: 100vh;
             width: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-end; /* tout le contenu collé au bas de l'écran */
             justify-content: flex-end;
             padding: 40px;
         }
@@ -108,8 +84,8 @@
             margin-top: 28px;
             display: flex;
             gap: 16px;
+            flex-wrap: nowrap; /* Toujours sur la même ligne */
             justify-content: flex-end;
-            flex-wrap: nowrap; /* ne pas laisser les boutons passer à la ligne */
         }
 
         .btn {
@@ -133,22 +109,13 @@
 
         /* MOBILE */
         @media (max-width: 900px) {
-            header {
-                display: none;
-            }
-
             .content {
                 justify-content: center;
-                align-items: flex-start;
+                align-items: flex-end; /* tout en bas pour rester sur la photo */
                 padding: 22px;
-                height: 100vh;
             }
 
             .hero {
-                position: absolute;
-                bottom: 5%; /* descend le texte pour dégager le visage */
-                left: 50%;
-                transform: translateX(-50%);
                 text-align: center;
                 max-width: 90%;
             }
@@ -168,7 +135,7 @@
 
             .cta {
                 justify-content: center;
-                gap: 16px; /* espace entre boutons sur mobile */
+                gap: 16px;
             }
         }
     </style>
@@ -178,7 +145,7 @@
 
     <main class="content">
         <div class="hero">
-            <h1>Evzone</h1>
+            <h1>zone</h1>
             <div class="subtitle">Le site de Francis de Faccio</div>
             <p class="lead">Cet artiste traduit nos liens avec la nature à travers ses œuvres uniques.</p>
             <div class="cta">

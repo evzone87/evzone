@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Evzone - Francis de Faccio, artiste peintre en Corrèze, Limousin</title>
-    <meta name="description" content="Découvrez les ouvres de Francis de Faccio, artiste peintre installé à Masseret en Corrèze, proche de Limoges. Inspiré par la nature il crée des peintures uniques mêlant art et émotions." />
-    <meta name="keywords" content="peinture, artiste, Limoges, nature, art écologique" />
-    <meta name="copyright" content="Francis de Faccio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evzone – Francis de Faccio, artiste peintre et photographe en Corrèze</title>
+    <meta name="description" content="Découvrez les peintures et photographies de Francis de Faccio, artiste peintre et photographe en Corrèze. Oeuvres uniques inspirées par la nature et les émotions." />
+    <meta name="keywords" content="artiste peintre, peinture nature, photographie, Corrèze, Limousin, tableaux uniques, art écologique" />
+    <meta name="author" content="Francis de Faccio" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" type="text/css" href="styles-site.css" />
 
-    <!-- Bibliothèque jQuery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <!-- Styles personnalisés -->
     <style>
         body {
             margin: 0;
@@ -31,79 +31,25 @@
             100% { background-position: 0% 50%; }
         }
 
-        .content {
-            text-align: center;
-            position: relative;
-            padding: 4em 1em;
-            z-index: 1;
-        }
+        .content { text-align: center; position: relative; padding: 4em 1em; z-index: 1; }
+        .wave-container { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; height: 30em; z-index: 2; }
+        .wave { background: rgba(125, 128, 153, 0.4); border-radius: 1000% 1000% 0 0; position: absolute; width: 200%; height: 30em; animation: wave 10s linear infinite; transform: translate3d(0,0,0); }
+        .wave:nth-of-type(2) { bottom: -1.25em; background: rgba(125, 128, 153, 0.3); animation: wave 18s linear reverse infinite; }
+        .wave:nth-of-type(3) { bottom: -2.5em; background: rgba(125, 128, 153, 0.2); animation: wave 20s -1s reverse infinite; }
+        @keyframes wave { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-25%); } }
 
-        .wave-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            height: 30em;
-            z-index: 2;
-        }
-
-        .wave {
-            background: rgba(125, 128, 153, 0.4);
-            border-radius: 1000% 1000% 0 0;
-            position: absolute;
-            width: 200%;
-            height: 30em;
-            animation: wave 10s linear infinite;
-            transform: translate3d(0, 0, 0);
-        }
-
-        .wave:nth-of-type(2) {
-            bottom: -1.25em;
-            background: rgba(125, 128, 153, 0.3);
-            animation: wave 18s linear reverse infinite;
-        }
-
-        .wave:nth-of-type(3) {
-            bottom: -2.5em;
-            background: rgba(125, 128, 153, 0.2);
-            animation: wave 20s -1s reverse infinite;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-25%); }
-        }
-
-        .text {
-            padding: 2em 1em;
-            border-radius: 10px;
-            margin: 2em auto;
-            max-width: 800px;
-            z-index: 1;
-        }
-
-        h1 { font-size: 3.5em; margin: 0; text-align: left; }
+        .text { padding: 2em 1em; border-radius: 10px; margin: 2em auto; max-width: 800px; z-index: 1; }
+        h1 { font-size: 3em; margin: 0; text-align: left; }
         h2 { font-size: 2em; font-weight: normal; margin: 0.5em 0 0; text-align: left; color: #565761; }
-        .text p { font-size: 1.5em; line-height: 1.8em; margin: 0.5em 0; text-align: justify; }
+        p { font-size: 1.5em; line-height: 1.8em; margin: 0.5em 0; text-align: justify; }
         .text img { max-width: 100%; height: auto; margin: 2em 0; border-radius: 8px; }
-
         .contact-links { margin-top: 3em; text-align: center; }
         .contact-links h3 { font-size: 2em; color: #fff; margin-bottom: 1em; }
-        .contact-links a {
-            font-size: 1.5em; text-decoration: none; color: #fff;
-            padding: 0.5em; border: 2px solid transparent; border-radius: 5px;
-            transition: all 0.3s ease; margin: 0 10px;
-        }
+        .contact-links a { font-size: 1.5em; text-decoration: none; color: #fff; padding: 0.5em; border: 2px solid transparent; border-radius: 5px; transition: all 0.3s ease; margin: 0 10px; }
         .contact-links a:hover { color: #c2c3ed; border-color: #c2c3ed; background-color: #25262b; transform: scale(1.05); }
-
         .image-container { text-align: center; margin: 20px 0; }
         .image-container img { max-width: 100%; height: auto; transition: filter 0.3s ease; }
-        .image-container a {
-            display: block; margin-top: 10px; font-size: 1.2em;
-            text-decoration: none; color: #c2c3ed; border: 2px solid #c2c3ed;
-            padding: 5px 10px; border-radius: 5px; transition: all 0.3s ease;
-        }
+        .image-container a { display: block; margin-top: 10px; font-size: 1.2em; text-decoration: none; color: #c2c3ed; border: 2px solid #c2c3ed; padding: 5px 10px; border-radius: 5px; transition: all 0.3s ease; }
         .image-container a:hover { background-color: #25262b; color: #fff; transform: scale(1.05); }
         .image-container img:hover { filter: brightness(80%); }
         .sold { background-color: grey !important; border-color: grey !important; cursor: default !important; }
@@ -117,55 +63,55 @@
             <h1>Evzone</h1>
             <h2>Le site de Francis de Faccio</h2>
 
-            <p>Artiste peintre, il traduit nos liens profonds avec la nature à travers ses peintures.</p>
-            <p>Peindre, c'est pour lui capturer l'âme d'un paysage, saisir ses émotions, ses mouvements, et la puissance des éléments.</p>
-            <p>Chaque tableau reflète ce dialogue intime entre l'homme et la nature, invitant à un voyage sensoriel, entre évasion et introspection.</p>
-            <p>Sa démarche repose sur une exploration, où les couleurs primaires servent de point de départ à chaque composition.</p>
-            <p>Il s'engage dans une approche naturelle en fabriquant ses cadres à partir de matériaux recyclés et en transformant des tissus de récupération pour créer ses supports de toiles.</p>
-            <p>Cette fusion de créativité, d'originalité et de respect de l'environnement donne naissance à des ouvres uniques et durables.</p>
+            <p>Artiste peintre et photographe, il traduit nos liens profonds avec la nature à travers ses œuvres uniques.</p>
+            <p>Peindre et photographier, c'est capturer l'âme d'un paysage, saisir ses émotions, ses mouvements et la puissance des éléments.</p>
+            <p>Chaque tableau reflète ce dialogue intime entre l'homme et la nature, invitant à un voyage sensoriel entre évasion et introspection.</p>
+            <p>Sa démarche repose sur une exploration où les couleurs primaires servent de point de départ à chaque composition.</p>
+            <p>Il s'engage dans une approche écologique en fabriquant ses cadres à partir de matériaux recyclés et en transformant des tissus de récupération pour créer ses supports de toiles.</p>
+            <p>Cette fusion de créativité, d'originalité et de respect de l'environnement donne naissance à des œuvres uniques et durables.</p>
 
-            <!-- Images et vidéos locales sous dossier peinture -->
-            <img src="image/peinture/nuancesorageuses.jpg" alt="nuances orageuses de Francis de faccio" />
+            <!-- Images et vidéos -->
+            <img src="image/peinture/nuancesorageuses.jpg" alt="Peinture Nuances Orageuses par Francis de Faccio" />
             <div class="image-container">
-                <img src="image/peinture/nuancesorageuses01.jpg" alt="création nuances orageuses" />
+                <img src="image/peinture/nuancesorageuses01.jpg" alt="Détail Nuances Orageuses" />
                 <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583957/nuances-orageuses" target="_blank">Tableau disponible</a>
             </div>
 
-            <img src="image/peinture/pourteplaire.jpg" alt="tableau Pour te plaire" />
+            <img src="image/peinture/pourteplaire.jpg" alt="Tableau Pour te plaire" />
             <div class="image-container">
-                <img src="image/peinture/pourteplaire02.jpg" alt="tableau Pour te plaire" />
-                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583675/pour-te-plaire" target="_blank">parti vers d'autres horizons, vendu</a>
+                <img src="image/peinture/pourteplaire02.jpg" alt="Détail Pour te plaire" />
+                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583675/pour-te-plaire" target="_blank">Vendu</a>
             </div>
 
-            <img src="image/peinture/aucoeurdutumulte01.jpg" alt="création au coeur du tumulte" />
+            <img src="image/peinture/aucoeurdutumulte01.jpg" alt="Tableau Au coeur du tumulte" />
             <div class="image-container">
-                <img src="image/peinture/aucoeurdutumulte02.jpg" alt="création au coeur du tumulte" />
-                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583768/au-coeur-du-tumulte" target="_blank">parti vers d'autres horizons, vendu</a>
+                <img src="image/peinture/aucoeurdutumulte02.jpg" alt="Détail Au coeur du tumulte" />
+                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583768/au-coeur-du-tumulte" target="_blank">Vendu</a>
             </div>
 
-            <img src="image/peinture/vertige02.jpg" alt="vertige" />
+            <img src="image/peinture/vertige02.jpg" alt="Tableau Vertige" />
             <video controls style="width:100%;">
                 <source src="image/peinture/vertige.mp4" type="video/mp4" />
-                Votre navigateur ne supporte pas l'élément vidéo.
+                Votre navigateur ne supporte pas la vidéo.
             </video>
             <div class="image-container">
-                <img src="image/peinture/vertige.jpg" alt="vertige" />
-                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583858/vertige" target="_blank">parti vers d'autres horizons, vendu</a>
+                <img src="image/peinture/vertige.jpg" alt="Détail Vertige" />
+                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583858/vertige" target="_blank">Vendu</a>
             </div>
 
-            <img src="image/peinture/carrelet.jpg" alt="Carrelet" />
+            <img src="image/peinture/carrelet.jpg" alt="Tableau Carrelet" />
             <div class="image-container">
-                <img src="image/peinture/carrelet02.jpg" alt="Carrelets" />
-                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583027/cabane-a-carrelet" target="_blank">parti vers d'autres horizons, vendu</a>
+                <img src="image/peinture/carrelet02.jpg" alt="Détail Carrelet" />
+                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18583027/cabane-a-carrelet" target="_blank">Vendu</a>
             </div>
 
-            <img src="image/peinture/coquelicots.JPG" alt="Coquelicots" />
+            <img src="image/peinture/coquelicots.JPG" alt="Tableau Coquelicots" />
             <div class="image-container">
-                <img src="image/peinture/coquelicots01.jpg" alt="Coquelicots" />
-                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18459553/les-coquelicots" target="_blank">parti vers d'autres horizons, vendu</a>
+                <img src="image/peinture/coquelicots01.jpg" alt="Détail Coquelicots" />
+                <a href="https://www.artmajeur.com/francis-de-faccio/fr/oeuvres-d-art/18459553/les-coquelicots" target="_blank">Vendu</a>
             </div>
 
-            <img src="image/peinture/signature.png" alt="signature des tableaux" />
+            <img src="image/peinture/signature.png" alt="Signature Francis de Faccio" />
 
             <!-- Section Contact -->
             <div class="contact-links">

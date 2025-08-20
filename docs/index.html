@@ -49,7 +49,7 @@
             height: 100vh;
             width: 100%;
             display: flex;
-            align-items: flex-end;
+            align-items: center; /* centre verticalement sur tous les écrans */
             justify-content: flex-end;
             padding: 40px;
         }
@@ -83,9 +83,9 @@
         .cta {
             margin-top: 28px;
             display: flex;
-            flex-direction: column; /* liens l'un au-dessus de l'autre */
+            flex-direction: column; /* boutons l'un au-dessus de l'autre */
             gap: 12px;
-            align-items: flex-start; /* alignés à gauche de la zone texte */
+            align-items: flex-end; /* alignés à droite comme le texte */
         }
 
         .btn {
@@ -111,7 +111,7 @@
         @media (max-width: 900px) {
             .content {
                 justify-content: flex-end;
-                align-items: center; /* centre verticalement */
+                align-items: center;
                 padding: 22px;
                 height: 100vh;
             }
@@ -135,8 +135,8 @@
             }
 
             .cta {
-                flex-direction: column; /* liens l'un au-dessus de l'autre */
-                align-items: flex-start; /* alignés à gauche */
+                flex-direction: column; /* boutons sur deux lignes */
+                align-items: flex-end; /* alignés à droite */
                 margin-top: 20px;
             }
         }
@@ -148,8 +148,11 @@
     <main class="content">
         <div class="hero">
             <h1>Evzone</h1>
-            <div class="subtitle">Le site de Francis de Faccio</div>
-            <p class="lead">Cet artiste traduit nos liens avec la nature à travers ses œuvres uniques.</p>          
+            <div class="subtitle">Francis de Faccio</div>
+            <p class="lead">traduit nos liens</p>
+            <p class="lead">avec la nature</p>
+            <p class="lead">à travers ses œuvres uniques.</p>
+            <div class="cta">
                 <a class="btn" href="photographie.html">Photographie</a>
                 <a class="btn" href="peinture.html">Peinture</a>
             </div>

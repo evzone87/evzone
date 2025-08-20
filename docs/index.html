@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Evzone – Francis de Faccio, artiste peintre et photographe en Corrèze</title>
@@ -10,132 +7,98 @@
         content="artiste peintre, peinture nature, photographie, Corrèze, Limousin, tableaux uniques, art écologique" />
     <meta name="author" content="Francis de Faccio" />
     <link rel="shortcut icon" href="favicon.ico" />
-  <style>
-    :root{
-      --overlay: 0.15; /* force de l'assombrissement (0.10 à 0.20 conseillé) */
-    }
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; margin:0; }
-    body{
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      color:#fff;
-      background: url('images/photos/confolens01.jpg') center center / cover no-repeat;
-      min-height:100vh;
-      position:relative;
-    }
-    body::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background: rgba(0,0,0,var(--overlay));
-    }
+<style>
+:root{
+  --overlay: 0.15;
+}
+*{ box-sizing: border-box; }
+html,body{ height:100%; margin:0; }
+body{
+  font-family:"Helvetica Neue", Arial, sans-serif;
+  color:#fff;
+  background: url('images/photos/confolens01.jpg') center center / cover no-repeat;
+  min-height:100vh;
+  position:relative;
+}
+body::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background: rgba(0,0,0,var(--overlay));
+}
 
-    /* NAVIGATION (desktop) */
-    header{
-      position: absolute; top: 20px; right: 28px; z-index:3;
-      display:flex; gap: 26px; align-items:center;
-    }
-    header a{
-      color:#fff; text-decoration:none; font-weight:700; letter-spacing:0.02em;
-      padding:8px 0; transition:opacity .25s ease;
-    }
-    header a:hover{ opacity: .8; }
+/* NAVIGATION (desktop) */
+header{
+  position: absolute; top: 20px; right: 28px; z-index:3;
+  display:flex; gap: 26px; align-items:center;
+}
+header a{
+  color:#fff; text-decoration:none; font-weight:700; letter-spacing:0.02em;
+  padding:8px 0; transition:opacity .25s ease;
+}
+header a:hover{ opacity: .8; }
 
-    /* CONTENU À DROITE (desktop) */
-    .content{
-      position:relative; z-index:2; height:100vh; width:100%;
-      display:flex; align-items:center; justify-content:flex-end;
-      padding: 40px;
-    }
-    .hero{ max-width: 640px; text-align: right; }
-    h1{ font-size: clamp(2.2rem, 4vw, 3.4rem); margin:0 0 6px; font-weight:800;
-        text-shadow: 0 8px 24px rgba(0,0,0,.45); letter-spacing:.02em; }
-    .subtitle{ font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight:600; opacity:.95; }
-    .lead{ margin-top:14px; font-size: clamp(1rem, 1.6vw, 1.15rem); line-height:1.6;
-           text-shadow:0 4px 16px rgba(0,0,0,.45); }
+/* CONTENU */
+.content{
+  position:relative; z-index:2; height:100vh; width:100%;
+  display:flex; align-items:center; justify-content:flex-end;
+  padding: 40px;
+}
+.hero{ max-width: 640px; text-align: right; }
+h1{ font-size: clamp(2.2rem, 4vw, 3.4rem); margin:0 0 6px; font-weight:800;
+    text-shadow: 0 8px 24px rgba(0,0,0,.45); letter-spacing:.02em; }
+.subtitle{ font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight:600; opacity:.95; }
+.lead{ margin-top:14px; font-size: clamp(1rem, 1.6vw, 1.15rem); line-height:1.6;
+       text-shadow:0 4px 16px rgba(0,0,0,.45); }
 
-    .cta{
-      margin-top:28px; display:flex; gap:16px; justify-content:flex-end; flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-block; padding:12px 24px; border-radius:999px;
-      background: rgba(255,255,255,.72); color:#111; text-decoration:none; font-weight:800;
-      letter-spacing:.02em; transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.9); box-shadow:0 12px 30px rgba(0,0,0,.3); }
+.cta{
+  margin-top:28px; display:flex; gap:16px; justify-content:flex-end; flex-wrap:wrap;
+}
+.btn{
+  display:inline-block; padding:12px 24px; border-radius:999px;
+  background: rgba(255,255,255,.72); color:#111; text-decoration:none; font-weight:800;
+  letter-spacing:.02em; transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.9); box-shadow:0 12px 30px rgba(0,0,0,.3); }
 
-    /* HAMBURGER (mobile) */
-    .hamburger{ display:none; position:absolute; top:18px; right:18px; z-index:4; cursor:pointer; }
-    .hamburger span{ display:block; width:28px; height:3px; background:#fff; border-radius:3px; }
-    .hamburger span + span{ margin-top:6px; }
+/* MOBILE */
+@media (max-width:900px){
+  header{ display:none; }
 
-    /* MENU OVERLAY MOBILE */
-    .mobile-menu{ display:none; position:fixed; inset:0; z-index:5;
-      background: rgba(0,0,0,.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      align-items:center; justify-content:center;
-    }
-    .mobile-menu.open{ display:flex; }
-    .mobile-menu nav{ display:flex; flex-direction:column; gap:22px; text-align:center; }
-    .mobile-menu a{ color:#fff; text-decoration:none; font-weight:800; font-size:1.25rem; }
+  .content{
+    justify-content:center;
+    align-items: flex-start; /* alignement normal pour flex */
+    padding: 22px;
+  }
 
-    /* RWD */
-    @media (max-width: 900px){
-      header{ display:none; }
-      .hamburger{ display:block; }
+  .hero{
+    position:absolute;
+    bottom:10%; /* distance depuis le bas, change selon besoin */
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    max-width:90%;
+  }
 
-      /* Texte dynamique sur mobile */
-      .content{
-        justify-content:center;
-        align-items:flex-end; /* pousse le texte vers le bas */
-        flex-direction:column;
-        padding: 22px;
-        height:100vh;
-      }
-
-      .hero{
-        text-align:center;
-        max-width:90%;
-      }
-
-      h1{ font-size: clamp(1.8rem, 6vw, 2.8rem); }
-      .subtitle{ font-size: clamp(0.95rem, 4vw, 1.2rem); }
-      .lead{ font-size: clamp(0.9rem, 3.5vw, 1rem); line-height:1.5; }
-
-      .cta{ justify-content:center; gap:12px; }
-    }
-  </style>
+  h1{ font-size: clamp(1.8rem, 6vw, 2.8rem); }
+  .subtitle{ font-size: clamp(0.95rem, 4vw, 1.2rem); }
+  .lead{ font-size: clamp(0.9rem, 3.5vw, 1rem); line-height:1.5; }
+  .cta{ justify-content:center; gap:12px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Contenu principal aligné à droite sur desktop -->
-  <main class="content">
-    <div class="hero">
-      <h1>Evzone</h1>
-      <div class="subtitle">le site de Francis de Faccio</div>
-      <p class="lead">cet artiste traduit nos liens avec la nature à travers ses œuvres uniques</p>
-      <div class="cta">
-        <a class="btn" href="photographie.html">Photographie</a>
-        <a class="btn" href="peinture.html">Peinture</a>
-      </div>
+<main class="content">
+  <div class="hero">
+    <h1>Evzone</h1>
+    <div class="subtitle">Le site de Francis de Faccio</div>
+    <p class="lead">Cet artiste traduit nos liens avec la nature à travers ses œuvres uniques.</p>
+    <div class="cta">
+      <a class="btn" href="photographie.html">Photographie</a>
+      <a class="btn" href="peinture.html">Peinture</a>
     </div>
-  </main>
+  </div>
+</main>
 
-  <script>
-    function toggleMenu(){
-      const mm = document.getElementById('mobileMenu');
-      const isOpen = mm.classList.toggle('open');
-      mm.setAttribute('aria-hidden', String(!isOpen));
-    }
-
-    // Texte dynamique : ajuste la marge inférieure du texte selon la hauteur de l'écran
-    function adjustHeroMargin() {
-      const hero = document.querySelector('.hero');
-      const vh = window.innerHeight;
-      // On laisse toujours 20% de l'écran vide au-dessus du texte
-      const marginBottom = vh * 0.2;
-      hero.style.marginBottom = marginBottom + 'px';
-    }
-    window.addEventListener('resize', adjustHeroMargin);
-    window.addEventListener('load', adjustHeroMargin);
-  </script>
 </body>
 </html>

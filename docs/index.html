@@ -49,7 +49,7 @@
             height: 100vh;
             width: 100%;
             display: flex;
-            align-items: flex-end; /* tout le contenu collé au bas de l'écran */
+            align-items: flex-end; /* texte en bas sur PC */
             justify-content: flex-end;
             padding: 40px;
         }
@@ -110,13 +110,14 @@
         /* MOBILE */
         @media (max-width: 900px) {
             .content {
-                justify-content: center;
-                align-items: flex-end; /* tout en bas pour rester sur la photo */
+                justify-content: flex-end; /* texte aligné à droite */
+                align-items: flex-start; /* on remonte le texte */
                 padding: 22px;
+                height: 100vh;
             }
 
             .hero {
-                text-align: center;
+                text-align: right; /* texte aligné à droite */
                 max-width: 90%;
             }
 
@@ -134,7 +135,7 @@
             }
 
             .cta {
-                justify-content: center;
+                justify-content: flex-start; /* aligné à droite comme les autres textes */
                 gap: 16px;
             }
         }
@@ -145,7 +146,7 @@
 
     <main class="content">
         <div class="hero">
-            <h1>zone</h1>
+            <h1>Evzone</h1>
             <div class="subtitle">Le site de Francis de Faccio</div>
             <p class="lead">Cet artiste traduit nos liens avec la nature à travers ses œuvres uniques.</p>
             <div class="cta">

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evzone – Francis de Faccio</title>
-  <meta name="description" content="Evzone – Le site de Francis de Faccio, artiste peintre & photographe. œuvres, expositions, contact." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evzone – Francis de Faccio, artiste peintre et photographe en Corrèze</title>
+    <meta name="description"
+        content="Découvrez les peintures et photographies de Francis de Faccio, artiste en Corrèze. Oeuvres uniques inspirées par la nature et ses émotions." />
+    <meta name="keywords"
+        content="artiste peintre, peinture nature, photographie, Corrèze, Limousin, tableaux uniques, art écologique" />
+    <meta name="author" content="Francis de Faccio" />
+    <link rel="shortcut icon" href="favicon.ico" />
   <style>
     :root{
       --overlay: 0.15; /* force de l'assombrissement (0.10 à 0.20 conseillé) */
     }
     *{ box-sizing: border-box; }
-    html,body{ height:100%; }
+    html,body{ height:100%; margin:0; }
     body{
-      margin:0;
       font-family: "Helvetica Neue", Arial, sans-serif;
       color:#fff;
-      /* IMAGE DE FOND EN PLEIN ÉCRAN */
-      /* Place l'image dans docs/images/photos/ */
       background: url('images/photos/confolens01.jpg') center center / cover no-repeat;
       min-height:100vh;
       position:relative;
     }
-    /* Overlay sombre pour lisibilité du texte */
     body::before{
       content:""; position:absolute; inset:0; z-index:0;
       background: rgba(0,0,0,var(--overlay));
@@ -42,7 +43,7 @@
     .content{
       position:relative; z-index:2; height:100vh; width:100%;
       display:flex; align-items:center; justify-content:flex-end;
-      padding: 40px; /* marge intérieure */
+      padding: 40px;
     }
     .hero{ max-width: 640px; text-align: right; }
     h1{ font-size: clamp(2.2rem, 4vw, 3.4rem); margin:0 0 6px; font-weight:800;
@@ -80,26 +81,37 @@
     @media (max-width: 900px){
       header{ display:none; }
       .hamburger{ display:block; }
-      .content{ justify-content:center; padding: 22px; }
-      .hero{ text-align:center; }
-      .cta{ justify-content:center; }
+
+      /* Texte dynamique sur mobile */
+      .content{
+        justify-content:center;
+        align-items:flex-end; /* pousse le texte vers le bas */
+        flex-direction:column;
+        padding: 22px;
+        height:100vh;
+      }
+
+      .hero{
+        text-align:center;
+        max-width:90%;
+      }
+
+      h1{ font-size: clamp(1.8rem, 6vw, 2.8rem); }
+      .subtitle{ font-size: clamp(0.95rem, 4vw, 1.2rem); }
+      .lead{ font-size: clamp(0.9rem, 3.5vw, 1rem); line-height:1.5; }
+
+      .cta{ justify-content:center; gap:12px; }
     }
   </style>
 </head>
 <body>
-  <!-- Bouton hamburger (mobile) -->
-  <button class="hamburger" aria-label="Ouvrir le menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-
-
 
   <!-- Contenu principal aligné à droite sur desktop -->
   <main class="content">
     <div class="hero">
       <h1>Evzone</h1>
-      <div class="subtitle">Le site de Francis de Faccio</div>
-      <p class="lead">Cet artiste traduit nos liens avec la nature à travers ses œuvres uniques.</p>
+      <div class="subtitle">le site de Francis de Faccio</div>
+      <p class="lead">cet artiste traduit nos liens avec la nature à travers ses œuvres uniques</p>
       <div class="cta">
         <a class="btn" href="photographie.html">Photographie</a>
         <a class="btn" href="peinture.html">Peinture</a>
@@ -113,6 +125,17 @@
       const isOpen = mm.classList.toggle('open');
       mm.setAttribute('aria-hidden', String(!isOpen));
     }
+
+    // Texte dynamique : ajuste la marge inférieure du texte selon la hauteur de l'écran
+    function adjustHeroMargin() {
+      const hero = document.querySelector('.hero');
+      const vh = window.innerHeight;
+      // On laisse toujours 20% de l'écran vide au-dessus du texte
+      const marginBottom = vh * 0.2;
+      hero.style.marginBottom = marginBottom + 'px';
+    }
+    window.addEventListener('resize', adjustHeroMargin);
+    window.addEventListener('load', adjustHeroMargin);
   </script>
 </body>
 </html>

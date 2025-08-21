@@ -42,14 +42,29 @@
             background: rgba(0, 0, 0, var(--overlay));
         }
 
-        /* CONTENU */
+        /* PHRASE EN HAUT À DROITE */
+        .tagline {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 10;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            font-style: italic;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+
+        /* CONTENU PRINCIPAL */
         .content {
             position: relative;
             z-index: 2;
             height: 100vh;
             width: 100%;
             display: flex;
-            align-items: center; /* centre verticalement sur tous les écrans */
+            align-items: center;
             justify-content: flex-end;
             padding: 40px;
         }
@@ -61,31 +76,19 @@
 
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.4rem);
-            margin: 0 0 6px;
+            margin: 0;
             font-weight: 800;
             text-shadow: 0 8px 24px rgba(0, 0, 0, .45);
             letter-spacing: .02em;
         }
 
-        .subtitle {
-            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-            font-weight: 600;
-            opacity: .95;
-        }
-
-        .lead {
-            margin-top: 14px;
-            font-size: clamp(1rem, 1.6vw, 1.15rem);
-            line-height: 1.6;
-            text-shadow: 0 4px 16px rgba(0, 0, 0, .45);
-        }
-
+        /* Ajout d'un espacement entre le titre et les boutons */
         .cta {
-            margin-top: 28px;
+            margin-top: 40px; /* correspond environ à deux sauts de ligne */
             display: flex;
-            flex-direction: column; /* boutons l'un au-dessus de l'autre */
+            flex-direction: column;
             gap: 12px;
-            align-items: flex-end; /* alignés à droite comme le texte */
+            align-items: flex-end;
         }
 
         .btn {
@@ -109,6 +112,14 @@
 
         /* MOBILE */
         @media (max-width: 900px) {
+            .tagline {
+                font-size: 1rem;
+                top: 12px;
+                right: 15px;
+                max-width: 60%;
+                text-align: right;
+            }
+
             .content {
                 justify-content: flex-end;
                 align-items: center;
@@ -125,39 +136,28 @@
                 font-size: clamp(1.8rem, 6vw, 2.8rem);
             }
 
-            .subtitle {
-                font-size: clamp(0.95rem, 4vw, 1.2rem);
-            }
-
-            .lead {
-                font-size: clamp(0.9rem, 3.5vw, 1rem);
-                line-height: 1.5;
-            }
-
             .cta {
-                flex-direction: column; /* boutons sur deux lignes */
-                align-items: flex-end; /* alignés à droite */
-                margin-top: 20px;
+                margin-top: 32px; /* un peu moins d'espace sur mobile */
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 12px;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- PHRASE EN HAUT À DROITE -->
+    <div class="tagline">Je peins la lumière et photographie les rêves.</div>
 
     <main class="content">
         <div class="hero">
             <h1>Evzone</h1>
-			<div class="subtitle">Francis de Faccio</div>
-            <p class="lead">"Je peins la lumière et photographie les rêves"</p>
             <div class="cta">
                 <a class="btn" href="peinture.html">Peinture</a>
-                <a class="btn" href="photographie.html">Photographie</a>						
+                <a class="btn" href="photographie.html">Photographie</a>
             </div>
-			
         </div>
     </main>
-
 </body>
-
- </html>
+</html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Evzone – Francis de Faccio, artiste peintre et photographe en Corrèze</title>
     <meta name="description"
-        content="Découvrez les peintures et photographies de Francis de Faccio, artiste en Corrèze. Œuvres uniques inspirées par la nature et ses émotions." />
+        content="Découvrez les peintures et photographies de Francis de Faccio, artiste en Corrèze. Oeuvres uniques inspirées par la nature et ses émotions." />
     <meta name="keywords"
         content="artiste peintre, peinture nature, photographie, Corrèze, Limousin, tableaux uniques, art écologique" />
     <meta name="author" content="Francis de Faccio" />
@@ -14,18 +14,14 @@
     <style>
         :root {
             --overlay: 0.15;
-            --btn-bg: rgba(255, 255, 255, .72);
-            --btn-hover-bg: rgba(255, 255, 255, .9);
-            --btn-color: #111;
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
         }
@@ -36,8 +32,6 @@
             background: url('images/photos/confolens01.jpg') center center / cover no-repeat;
             position: relative;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         body::before {
@@ -59,6 +53,7 @@
             color: #fff;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
             font-style: italic;
+            letter-spacing: 0.5px;
             opacity: 0.95;
         }
 
@@ -66,7 +61,8 @@
         .content {
             position: relative;
             z-index: 2;
-            flex: 1;
+            height: 100vh;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -86,9 +82,9 @@
             letter-spacing: .02em;
         }
 
-        /* BOUTONS PRINCIPAUX */
+        /* Ajout d'un espacement entre le titre et les boutons */
         .cta {
-            margin-top: 60px;
+            margin-top: 80px; /* correspond environ à deux sauts de ligne */
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -99,8 +95,8 @@
             display: inline-block;
             padding: 12px 24px;
             border-radius: 999px;
-            background: var(--btn-bg);
-            color: var(--btn-color);
+            background: rgba(255, 255, 255, .72);
+            color: #111;
             text-decoration: none;
             font-weight: 800;
             letter-spacing: .02em;
@@ -110,50 +106,8 @@
 
         .btn:hover {
             transform: translateY(-1px);
-            background: var(--btn-hover-bg);
+            background: rgba(255, 255, 255, .9);
             box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
-        }
-
-        /* SECTION CONTACT */
-        footer {
-            position: relative;
-            z-index: 2;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(6px);
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        footer h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .contact-links a {
-            padding: 10px 22px;
-            border-radius: 30px;
-            background: var(--btn-bg);
-            color: var(--btn-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-links a:hover {
-            background: var(--btn-hover-bg);
-            transform: scale(1.05);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
         }
 
         /* MOBILE */
@@ -167,23 +121,25 @@
             }
 
             .content {
-                justify-content: center;
+                justify-content: flex-end;
+                align-items: center;
                 padding: 22px;
-                text-align: center;
+                height: 100vh;
             }
 
             .hero {
+                text-align: right;
                 max-width: 90%;
-                text-align: center;
+            }
+
+            h1 {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
             }
 
             .cta {
-                align-items: center;
-                margin-top: 30px;
-            }
-
-            .contact-links {
+                margin-top: 32px; /* un peu moins d'espace sur mobile */
                 flex-direction: column;
+                align-items: flex-end;
                 gap: 12px;
             }
         }
@@ -194,7 +150,6 @@
     <!-- PHRASE EN HAUT À DROITE -->
     <div class="tagline">"Je peins la lumière et photographie les rêves."</div>
 
-    <!-- CONTENU PRINCIPAL -->
     <main class="content">
         <div class="hero">
             <h1>Evzone</h1>
@@ -204,16 +159,5 @@
             </div>
         </div>
     </main>
-
-    <!-- SECTION CONTACT -->
-    <footer>
-        <h2>Contact</h2>
-        <div class="contact-links">
-            <a href="https://www.artmajeur.com/francis-de-faccio" target="_blank">Artmajeur</a>
-            <a href="https://www.tiktok.com/@francisdefaccio" target="_blank">TikTok</a>
-            <a href="https://www.instagram.com/evzone87/" target="_blank">Instagram</a>
-            <a href="https://www.facebook.com/fanfan.francisd?locale=fr_FR" target="_blank">Facebook</a>
-        </div>
-    </footer>
 </body>
 </html>

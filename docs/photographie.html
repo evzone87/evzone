@@ -95,43 +95,118 @@
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
         }
 
+        /* SECTION CONTACT */
+        footer {
+            width: 100%;
+            margin-top: 80px;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        footer h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .contact-links a {
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.72);
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+        }
+
         /* LIGHTBOX */
         .lightbox {
-            display: none; position: fixed; inset: 0;
+            display: none;
+            position: fixed;
+            inset: 0;
             background: rgba(0, 0, 0, 0.95);
-            justify-content: center; align-items: center; flex-direction: column;
-            z-index: 1000; overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
         }
         .lightbox img {
-            max-width: 90%; max-height: 80%;
-            border-radius: 10px; box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
             transition: opacity .35s ease, transform 0.3s ease;
-            cursor: zoom-in; opacity: 0;
+            cursor: zoom-in;
+            opacity: 0;
         }
-
-        /* MINIATURES */
-        .thumbnails { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding: 5px; }
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+            padding: 5px;
+        }
         .thumbnails img {
-            width: 80px; height: 60px; object-fit: cover;
-            border: 2px solid transparent; border-radius: 5px; cursor: pointer;
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
             transition: transform 0.2s, border-color 0.3s;
         }
-        .thumbnails img:hover, .thumbnails img.active { transform: scale(1.1); border-color: #fff; }
-
-        /* BOUTONS NAV */
-        .lightbox .prev, .lightbox .next {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            font-size: 3rem; color: #fff; cursor: pointer; user-select: none;
-            padding: 10px; background: rgba(0, 0, 0, 0.3); border-radius: 50%;
+        .thumbnails img:hover,
+        .thumbnails img.active {
+            transform: scale(1.1);
+            border-color: #fff;
+        }
+        .lightbox .prev,
+        .lightbox .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
             transition: background 0.3s ease;
         }
-        .lightbox .prev:hover, .lightbox .next:hover { background: rgba(255, 255, 255, 0.2); }
-        .lightbox .prev { left: 30px; } .lightbox .next { right: 30px; }
-
-        /* FERMER */
+        .lightbox .prev:hover,
+        .lightbox .next:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .lightbox .prev { left: 30px; }
+        .lightbox .next { right: 30px; }
         .lightbox .close {
-            position: absolute; top: 20px; right: 30px;
-            font-size: 2.5rem; color: #fff; cursor: pointer; user-select: none;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
         }
 
         /* RESPONSIVE */
@@ -140,13 +215,13 @@
             .gallery { grid-template-columns: 1fr; gap: 25px; }
             .category img { height: 220px; }
             .overlay { font-size: 1.2rem; padding: 18px; }
-            .thumbnails img { width: 60px; height: 45px; }
+            .contact-links { flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
 <body>
     <!-- PHRASE D'ACCROCHE -->
-    <div class="tagline">"la photographie prolongent vos rêves"</div>
+    <div class="tagline">"La photographie prolonge vos rêves"</div>
 
     <!-- TUILES DES 2 THÈMES -->
     <div class="gallery">
@@ -166,6 +241,17 @@
         <a href="index.html">← Retour à l'accueil</a>
     </div>
 
+    <!-- SECTION CONTACT -->
+    <footer>
+        <h2>Contact</h2>
+        <div class="contact-links">
+            <a href="https://www.artmajeur.com/francis-de-faccio" target="_blank">Artmajeur</a>
+            <a href="https://www.tiktok.com/@francisdefaccio" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/evzone87/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/fanfan.francisd?locale=fr_FR" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
     <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
         <span class="close" onclick="closeLightbox()">&times;</span>
@@ -175,33 +261,24 @@
         <div class="thumbnails" id="thumbnails"></div>
     </div>
 
+    <!-- SCRIPT LIGHTBOX -->
     <script>
-        /* --- DEUX GALERIES SÉPARÉES --- */
         const galleries = {
-            mpa: [ 
+            mpa: [
                 "images/photos/mariage-portrait-animalier/portrait-fille-chapeau-confolens.jpg",
                 "images/photos/mariage-portrait-animalier/portrait-femme-gabonaise.jpg",
                 "images/photos/mariage-portrait-animalier/jeune-fille-gabonaise.jpg",
-                "images/photos/mariage-portrait-animalier/garçon-gabonais.jpg",
                 "images/photos/mariage-portrait-animalier/portrait-noir-et-blanc.jpg",
                 "images/photos/mariage-portrait-animalier/portrait-homme.jpg",
-                "images/photos/mariage-portrait-animalier/portrait-riviere-gabon.jpg",
-                "images/photos/mariage-portrait-animalier/braque-de-weimar.jpg",
-                "images/photos/mariage-portrait-animalier/braque-de-weimar-chasse.jpg",
-                "images/photos/mariage-portrait-animalier/staffy.jpg",
-                "images/photos/mariage-portrait-animalier/staffordshire-bull terrier.jpg",
-                "images/photos/mariage-portrait-animalier/staffie-jeune.jpg",
-                "images/photos/mariage-portrait-animalier/portrait-aigle.jpg",
-                "images/photos/mariage-portrait-animalier/joli-moineau.jpg",
-                "images/photos/mariage-portrait-animalier/condore-des-andes.jpg",
-                "images/photos/mariage-portrait-animalier/vol-rapace.jpg",
-                "images/photos/mariage-portrait-animalier/macaque-de-barbarie.jpg",
-                "images/photos/mariage-portrait-animalier/danseuse-du-monde.jpg",
-                "images/photos/mariage-portrait-animalier/indien.jpg",
-                "images/photos/mariage-portrait-animalier/01confolens.jpg"
+                "images/photos/mariage-portrait-animalier/braque-de-weimar.jpg"
             ],
             epd: [
-                "images/photos/evenement-paysage-divers/01cascade.jpg"
+                "images/photos/evenement-paysage-divers/gouffre-de-padirac.jpg",
+                "images/photos/evenement-paysage-divers/plage-tamarissiere.jpg",
+                "images/photos/evenement-paysage-divers/chapelle-rocamadour.jpg",
+                "images/photos/evenement-paysage-divers/chateau-de-rocamadour.jpg",
+                "images/photos/evenement-paysage-divers/cascade-gabon.jpg",
+                "images/photos/evenement-paysage-divers/plage-libreville-gabon.jpg"
             ]
         };
 
@@ -213,15 +290,8 @@
         const lightboxImg = document.getElementById("lightbox-img");
         const thumbnailsContainer = document.getElementById("thumbnails");
 
-        function getCurrentImages() {
-            return galleries[currentGalleryKey] || [];
-        }
-
-        function resetZoom() {
-            currentScale = 1;
-            lightboxImg.style.transform = `scale(${currentScale})`;
-            lightboxImg.style.cursor = "zoom-in";
-        }
+        function getCurrentImages() { return galleries[currentGalleryKey] || []; }
+        function resetZoom() { currentScale = 1; lightboxImg.style.transform = `scale(${currentScale})`; lightboxImg.style.cursor = "zoom-in"; }
 
         function openLightbox(galleryKey, index = 0) {
             currentGalleryKey = galleryKey;
@@ -231,10 +301,7 @@
             updateImage();
         }
 
-        function closeLightbox() {
-            lightbox.style.display = "none";
-        }
-
+        function closeLightbox() { lightbox.style.display = "none"; }
         function changeImage(direction) {
             const imgs = getCurrentImages();
             if (!imgs.length) return;
@@ -246,12 +313,10 @@
         function updateImage() {
             const imgs = getCurrentImages();
             if (!imgs.length) return;
-
             lightboxImg.style.opacity = 0;
             const newSrc = imgs[currentIndex];
             lightboxImg.onload = () => { lightboxImg.style.opacity = 1; };
             lightboxImg.src = newSrc;
-
             thumbnailsContainer.innerHTML = "";
             imgs.forEach((src, index) => {
                 const t = document.createElement("img");
@@ -269,31 +334,6 @@
             lightboxImg.style.transform = `scale(${currentScale})`;
             lightboxImg.style.cursor = currentScale > 1 ? "zoom-out" : "zoom-in";
         }, { passive: false });
-
-        lightboxImg.addEventListener("dblclick", () => {
-            resetZoom();
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (lightbox.style.display !== "flex") return;
-            if (e.key === "Escape") closeLightbox();
-            if (e.key === "ArrowRight") changeImage(1);
-            if (e.key === "ArrowLeft") changeImage(-1);
-        });
-
-        let touchStartX = 0;
-        lightbox.addEventListener("touchstart", (e) => {
-            if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
-        }, { passive: true });
-
-        lightbox.addEventListener("touchend", (e) => {
-            const dx = e.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(dx) > 40) changeImage(dx < 0 ? 1 : -1);
-        });
-
-        lightbox.addEventListener("click", (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
     </script>
 </body>
 </html>

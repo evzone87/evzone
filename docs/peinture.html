@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peintures – Francis de Faccio</title>
+    <meta name="description" content="Découvrez les peintures artistiques de Francis de Faccio : une galerie unique présentant ses tableaux, paysages, portraits et créations originales." />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* PHRASE D'ACCROCHE */
+        .tagline {
+            font-size: 1.6rem;
+            font-style: italic;
+            color: #eee;
+            margin-bottom: 50px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* GALERIE PRINCIPALE */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 40px;
+            max-width: 950px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .category {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.55);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category:hover { transform: scale(1.04); box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7); }
+
+        .category img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .category:hover img { transform: scale(1.08); }
+
+        /* TITRES SUR LES IMAGES */
+        .overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+            color: #fff; font-weight: bold; font-size: 1.6rem; letter-spacing: 1px; text-align: left;
+        }
+
+        /* BOUTON ACCUEIL */
+        .back-home {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .back-home a {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: #222;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .back-home a:hover {
+            background: #fff;
+            color: #111;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            justify-content: center; align-items: center; flex-direction: column;
+            z-index: 1000; overflow: hidden;
+        }
+        .lightbox img {
+            max-width: 90%; max-height: 80%;
+            border-radius: 10px; box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+            transition: opacity .35s ease, transform 0.3s ease;
+            cursor: zoom-in; opacity: 0;
+        }
+
+        /* MINIATURES */
+        .thumbnails { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding: 5px; }
+        .thumbnails img {
+            width: 80px; height: 60px; object-fit: cover;
+            border: 2px solid transparent; border-radius: 5px; cursor: pointer;
+            transition: transform 0.2s, border-color 0.3s;
+        }
+        .thumbnails img:hover, .thumbnails img.active { transform: scale(1.1); border-color: #fff; }
+
+        /* BOUTONS NAV */
+        .lightbox .prev, .lightbox .next {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: 3rem; color: #fff; cursor: pointer; user-select: none;
+            padding: 10px; background: rgba(0, 0, 0, 0.3); border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        .lightbox .prev:hover, .lightbox .next:hover { background: rgba(255, 255, 255, 0.2); }
+        .lightbox .prev { left: 30px; } .lightbox .next { right: 30px; }
+
+        /* FERMER */
+        .lightbox .close {
+            position: absolute; top: 20px; right: 30px;
+            font-size: 2.5rem; color: #fff; cursor: pointer; user-select: none;
+        }
+
+        /* FOOTER - CONTACT */
+        footer {
+            width: 100%;
+            margin-top: 80px;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        footer h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .contact-links a {
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.72);
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .tagline { font-size: 1.3rem; margin-bottom: 30px; }
+            .gallery { grid-template-columns: 1fr; gap: 25px; }
+            .category img { height: 220px; }
+            .overlay { font-size: 1.2rem; padding: 18px; }
+            .thumbnails img { width: 60px; height: 45px; }
+            .contact-links { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- PHRASE D'ACCROCHE -->
+    <div class="tagline">"Les tableaux révèlent l'âme de l'artiste"</div>
+
+    <!-- GALERIE UNIQUE -->
+    <div class="gallery">
+        <div class="category" onclick="openLightbox(0)">
+            <img src="images/peintures/peintre-emergent.jpg" alt="Peinture de Francis de Faccio" loading="lazy">
+            <div class="overlay"></div>
+        </div>
+    </div>
+
+    <!-- BOUTON DE RETOUR ACCUEIL -->
+    <div class="back-home">
+        <a href="index.html">← Retour à l'accueil</a>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="">
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+        <div class="thumbnails" id="thumbnails"></div>
+    </div>
+
+    <!-- SECTION CONTACT -->
+    <footer>
+        <h2>Contact</h2>
+        <div class="contact-links">
+            <a href="https://www.artmajeur.com/francis-de-faccio" target="_blank">Artmajeur</a>
+            <a href="https://www.tiktok.com/@francisdefaccio" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/evzone87/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/fanfan.francisd?locale=fr_FR" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
+    <script>
+        const paintings = [
+            "images/peintures/exposition-la-recree-masseret.jpg",
+            "images/peintures/carrelet02.jpg",
+            "images/peintures/coquelicots.jpg",
+            "images/peintures/coquelicots01.jpg",
+            "images/peintures/pourteplaire.jpg",
+            "images/peintures/pourteplaire02.jpg",
+            "images/peintures/article-journal.jpg"
+        ];
+
+        let currentIndex = 0;
+        let currentScale = 1;
+
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const thumbnailsContainer = document.getElementById("thumbnails");
+
+        function resetZoom() {
+            currentScale = 1;
+            lightboxImg.style.transform = `scale(${currentScale})`;
+            lightboxImg.style.cursor = "zoom-in";
+        }
+
+        function openLightbox(index = 0) {
+            currentIndex = index;
+            lightbox.style.display = "flex";
+            resetZoom();
+            updateImage();
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = "none";
+        }
+
+        function changeImage(direction) {
+            currentIndex = (currentIndex + direction + paintings.length) % paintings.length;
+            resetZoom();
+            updateImage();
+        }
+
+        function updateImage() {
+            lightboxImg.style.opacity = 0;
+            const newSrc = paintings[currentIndex];
+            lightboxImg.onload = () => { lightboxImg.style.opacity = 1; };
+            lightboxImg.src = newSrc;
+
+            thumbnailsContainer.innerHTML = "";
+            paintings.forEach((src, index) => {
+                const t = document.createElement("img");
+                t.src = src;
+                if (index === currentIndex) t.classList.add("active");
+                t.onclick = () => { currentIndex = index; resetZoom(); updateImage(); };
+                thumbnailsContainer.appendChild(t);
+            });
+        }
+
+        lightboxImg.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            const factor = e.deltaY < 0 ? 1.1 : 0.9;
+            currentScale = Math.max(1, Math.min(4, currentScale * factor));
+            lightboxImg.style.transform = `scale(${currentScale})`;
+            lightboxImg.style.cursor = currentScale > 1 ? "zoom-out" : "zoom-in";
+        }, { passive: false });
+
+        lightboxImg.addEventListener("dblclick", resetZoom);
+
+        document.addEventListener("keydown", (e) => {
+            if (lightbox.style.display !== "flex") return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") changeImage(1);
+            if (e.key === "ArrowLeft") changeImage(-1);
+        });
+
+        let touchStartX = 0;
+        lightbox.addEventListener("touchstart", (e) => {
+            if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        lightbox.addEventListener("touchend", (e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 40) changeImage(dx < 0 ? 1 : -1);
+        });
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+    </script>
+</body>
+</html>

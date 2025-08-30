@@ -134,48 +134,6 @@
             font-size: 2.5rem; color: #fff; cursor: pointer; user-select: none;
         }
 
-        /* FOOTER - CONTACT */
-        footer {
-            width: 100%;
-            margin-top: 80px;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(6px);
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        footer h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .contact-links a {
-            padding: 10px 22px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.72);
-            color: #111;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-links a:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: scale(1.05);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
-        }
-
         /* RESPONSIVE */
         @media (max-width: 600px) {
             .tagline { font-size: 1.3rem; margin-bottom: 30px; }
@@ -183,7 +141,6 @@
             .category img { height: 220px; }
             .overlay { font-size: 1.2rem; padding: 18px; }
             .thumbnails img { width: 60px; height: 45px; }
-            .contact-links { flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
@@ -212,16 +169,6 @@
         <span class="next" onclick="changeImage(1)">&#10095;</span>
         <div class="thumbnails" id="thumbnails"></div>
     </div>
-
-    <!-- SECTION CONTACT -->
-    <footer>
-        <h2>Contact</h2>
-        <div class="contact-links">
-            <a href="https://www.facebook.com/fanfan.francisd?locale=fr_FR" target="_blank">Facebook</a>
-			<a href="https://www.instagram.com/evzone87/" target="_blank">Instagram</a>
-			<a href="https://www.artmajeur.com/francis-de-faccio" target="_blank">Artmajeur</a>
-        </div>
-    </footer>
 
     <script>
         const paintings = [

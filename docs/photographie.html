@@ -95,48 +95,6 @@
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* SECTION CONTACT */
-        footer {
-            width: 100%;
-            margin-top: 80px;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(6px);
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        footer h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .contact-links a {
-            padding: 10px 22px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.72);
-            color: #111;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-links a:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: scale(1.05);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
-        }
-
         /* LIGHTBOX */
         .lightbox {
             display: none;
@@ -215,7 +173,6 @@
             .gallery { grid-template-columns: 1fr; gap: 25px; }
             .category img { height: 220px; }
             .overlay { font-size: 1.2rem; padding: 18px; }
-            .contact-links { flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
@@ -226,12 +183,12 @@
     <!-- TUILES DES 2 THÈMES -->
     <div class="gallery">
         <div class="category" onclick="openLightbox('mpa', 0)">
-            <img src="images/photos/mariage-portrait-animalier/01confolens.jpg" alt="Mariage, Portraits et Animalier" loading="lazy">
+            <img src="images/photos/mariage-portrait-animalier/03-confolens.jpg" alt="Mariage, Portraits et Animalier" loading="lazy">
             <div class="overlay">Mariage – Portrait – Animalier</div>
         </div>
 
         <div class="category" onclick="openLightbox('epd', 0)">
-            <img src="images/photos/evenement-paysage-divers/01cascade.jpg" alt="Événement, Paysage et Divers" loading="lazy">
+            <img src="images/photos/evenement-paysage-divers/01-cascade.jpg" alt="Événement, Paysage et Divers" loading="lazy">
             <div class="overlay">Évènement – Paysage – Divers</div>
         </div>
     </div>
@@ -240,16 +197,6 @@
     <div class="back-home">
         <a href="index.html">← Retour à l'accueil</a>
     </div>
-
-    <!-- SECTION CONTACT -->
-    <footer>
-        <h2>Contact</h2>
-        <div class="contact-links">
-            <a href="https://www.facebook.com/fanfan.francisd?locale=fr_FR" target="_blank">Facebook</a>
-			<a href="https://www.instagram.com/evzone87/" target="_blank">Instagram</a>
-			<a href="https://www.artmajeur.com/francis-de-faccio" target="_blank">Artmajeur</a>
-        </div>
-    </footer>
 
     <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
@@ -264,30 +211,59 @@
     <script>
         const galleries = {
             mpa: [
-                "images/photos/mariage-portrait-animalier/portrait-fille-chapeau-confolens.jpg",
-                "images/photos/mariage-portrait-animalier/portrait-femme-gabonaise.jpg",
-                "images/photos/mariage-portrait-animalier/jeune-fille-gabonaise.jpg",
-                "images/photos/mariage-portrait-animalier/portrait-noir-et-blanc.jpg",
-                "images/photos/mariage-portrait-animalier/portrait-homme.jpg",
-                "images/photos/mariage-portrait-animalier/braque-de-weimar.jpg"
+               "images/photos/mariage-portrait-animalier/03-confolens.jpg",
+                "images/photos/mariage-portrait-animalier/01-portrait-femme-gabonaise.jpg",
+                "images/photos/mariage-portrait-animalier/02-jeune-fille-gabonaise.jpg",
+                "images/photos/mariage-portrait-animalier/04-portrait-homme.jpg",
+				"images/photos/mariage-portrait-animalier/05-fille-gabonaise.jpg",
+				"images/photos/mariage-portrait-animalier/06-femme-gabonaise.jpg",
+				"images/photos/mariage-portrait-animalier/07-homme-gabonais.jpg",
+				"images/photos/mariage-portrait-animalier/08-portrait-gabonais.jpg",
+				"images/photos/mariage-portrait-animalier/09-portrait-noir-et-blanc.jpg",
+				"images/photos/mariage-portrait-animalier/10-noir&blanc.jpg",
+				"images/photos/mariage-portrait-animalier/11-danseuse-du-monde.jpg",
+				"images/photos/mariage-portrait-animalier/12-festival-medieval-saint-leonard-de-noblat.jpg",
+				"images/photos/mariage-portrait-animalier/13-indien.jpg",
+				"images/photos/mariage-portrait-animalier/14-arche-en-fleur.jpg",
+				"images/photos/mariage-portrait-animalier/15-photo-arche-en-fleur.jpg",
+				"images/photos/mariage-portrait-animalier/16-portrait-en-fleur.jpg",
+				"images/photos/mariage-portrait-animalier/17-club-de-karate.jpg",
+				"images/photos/mariage-portrait-animalier/18-karate.jpg",
+				"images/photos/mariage-portrait-animalier/19-condore-des-andes.jpg",
+				"images/photos/mariage-portrait-animalier/20-vol-rapace.jpg",
+				"images/photos/mariage-portrait-animalier/21-portrait-aigle.jpg",
+				"images/photos/mariage-portrait-animalier/22-joli-moineau.jpg",
+				"images/photos/mariage-portrait-animalier/23-coq.jpg",
+				"images/photos/mariage-portrait-animalier/24-rapace.jpg",
+				"images/photos/mariage-portrait-animalier/25-macaque-de-barbarie.jpg",
+				"images/photos/mariage-portrait-animalier/26-braque-de-weimar-chasse.jpg",
+				"images/photos/mariage-portrait-animalier/27-braque-de-weimar.jpg",
+				"images/photos/mariage-portrait-animalier/28-naissance-chiot.jpg",
+				"images/photos/mariage-portrait-animalier/29-staffie-jeune.jpg",
+				"images/photos/mariage-portrait-animalier/30-staffie.jpg",
+				"images/photos/mariage-portrait-animalier/31-staffordshire-bull terrier.jpg",
+				"images/photos/mariage-portrait-animalier/32-staffy.jpg"
             ],
             epd: [
-                "images/photos/evenement-paysage-divers/gouffre-de-padirac.jpg",
-                "images/photos/evenement-paysage-divers/plage-tamarissiere.jpg",
-                "images/photos/evenement-paysage-divers/chapelle-rocamadour.jpg",
-                "images/photos/evenement-paysage-divers/chateau-de-rocamadour.jpg",
-                "images/photos/evenement-paysage-divers/cascade-gabon.jpg",
-                "images/photos/evenement-paysage-divers/etang-correze.jpg",
-				"images/photos/evenement-paysage-divers/marais-salants.jpg",
-				"images/photos/evenement-paysage-divers/moto-bsa-rocket.jpg",
-				"images/photos/evenement-paysage-divers/moto-suzuki-photo-filet.jpg",
-				"images/photos/evenement-paysage-divers/photo-voiture-filet.jpg",
-				"images/photos/evenement-paysage-divers/statue-poetique.jpg",
-				"images/photos/evenement-paysage-divers/uzerche.jpg",
-				"images/photos/evenement-paysage-divers/voie-lactee-mont-gargan.jpg",
-				"images/photos/evenement-paysage-divers/tour-de-masseret.jpg",
-				"images/photos/evenement-paysage-divers/plage-libreville-gabon.jpg",
-				"images/photos/evenement-paysage-divers/01cascade.jpg"
+                "images/photos/evenement-paysage-divers/01-cascade.jpg",
+                "images/photos/evenement-paysage-divers/02-gouffre-de-padirac.jpg",
+                "images/photos/evenement-paysage-divers/03-plage-tamarissiere.jpg",
+                "images/photos/evenement-paysage-divers/04-chapelle-rocamadour.jpg",
+                "images/photos/evenement-paysage-divers/05-chateau-de-rocamadour.jpg",
+                "images/photos/evenement-paysage-divers/06-cascade-gabon.jpg",
+                "images/photos/evenement-paysage-divers/07-etang-correze.jpg",
+				"images/photos/evenement-paysage-divers/08-marais-salants.jpg",
+				"images/photos/evenement-paysage-divers/09-moto-bsa-rocket.jpg",
+				"images/photos/evenement-paysage-divers/10-moto-suzuki-photo-filet.jpg",
+				"images/photos/evenement-paysage-divers/11-photo-voiture-filet.jpg",
+				"images/photos/evenement-paysage-divers/12-statue-poetique.jpg",
+				"images/photos/evenement-paysage-divers/13-uzerche.jpg",
+				"images/photos/evenement-paysage-divers/14-place-de-la-motte-limoges.jpg",
+				"images/photos/evenement-paysage-divers/15-place-jourdan.jpg",
+				"images/photos/evenement-paysage-divers/16-rue-des-bouchers.jpg",
+				"images/photos/evenement-paysage-divers/17-plage-libreville-gabon.jpg",
+				"images/photos/evenement-paysage-divers/18-voie-lactee-mont-gargan.jpg",
+				"images/photos/evenement-paysage-divers/19-tour-de-masseret.jpg",
             ]
         };
 

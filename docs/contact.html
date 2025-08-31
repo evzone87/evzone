@@ -179,37 +179,6 @@
             margin-bottom: 20px;
         }
 
-        /* FORMULAIRE */
-        form {
-            display: none;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-top: 12px;
-            font-weight: bold;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            background-color: #222;
-            color: #00ff80;
-            border: 1px solid #00ff80;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #00ff80;
-            color: #111;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            border: none;
-        }
-
         /* LIEN DANS LA MODALE */
         .modal-link {
             display: none;
@@ -253,34 +222,15 @@
 
     <main class="content">
         <div class="hero">
-            <h1>Contact</h1>
             <div class="cta">
-                <button class="btn" id="btnContact">Contact</button>
-                <button class="btn" id="btnAbout">À propos</button>
+                <!-- SUPPRESSION DU BOUTON CONTACT -->
                 <button class="btn" id="btnFacebook">Facebook</button>
                 <button class="btn" id="btnInstagram">Instagram</button>
                 <button class="btn" id="btnArtmajeur">Artmajeur</button>
+				<button class="btn" id="btnAbout">À propos</button>
             </div>
         </div>
     </main>
-
-    <!-- MODALE CONTACT -->
-    <div id="modalContact" class="modal">
-        <div class="modal-content">
-            <span class="close" data-close="modalContact">&times;</span>
-            <div id="alienTextContact" class="alien-text"></div>
-            <form id="contactForm" action="mailto:evzone@free.fr" method="post" enctype="text/plain">
-                <input type="text" name="honeypot" style="display:none;">
-                <label>Nom :</label>
-                <input type="text" name="name" required>
-                <label>Email :</label>
-                <input type="email" name="email" required>
-                <label>Message :</label>
-                <textarea name="message" rows="4" required></textarea>
-                <input type="submit" value="Envoyer">
-            </form>
-        </div>
-    </div>
 
     <!-- MODALE À PROPOS -->
     <div id="modalAbout" class="modal">
@@ -321,17 +271,6 @@
             typing();
         }
 
-        // CONTACT MODAL
-        document.getElementById("btnContact").addEventListener("click", () => {
-            const modal = document.getElementById("modalContact");
-            const alienText = document.getElementById("alienTextContact");
-            alienText.textContent = "";
-            modal.style.display = "flex";
-            typeEffect(alienText, ["Chargement...", "Vous allez pouvoir saisir votre commande de contact"], () => {
-                document.getElementById("contactForm").style.display = "block";
-            });
-        });
-
         // ABOUT MODAL
         document.getElementById("btnAbout").addEventListener("click", () => {
             const modal = document.getElementById("modalAbout");
@@ -362,15 +301,15 @@
 
         // FACEBOOK, INSTAGRAM, ARTMAJEUR
         document.getElementById("btnFacebook").addEventListener("click", () => {
-            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"], "https://www.facebook.com/fanfan.francisd");
+            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien pour prendre contact"], "https://www.facebook.com/fanfan.francisd");
         });
 
         document.getElementById("btnInstagram").addEventListener("click", () => {
-            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"], "https://www.instagram.com/evzone87");
+            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien pour prendre contact"], "https://www.instagram.com/evzone87");
         });
 
         document.getElementById("btnArtmajeur").addEventListener("click", () => {
-            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien"], "https://www.artmajeur.com/francis-de-faccio");
+            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien pour prendre contact"], "https://www.artmajeur.com/francis-de-faccio");
         });
 
         // FERMETURE MODALES
@@ -378,7 +317,6 @@
             closeBtn.addEventListener("click", () => {
                 const modalId = closeBtn.dataset.close || "modalGeneric";
                 document.getElementById(modalId).style.display = "none";
-                document.getElementById("contactForm").style.display = "none";
             });
         });
 
@@ -386,7 +324,6 @@
             document.querySelectorAll(".modal").forEach(modal => {
                 if (e.target === modal) {
                     modal.style.display = "none";
-                    document.getElementById("contactForm").style.display = "none";
                 }
             });
         };

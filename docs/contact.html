@@ -7,10 +7,6 @@
     <meta name="description" content="Contactez Francis de Faccio, artiste peintre et photographe en Corrèze. Retrouvez ses réseaux sociaux et ses œuvres sur Artmajeur." />
     <meta name="author" content="Francis de Faccio" />
     <link rel="shortcut icon" href="favicon.ico" />
-
-    <!-- AOS CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.css" rel="stylesheet">
-
     <style>
         :root {
             --overlay: 0.15;
@@ -20,6 +16,7 @@
 
         * { box-sizing: border-box; }
         html, body { height: 100%; margin: 0; }
+
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
             color: #fff;
@@ -27,6 +24,7 @@
             position: relative;
             min-height: 100vh;
         }
+
         body::before {
             content: "";
             position: absolute;
@@ -35,7 +33,6 @@
             background: rgba(0, 0, 0, var(--overlay));
         }
 
-        /* PHRASE EN HAUT À GAUCHE */
         .tagline {
             position: absolute;
             top: 20px;
@@ -44,11 +41,10 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: #fff;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
             font-style: italic;
         }
 
-        /* BOUTON RETOUR ACCUEIL */
         .back-home {
             position: absolute;
             top: 80px;
@@ -56,6 +52,7 @@
             transform: translateX(-50%);
             z-index: 11;
         }
+
         .back-home a {
             display: inline-block;
             padding: 12px 26px;
@@ -67,16 +64,16 @@
             border-radius: 30px;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
+
         .back-home a:hover {
             background: #fff;
             color: #111;
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.3);
         }
 
-        /* CONTENU PRINCIPAL */
         .content {
             position: relative;
             z-index: 2;
@@ -87,17 +84,17 @@
             justify-content: flex-start;
             padding: 40px;
         }
+
         .hero { max-width: 640px; text-align: left; }
 
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.4rem);
             margin: 0;
             font-weight: 800;
-            text-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+            text-shadow: 0 8px 24px rgba(0,0,0,.45);
             letter-spacing: .02em;
         }
 
-        /* BOUTONS */
         .cta {
             margin-top: 40px;
             display: flex;
@@ -105,36 +102,40 @@
             gap: 14px;
             align-items: flex-start;
         }
+
         .btn {
             display: inline-block;
             padding: 12px 24px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, .72);
+            background: rgba(255,255,255,.72);
             color: #111;
             text-decoration: none;
             font-weight: 800;
             letter-spacing: .02em;
             transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
             cursor: pointer;
         }
+
         .btn:hover {
             transform: translateY(-1px);
-            background: rgba(255, 255, 255, .9);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+            background: rgba(255,255,255,.9);
+            box-shadow: 0 12px 30px rgba(0,0,0,.3);
         }
 
-        /* MODALES */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
             background-color: #111;
             padding: 30px;
@@ -147,6 +148,7 @@
             box-shadow: 0 0 30px var(--alien-green);
             text-align: center;
         }
+
         .close {
             color: var(--alien-green);
             float: right;
@@ -154,7 +156,6 @@
             cursor: pointer;
         }
 
-        /* ALIEN SCAN */
         .alien-text {
             font-size: 1rem;
             text-align: left;
@@ -184,19 +185,13 @@
     </style>
 </head>
 <body>
-    <!-- PHRASE EN HAUT À GAUCHE -->
-    <div class="tagline" data-aos="fade-down" data-aos-duration="1200">
-        "Deux arts, un seul regard et la nature pour unique atelier: evzone.fr"
-    </div>
-
-    <!-- BOUTON RETOUR ACCUEIL -->
-    <div class="back-home" data-aos="fade-up" data-aos-duration="1200">
-        <a href="index.html">← Retour à l'accueil</a>
-    </div>
+    <div class="tagline">"Deux arts, un seul regard et la nature pour atelier: evzone.fr"</div>
+    <div class="back-home"><a href="index.html">← Retour à l'accueil</a></div>
 
     <main class="content">
-        <div class="hero" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
-            <div class="cta" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+        <div class="hero">
+            <h1>Contact</h1>
+            <div class="cta">
                 <button class="btn" id="btnFacebook">Facebook</button>
                 <button class="btn" id="btnInstagram">Instagram</button>
                 <button class="btn" id="btnAbout">À propos</button>
@@ -204,28 +199,23 @@
         </div>
     </main>
 
-    <!-- MODALE À PROPOS -->
+    <!-- MODALES -->
     <div id="modalAbout" class="modal">
         <div class="modal-content">
-            <span class="close" data-close="modalAbout">&times;</span>
+            <span class="close">&times;</span>
             <div id="alienTextAbout" class="alien-text"></div>
         </div>
     </div>
 
-    <!-- MODALE GÉNÉRIQUE -->
     <div id="modalGeneric" class="modal">
         <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
+            <span class="close">&times;</span>
             <div id="alienText" class="alien-text"></div>
             <a id="modalLink" class="modal-link" target="_blank">Accéder</a>
         </div>
     </div>
 
-    <!-- AOS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, easing: 'ease-out-cubic' });
-
         function typeEffect(element, textArray, callback) {
             let i = 0, j = 0;
             function typing() {
@@ -236,62 +226,56 @@
                         setTimeout(typing, 50);
                     } else {
                         element.textContent += "\n";
-                        i++;
-                        j = 0;
+                        i++; j = 0;
                         setTimeout(typing, 300);
                     }
-                } else if (callback) callback();
+                } else if(callback) callback();
             }
             typing();
         }
 
-        document.getElementById("btnAbout").addEventListener("click", () => {
-            const modal = document.getElementById("modalAbout");
-            const alienText = document.getElementById("alienTextAbout");
-            alienText.textContent = "";
-            modal.style.display = "flex";
-            typeEffect(alienText, ["Chargement...", "site evzone.fr version 1.0", "création & codage par Francis De Faccio", "copyright © Francis De Faccio _ 01/09/2025"]);
-        });
-
-        function openAlienModal(messageArray, url) {
-            const modal = document.getElementById("modalGeneric");
-            const alienText = document.getElementById("alienText");
-            const modalLink = document.getElementById("modalLink");
+        function openModal(modal, textArray, linkUrl=null) {
+            const alienText = modal.querySelector('.alien-text');
+            const modalLink = modal.querySelector('.modal-link');
 
             alienText.textContent = "";
-            modalLink.style.display = "none";
+            if(modalLink) modalLink.style.display = "none";
+
             modal.style.display = "flex";
 
-            typeEffect(alienText, messageArray, () => {
-                if (url) {
-                    modalLink.href = url;
+            typeEffect(alienText, textArray, () => {
+                if(linkUrl && modalLink){
+                    modalLink.href = linkUrl;
                     modalLink.textContent = "Cliquez ici pour visiter";
                     modalLink.style.display = "block";
                 }
             });
+
+            modal.querySelectorAll('.close').forEach(btn => btn.onclick = () => modal.style.display = 'none');
+            modal.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
         }
 
-        document.getElementById("btnFacebook").addEventListener("click", () => {
-            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien pour prendre contact"], "https://www.facebook.com/fanfan.francisd");
-        });
-        document.getElementById("btnInstagram").addEventListener("click", () => {
-            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien pour prendre contact"], "https://www.instagram.com/evzone87");
-        });
-        document.getElementById("btnArtmajeur").addEventListener("click", () => {
-            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien pour prendre contact"], "https://www.artmajeur.com/francis-de-faccio");
-        });
+        document.getElementById('btnAbout').onclick = () => {
+            openModal(document.getElementById('modalAbout'), [
+                "Chargement...",
+                "site evzone.fr version 1.0",
+                "création & codage par Francis De Faccio",
+                "copyright © Francis De Faccio _ 01/09/2025"
+            ]);
+        };
 
-        document.querySelectorAll(".close").forEach(closeBtn => {
-            closeBtn.addEventListener("click", () => {
-                const modalId = closeBtn.dataset.close || "modalGeneric";
-                document.getElementById(modalId).style.display = "none";
-            });
-        });
+        document.getElementById('btnFacebook').onclick = () => {
+            openModal(document.getElementById('modalGeneric'), [
+                "Chargement...",
+                "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"
+            ], "https://www.facebook.com/fanfan.francisd");
+        };
 
-        window.onclick = function (e) {
-            document.querySelectorAll(".modal").forEach(modal => {
-                if (e.target === modal) modal.style.display = "none";
-            });
+        document.getElementById('btnInstagram').onclick = () => {
+            openModal(document.getElementById('modalGeneric'), [
+                "Chargement...",
+                "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"
+            ], "https://www.instagram.com/evzone87");
         };
     </script>
 </body>

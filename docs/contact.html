@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,14 +10,15 @@
     <style>
         :root {
             --overlay: 0.15;
+            --alien-green: #00ff80;
+            --dark-bg: #000;
         }
 
         * {
             box-sizing: border-box;
         }
 
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
         }
@@ -50,15 +50,12 @@
             color: #fff;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
             font-style: italic;
-            letter-spacing: 0.5px;
-            opacity: 0.95;
-            text-align: left;
         }
 
-        /* BOUTON RETOUR ACCUEIL - placé au centre */
+        /* BOUTON RETOUR ACCUEIL */
         .back-home {
             position: absolute;
-            top: 80px; /* placé sous la tagline */
+            top: 80px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 11;
@@ -93,13 +90,13 @@
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Contenu aligné à gauche */
+            justify-content: flex-start;
             padding: 40px;
         }
 
         .hero {
             max-width: 640px;
-            text-align: left; /* Texte aligné à gauche */
+            text-align: left;
         }
 
         h1 {
@@ -116,7 +113,7 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
-            align-items: flex-start; /* Boutons alignés à gauche */
+            align-items: flex-start;
         }
 
         .btn {
@@ -130,6 +127,7 @@
             letter-spacing: .02em;
             transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
             box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -138,22 +136,91 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
         }
 
+        /* MODALES */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #111;
+            padding: 30px;
+            border: 2px solid var(--alien-green);
+            width: 90%;
+            max-width: 600px;
+            color: var(--alien-green);
+            font-family: monospace;
+            border-radius: 10px;
+            box-shadow: 0 0 30px var(--alien-green);
+            text-align: center;
+        }
+
+        .close {
+            color: var(--alien-green);
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* ALIEN SCAN */
+        .alien-text {
+            font-size: 1rem;
+            text-align: left;
+            white-space: pre-wrap;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        /* FORMULAIRE */
+        form {
+            display: none;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            background-color: #222;
+            color: #00ff80;
+            border: 1px solid #00ff80;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #00ff80;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            border: none;
+        }
+
+        /* LIEN DANS LA MODALE */
+        .modal-link {
+            display: none;
+            color: var(--alien-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: underline;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            .tagline {
-                font-size: 1rem;
-                top: 12px;
-                left: 15px;
-                max-width: 80%;
-                text-align: left;
-            }
-
-            .back-home {
-                top: 65px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
             .content {
                 justify-content: center;
                 align-items: center;
@@ -166,10 +233,6 @@
                 max-width: 90%;
             }
 
-            h1 {
-                font-size: clamp(1.8rem, 6vw, 2.8rem);
-            }
-
             .cta {
                 margin-top: 32px;
                 flex-direction: column;
@@ -179,10 +242,9 @@
         }
     </style>
 </head>
-
 <body>
     <!-- PHRASE EN HAUT À GAUCHE -->
-    <div class="tagline">Deux arts, un seul regard et la nature pour unique atelier: evzone.fr</div>
+    <div class="tagline">"Je peins la lumière et photographie les rêves."</div>
 
     <!-- BOUTON RETOUR ACCUEIL -->
     <div class="back-home">
@@ -191,12 +253,143 @@
 
     <main class="content">
         <div class="hero">
+            <h1>Contact</h1>
             <div class="cta">
-                <a class="btn" href="https://www.facebook.com/fanfan.francisd" target="_blank">Facebook</a>
-                <a class="btn" href="https://www.instagram.com/evzone87" target="_blank">Instagram</a>
-                <a class="btn" href="https://www.artmajeur.com/francis-de-faccio" target="_blank">Artmajeur</a>
+                <button class="btn" id="btnContact">Contact</button>
+                <button class="btn" id="btnAbout">À propos</button>
+                <button class="btn" id="btnFacebook">Facebook</button>
+                <button class="btn" id="btnInstagram">Instagram</button>
+                <button class="btn" id="btnArtmajeur">Artmajeur</button>
             </div>
         </div>
     </main>
+
+    <!-- MODALE CONTACT -->
+    <div id="modalContact" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modalContact">&times;</span>
+            <div id="alienTextContact" class="alien-text"></div>
+            <form id="contactForm" action="mailto:evzone@free.fr" method="post" enctype="text/plain">
+                <input type="text" name="honeypot" style="display:none;">
+                <label>Nom :</label>
+                <input type="text" name="name" required>
+                <label>Email :</label>
+                <input type="email" name="email" required>
+                <label>Message :</label>
+                <textarea name="message" rows="4" required></textarea>
+                <input type="submit" value="Envoyer">
+            </form>
+        </div>
+    </div>
+
+    <!-- MODALE À PROPOS -->
+    <div id="modalAbout" class="modal">
+        <div class="modal-content">
+            <span class="close" data-close="modalAbout">&times;</span>
+            <div id="alienTextAbout" class="alien-text"></div>
+        </div>
+    </div>
+
+    <!-- MODALE GÉNÉRIQUE POUR FACEBOOK / INSTAGRAM / ARTMAJEUR -->
+    <div id="modalGeneric" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="alienText" class="alien-text"></div>
+            <a id="modalLink" class="modal-link" target="_blank">Accéder</a>
+        </div>
+    </div>
+
+    <script>
+        function typeEffect(element, textArray, callback) {
+            let i = 0, j = 0;
+            function typing() {
+                if (i < textArray.length) {
+                    if (j < textArray[i].length) {
+                        element.textContent += textArray[i].charAt(j);
+                        j++;
+                        setTimeout(typing, 50);
+                    } else {
+                        element.textContent += "\n";
+                        i++;
+                        j = 0;
+                        setTimeout(typing, 300);
+                    }
+                } else if (callback) {
+                    callback();
+                }
+            }
+            typing();
+        }
+
+        // CONTACT MODAL
+        document.getElementById("btnContact").addEventListener("click", () => {
+            const modal = document.getElementById("modalContact");
+            const alienText = document.getElementById("alienTextContact");
+            alienText.textContent = "";
+            modal.style.display = "flex";
+            typeEffect(alienText, ["Chargement...", "Vous allez pouvoir saisir votre commande de contact"], () => {
+                document.getElementById("contactForm").style.display = "block";
+            });
+        });
+
+        // ABOUT MODAL
+        document.getElementById("btnAbout").addEventListener("click", () => {
+            const modal = document.getElementById("modalAbout");
+            const alienText = document.getElementById("alienTextAbout");
+            alienText.textContent = "";
+            modal.style.display = "flex";
+            typeEffect(alienText, ["Chargement...", "site evzone.fr version 1.0", "création & codage par Francis De Faccio", "copyright © Francis De Faccio _ 01/09/2025"]);
+        });
+
+        // MODALE GÉNÉRIQUE POUR LES LIENS
+        function openAlienModal(messageArray, url) {
+            const modal = document.getElementById("modalGeneric");
+            const alienText = document.getElementById("alienText");
+            const modalLink = document.getElementById("modalLink");
+
+            alienText.textContent = "";
+            modalLink.style.display = "none";
+            modal.style.display = "flex";
+
+            typeEffect(alienText, messageArray, () => {
+                if (url) {
+                    modalLink.href = url;
+                    modalLink.textContent = "Cliquez ici pour visiter";
+                    modalLink.style.display = "block";
+                }
+            });
+        }
+
+        // FACEBOOK, INSTAGRAM, ARTMAJEUR
+        document.getElementById("btnFacebook").addEventListener("click", () => {
+            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"], "https://www.facebook.com/fanfan.francisd");
+        });
+
+        document.getElementById("btnInstagram").addEventListener("click", () => {
+            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"], "https://www.instagram.com/evzone87");
+        });
+
+        document.getElementById("btnArtmajeur").addEventListener("click", () => {
+            openAlienModal(["Chargement...", "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien"], "https://www.artmajeur.com/francis-de-faccio");
+        });
+
+        // FERMETURE MODALES
+        document.querySelectorAll(".close").forEach(closeBtn => {
+            closeBtn.addEventListener("click", () => {
+                const modalId = closeBtn.dataset.close || "modalGeneric";
+                document.getElementById(modalId).style.display = "none";
+                document.getElementById("contactForm").style.display = "none";
+            });
+        });
+
+        window.onclick = function (e) {
+            document.querySelectorAll(".modal").forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                    document.getElementById("contactForm").style.display = "none";
+                }
+            });
+        };
+    </script>
 </body>
 </html>

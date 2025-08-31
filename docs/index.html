@@ -110,6 +110,21 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
         }
 
+        /* IMAGE DE ROTATION */
+        .rotation-icon {
+            margin-top: 18px;
+            max-width: 80px;
+            height: auto;
+            opacity: 0.9;
+            cursor: default;
+            transition: transform 0.3s ease;
+        }
+
+        .rotation-icon:hover {
+            transform: rotate(10deg) scale(1.05);
+            opacity: 1;
+        }
+
         /* MOBILE */
         @media (max-width: 900px) {
             .tagline {
@@ -142,6 +157,11 @@
                 align-items: flex-end;
                 gap: 12px;
             }
+
+            .rotation-icon {
+                max-width: 60px;
+                margin-top: 12px;
+            }
         }
     </style>
 </head>
@@ -155,8 +175,9 @@
             <div class="cta">
                 <a class="btn" href="peinture.html">Peinture</a>
                 <a class="btn" href="photographie.html">Photographie</a>
-                <!-- NOUVEAU BOUTON CONTACT -->
                 <a class="btn" href="contact.html">Contact</a>
+                <!-- AJOUT DE L'IMAGE DE ROTATION -->
+                <img class="rotation-icon" src="images/photos/rotation.png" alt="Rotation smartphone" title="Tournez votre smartphone pour une meilleure expérience" />
             </div>
         </div>
     </main>

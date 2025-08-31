@@ -123,6 +123,19 @@
             box-shadow: 0 12px 30px rgba(0,0,0,.3);
         }
 
+        .rotation-img {
+            margin-top: 30px;
+            width: 80px;
+            height: 80px;
+            animation: rotation 8s linear infinite;
+            cursor: pointer;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -190,11 +203,12 @@
 
     <main class="content">
         <div class="hero">
-            <h1>Contact</h1>
             <div class="cta">
                 <button class="btn" id="btnFacebook">Facebook</button>
                 <button class="btn" id="btnInstagram">Instagram</button>
                 <button class="btn" id="btnAbout">À propos</button>
+                <!-- Ajout de la photo rotation.png sous le bouton À propos -->
+                <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" />
             </div>
         </div>
     </main>

@@ -11,20 +11,14 @@
         content="artiste peintre, peinture nature, photographie, Corrèze, Limousin, tableaux uniques, art écologique" />
     <meta name="author" content="Francis de Faccio" />
     <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.css" rel="stylesheet">
+
     <style>
-        :root {
-            --overlay: 0.15;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
+        :root { --overlay: 0.15; }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
 
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
@@ -42,7 +36,6 @@
             background: rgba(0, 0, 0, var(--overlay));
         }
 
-        /* PHRASE EN HAUT À DROITE */
         .tagline {
             position: absolute;
             top: 20px;
@@ -57,7 +50,6 @@
             opacity: 0.95;
         }
 
-        /* CONTENU PRINCIPAL */
         .content {
             position: relative;
             z-index: 2;
@@ -69,10 +61,7 @@
             padding: 40px;
         }
 
-        .hero {
-            max-width: 640px;
-            text-align: right;
-        }
+        .hero { max-width: 640px; text-align: right; }
 
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.4rem);
@@ -82,7 +71,6 @@
             letter-spacing: .02em;
         }
 
-        /* BOUTONS */
         .cta {
             margin-top: 80px;
             display: flex;
@@ -110,7 +98,6 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
         }
 
-        /* IMAGE DE ROTATION */
         .rotation-icon {
             margin-top: 18px;
             max-width: 80px;
@@ -125,7 +112,6 @@
             opacity: 1;
         }
 
-        /* MOBILE */
         @media (max-width: 900px) {
             .tagline {
                 font-size: 1rem;
@@ -134,52 +120,43 @@
                 max-width: 60%;
                 text-align: right;
             }
-
             .content {
                 justify-content: flex-end;
                 align-items: center;
                 padding: 22px;
                 height: 100vh;
             }
-
-            .hero {
-                text-align: right;
-                max-width: 90%;
-            }
-
-            h1 {
-                font-size: clamp(1.8rem, 6vw, 2.8rem);
-            }
-
-            .cta {
-                margin-top: 32px;
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 12px;
-            }
-
-            .rotation-icon {
-                max-width: 60px;
-                margin-top: 12px;
-            }
+            .hero { text-align: right; max-width: 90%; }
+            h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+            .cta { margin-top: 32px; flex-direction: column; align-items: flex-end; gap: 12px; }
+            .rotation-icon { max-width: 60px; margin-top: 12px; }
         }
     </style>
 </head>
 
 <body>
     <!-- PHRASE EN HAUT À DROITE -->
-    <div class="tagline">"Je peins la lumière et photographie les rêves." Francis De Faccio</div>
+    <div class="tagline" data-aos="fade-down" data-aos-duration="1200">
+        "Je peins la lumière et photographie les rêves." Francis De Faccio
+    </div>
+
     <main class="content">
-        <div class="hero">
-            <h1>Evzone</h1>
+        <div class="hero" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+            <h1 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">Evzone</h1>
             <div class="cta">
-                <a class="btn" href="peinture.html">Peinture</a>
-                <a class="btn" href="photographie.html">Photographie</a>
-                <a class="btn" href="contact.html">Contact</a>
-                <!-- AJOUT DE L'IMAGE DE ROTATION -->
-                <img class="rotation-icon" src="images/photos/rotation.png" alt="Rotation smartphone" title="Tournez votre smartphone pour une meilleure expérience" />
+                <a class="btn" href="peinture.html" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="600">Peinture</a>
+                <a class="btn" href="photographie.html" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="800">Photographie</a>
+                <a class="btn" href="contact.html" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="1000">Contact</a>
+                <img class="rotation-icon" src="images/photos/rotation.png" alt="Rotation smartphone" title="Tournez votre smartphone pour une meilleure expérience"
+                    data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="1200"/>
             </div>
         </div>
     </main>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, easing: 'ease-out-cubic' });
+    </script>
 </body>
 </html>

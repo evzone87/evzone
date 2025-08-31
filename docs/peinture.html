@@ -6,6 +6,10 @@
     <title>Peintures – Francis de Faccio</title>
     <meta name="description" content="Découvrez les peintures artistiques de Francis de Faccio : une galerie unique présentant ses tableaux, paysages, portraits et créations originales." />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
     <style>
         /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -146,18 +150,18 @@
 </head>
 <body>
     <!-- PHRASE D'ACCROCHE -->
-    <div class="tagline"></div>
+    <div class="tagline" data-aos="fade-down" data-aos-duration="1200">"Découvrez mes peintures uniques et mes créations originales."</div>
 
     <!-- GALERIE UNIQUE -->
-    <div class="gallery">
-        <div class="category" onclick="openLightbox(0)">
+    <div class="gallery" data-aos="fade-up" data-aos-duration="1200">
+        <div class="category" onclick="openLightbox(0)" data-aos="zoom-in" data-aos-duration="1000">
             <img src="images/peintures/peintre-emergent.jpg" alt="Peinture de Francis de Faccio" loading="lazy">
             <div class="overlay">galerie</div>
         </div>
     </div>
 
     <!-- BOUTON DE RETOUR ACCUEIL -->
-    <div class="back-home">
+    <div class="back-home" data-aos="fade-up" data-aos-duration="1400">
         <a href="index.html">← Retour à l'accueil</a>
     </div>
 
@@ -170,7 +174,11 @@
         <div class="thumbnails" id="thumbnails"></div>
     </div>
 
+    <!-- SCRIPT AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init();
+
         const paintings = [
             "images/peintures/exposition-la-recree-masseret.jpg",
             "images/peintures/carrelet02.jpg",

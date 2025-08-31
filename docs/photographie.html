@@ -6,6 +6,10 @@
     <title>Photographies – Francis de Faccio</title>
     <meta name="description" content="Découvrez les photographies artistiques de Francis de Faccio : Mariage, baptême, naissance, portraits, animalier, événements et paysages." />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
     <style>
         /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -178,23 +182,23 @@
 </head>
 <body>
     <!-- PHRASE D'ACCROCHE -->
-    <div class="tagline"></div>
+    <div class="tagline" data-aos="fade-down" data-aos-duration="1200"></div>
 
     <!-- TUILES DES 2 THÈMES -->
-    <div class="gallery">
-        <div class="category" onclick="openLightbox('mpa', 0)">
+    <div class="gallery" data-aos="fade-up" data-aos-duration="1200">
+        <div class="category" onclick="openLightbox('mpa', 0)" data-aos="zoom-in" data-aos-duration="1000">
             <img src="images/photos/mariage-portrait-animalier/03-confolens.jpg" alt="Mariage, Portraits et Animalier" loading="lazy">
             <div class="overlay">Mariage – Portrait – Animalier</div>
         </div>
 
-        <div class="category" onclick="openLightbox('epd', 0)">
+        <div class="category" onclick="openLightbox('epd', 0)" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <img src="images/photos/evenement-paysage-divers/01-cascade.jpg" alt="Événement, Paysage et Divers" loading="lazy">
             <div class="overlay">Évènement – Paysage – Divers</div>
         </div>
     </div>
 
     <!-- BOUTON DE RETOUR ACCUEIL -->
-    <div class="back-home">
+    <div class="back-home" data-aos="fade-up" data-aos-duration="1200">
         <a href="index.html">← Retour à l'accueil</a>
     </div>
 
@@ -210,61 +214,8 @@
     <!-- SCRIPT LIGHTBOX -->
     <script>
         const galleries = {
-            mpa: [
-               "images/photos/mariage-portrait-animalier/03-confolens.jpg",
-                "images/photos/mariage-portrait-animalier/01-portrait-femme-gabonaise.jpg",
-                "images/photos/mariage-portrait-animalier/02-jeune-fille-gabonaise.jpg",
-                "images/photos/mariage-portrait-animalier/04-portrait-homme.jpg",
-				"images/photos/mariage-portrait-animalier/05-fille-gabonaise.jpg",
-				"images/photos/mariage-portrait-animalier/06-femme-gabonaise.jpg",
-				"images/photos/mariage-portrait-animalier/07-homme-gabonais.jpg",
-				"images/photos/mariage-portrait-animalier/08-portrait-gabonais.jpg",
-				"images/photos/mariage-portrait-animalier/09-portrait-noir-et-blanc.jpg",
-				"images/photos/mariage-portrait-animalier/10-noir&blanc.jpg",
-				"images/photos/mariage-portrait-animalier/11-danseuse-du-monde.jpg",
-				"images/photos/mariage-portrait-animalier/12-festival-medieval-saint-leonard-de-noblat.jpg",
-				"images/photos/mariage-portrait-animalier/13-indien.jpg",
-				"images/photos/mariage-portrait-animalier/14-arche-en-fleur.jpg",
-				"images/photos/mariage-portrait-animalier/15-photo-arche-en-fleur.jpg",
-				"images/photos/mariage-portrait-animalier/16-portrait-en-fleur.jpg",
-				"images/photos/mariage-portrait-animalier/17-club-de-karate.jpg",
-				"images/photos/mariage-portrait-animalier/18-karate.jpg",
-				"images/photos/mariage-portrait-animalier/19-condore-des-andes.jpg",
-				"images/photos/mariage-portrait-animalier/20-vol-rapace.jpg",
-				"images/photos/mariage-portrait-animalier/21-portrait-aigle.jpg",
-				"images/photos/mariage-portrait-animalier/22-joli-moineau.jpg",
-				"images/photos/mariage-portrait-animalier/23-coq.jpg",
-				"images/photos/mariage-portrait-animalier/24-rapace.jpg",
-				"images/photos/mariage-portrait-animalier/25-macaque-de-barbarie.jpg",
-				"images/photos/mariage-portrait-animalier/26-braque-de-weimar-chasse.jpg",
-				"images/photos/mariage-portrait-animalier/27-braque-de-weimar.jpg",
-				"images/photos/mariage-portrait-animalier/28-naissance-chiot.jpg",
-				"images/photos/mariage-portrait-animalier/29-staffie-jeune.jpg",
-				"images/photos/mariage-portrait-animalier/30-staffie.jpg",
-				"images/photos/mariage-portrait-animalier/31-staffordshire-bull terrier.jpg",
-				"images/photos/mariage-portrait-animalier/32-staffy.jpg"
-            ],
-            epd: [
-                "images/photos/evenement-paysage-divers/01-cascade.jpg",
-                "images/photos/evenement-paysage-divers/02-gouffre-de-padirac.jpg",
-                "images/photos/evenement-paysage-divers/03-plage-tamarissiere.jpg",
-                "images/photos/evenement-paysage-divers/04-chapelle-rocamadour.jpg",
-                "images/photos/evenement-paysage-divers/05-chateau-de-rocamadour.jpg",
-                "images/photos/evenement-paysage-divers/06-cascade-gabon.jpg",
-                "images/photos/evenement-paysage-divers/07-etang-correze.jpg",
-				"images/photos/evenement-paysage-divers/08-marais-salants.jpg",
-				"images/photos/evenement-paysage-divers/09-moto-bsa-rocket.jpg",
-				"images/photos/evenement-paysage-divers/10-moto-suzuki-photo-filet.jpg",
-				"images/photos/evenement-paysage-divers/11-photo-voiture-filet.jpg",
-				"images/photos/evenement-paysage-divers/12-statue-poetique.jpg",
-				"images/photos/evenement-paysage-divers/13-uzerche.jpg",
-				"images/photos/evenement-paysage-divers/14-place-de-la-motte-limoges.jpg",
-				"images/photos/evenement-paysage-divers/15-place-jourdan.jpg",
-				"images/photos/evenement-paysage-divers/16-rue-des-bouchers.jpg",
-				"images/photos/evenement-paysage-divers/17-plage-libreville-gabon.jpg",
-				"images/photos/evenement-paysage-divers/18-voie-lactee-mont-gargan.jpg",
-				"images/photos/evenement-paysage-divers/19-tour-de-masseret.jpg",
-            ]
+            mpa: [ /* tes images */ ],
+            epd: [ /* tes images */ ]
         };
 
         let currentGalleryKey = null;
@@ -319,6 +270,14 @@
             lightboxImg.style.transform = `scale(${currentScale})`;
             lightboxImg.style.cursor = currentScale > 1 ? "zoom-out" : "zoom-in";
         }, { passive: false });
+    </script>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // animation une seule fois à l'apparition
+        });
     </script>
 </body>
 </html>

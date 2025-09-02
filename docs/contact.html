@@ -129,6 +129,20 @@
             box-shadow: 0 12px 30px rgba(0,0,0,.3);
         }
 
+        /* IMAGE ROTATION */
+        .rotation-img {
+            margin-top: 20px;
+            width: 80px;
+            height: 80px;
+            animation: rotation 8s linear infinite;
+            cursor: pointer;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* MODALES */
         .modal {
             display: none;
@@ -219,7 +233,7 @@
     </style>
 </head>
 <body>
-    <div class="tagline" data-aos="fade-down">Bienvenue sur ma page de contact</div>
+    <div class="tagline" data-aos="fade-down"></div>  <!-- emplacement de la phrase entete retirée -->
 
     <div class="back-home" data-aos="fade-down">
         <a href="index.html">← Retour à l'accueil</a>
@@ -229,9 +243,12 @@
         <div class="hero" data-aos="fade-up">
             <div class="cta">
                 <button class="btn" id="btnContact">Contact</button>
-                <button class="btn" id="btnAbout">À propos</button>
                 <button class="btn" id="btnFacebook">Facebook</button>
                 <button class="btn" id="btnInstagram">Instagram</button>
+                <button class="btn" id="btnArtmajeur">Artmajeur</button>
+				<button class="btn" id="btnAbout">À propos</button>
+                <!-- Image de rotation ajoutée sous les boutons -->
+                <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" data-aos="flip-left" />
             </div>
         </div>
     </main>
@@ -274,11 +291,7 @@
     <!-- AOS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
         function typeEffect(element, textArray, callback) {
             let i = 0, j = 0;
@@ -293,21 +306,14 @@
                         i++; j = 0;
                         setTimeout(typing, 300);
                     }
-                } else if (callback) {
-                    callback();
-                }
+                } else if (callback) callback();
             }
             typing();
         }
 
         function openModal(modalId, messages, linkUrl = null) {
             const modal = document.getElementById(modalId);
-            const textEl =
-                modal.querySelector(".alien-text") ||
-                modal.querySelector("#alienTextGeneric") ||
-                modal.querySelector("#alienTextAbout") ||
-                modal.querySelector("#alienTextContact");
-
+            const textEl = modal.querySelector(".alien-text");
             const linkEl = modal.querySelector(".modal-link");
 
             if (textEl) textEl.textContent = "";
@@ -347,44 +353,32 @@
         document.getElementById("btnAbout").addEventListener("click", () => {
             openModal("modalAbout", [
                 "Chargement...",
-                "Deux arts, un seul regard et la nature pour atelier: evzone.fr",
-                "Site : evzone.fr - Version 1.0",
+                "Evzone.fr c'est deux arts, un seul regard et la nature pour atelier.",
+                "Site : evzone.fr - Version 1.3",
                 "Création & Codage : Francis De Faccio",
                 "Copyright © Francis De Faccio _ 01/09/2025"
             ]);
         });
 
         document.getElementById("btnFacebook").addEventListener("click", () => {
-            openModal(
-                "modalGeneric",
-                [
-                    "Chargement...",
-                    "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"
-                ],
-                "https://www.facebook.com/fanfan.francisd"
-            );
+            openModal("modalGeneric", [
+                "Chargement...",
+                "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"
+            ], "https://www.facebook.com/fanfan.francisd");
         });
 
         document.getElementById("btnInstagram").addEventListener("click", () => {
-            openModal(
-                "modalGeneric",
-                [
-                    "Chargement...",
-                    "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"
-                ],
-                "https://www.instagram.com/evzone87"
-            );
+            openModal("modalGeneric", [
+                "Chargement...",
+                "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"
+            ], "https://www.instagram.com/evzone87");
         });
 
         document.getElementById("btnArtmajeur").addEventListener("click", () => {
-            openModal(
-                "modalGeneric",
-                [
-                    "Chargement...",
-                    "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien"
-                ],
-                "https://www.artmajeur.com/francis-de-faccio"
-            );
+            openModal("modalGeneric", [
+                "Chargement...",
+                "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien"
+            ], "https://www.artmajeur.com/francis-de-faccio");
         });
 
         const form = document.getElementById("contactForm");

@@ -233,7 +233,7 @@
     </style>
 </head>
 <body>
-    <div class="tagline" data-aos="fade-down"></div>  <!-- emplacement de la phrase entete retirée -->
+    <div class="tagline" data-aos="fade-down">"evzone.fr" c'est deux arts, un seul regard et la nature pour unique atelier.</div>  <!-- emplacement de la phrase entete retirée -->
 
     <div class="back-home" data-aos="fade-down">
         <a href="index.html">← Retour à l'accueil</a>
@@ -242,7 +242,7 @@
     <main class="content">
         <div class="hero" data-aos="fade-up">
             <div class="cta">
-                <button class="btn" id="btnContact">Contact</button>
+                <button class="btn" id="btnContact">Contact mail</button>
                 <button class="btn" id="btnFacebook">Facebook</button>
                 <button class="btn" id="btnInstagram">Instagram</button>
                 <button class="btn" id="btnArtmajeur">Artmajeur</button>
@@ -343,7 +343,9 @@
         document.getElementById("btnContact").addEventListener("click", () => {
             openModal("modalContact", [
                 "Chargement...",
-                "Veuillez saisir vos informations de contact"
+				"Bonjour,",
+				"Vous avez un projet artistique de peintures, de photograpies?",
+                "Veuillez saisir vos informations pour me contacter:"
             ]);
             setTimeout(() => {
                 document.getElementById("contactForm").style.display = "block";
@@ -353,10 +355,10 @@
         document.getElementById("btnAbout").addEventListener("click", () => {
             openModal("modalAbout", [
                 "Chargement...",
-                "Evzone.fr c'est deux arts, un seul regard et la nature pour atelier.",
-                "Site : evzone.fr - Version 1.3",
+                "evzone.fr c'est deux arts, un seul regard et la nature pour unique atelier.",
                 "Création & Codage : Francis De Faccio",
-                "Copyright © Francis De Faccio _ 01/09/2025"
+				"Site : evzone.fr - Version 1.4",
+                "Copyright © Francis De Faccio _ 02/09/2025"
             ]);
         });
 

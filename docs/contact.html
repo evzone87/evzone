@@ -7,6 +7,10 @@
     <meta name="description" content="Contactez Francis de Faccio, artiste peintre et photographe en Corrèze. Retrouvez ses réseaux sociaux et ses œuvres sur Artmajeur." />
     <meta name="author" content="Francis de Faccio" />
     <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
     <style>
         :root {
             --overlay: 0.15;
@@ -98,9 +102,10 @@
         .cta {
             margin-top: 40px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 14px;
-            align-items: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -115,6 +120,7 @@
             transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
             box-shadow: 0 8px 24px rgba(0,0,0,.25);
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .btn:hover {
@@ -123,19 +129,7 @@
             box-shadow: 0 12px 30px rgba(0,0,0,.3);
         }
 
-        .rotation-img {
-            margin-top: 30px;
-            width: 80px;
-            height: 80px;
-            animation: rotation 8s linear infinite;
-            cursor: pointer;
-        }
-
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* MODALES */
         .modal {
             display: none;
             position: fixed;
@@ -177,6 +171,44 @@
             margin-bottom: 20px;
         }
 
+        /* Formulaire */
+        form {
+            display: none;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            background-color: #222;
+            color: #00ff80;
+            border: 1px solid #00ff80;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #00ff80;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            border: none;
+        }
+
+        #successMessage {
+            display: none;
+            color: var(--alien-green);
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
         .modal-link {
             display: none;
             color: var(--alien-green);
@@ -184,52 +216,70 @@
             font-size: 1.1rem;
             text-decoration: underline;
         }
-
-        @media (max-width: 900px) {
-            .content {
-                justify-content: center;
-                align-items: center;
-                padding: 22px;
-                height: 100vh;
-            }
-            .hero { text-align: center; max-width: 90%; }
-            .cta { margin-top: 32px; flex-direction: column; align-items: center; gap: 12px; }
-        }
     </style>
 </head>
 <body>
-    <div class="tagline">"Deux arts, un seul regard et la nature pour atelier: evzone.fr"</div>
-    <div class="back-home"><a href="index.html">← Retour à l'accueil</a></div>
+    <div class="tagline" data-aos="fade-down">Bienvenue sur ma page de contact</div>
+
+    <div class="back-home" data-aos="fade-down">
+        <a href="index.html">← Retour à l'accueil</a>
+    </div>
 
     <main class="content">
-        <div class="hero">
+        <div class="hero" data-aos="fade-up">
             <div class="cta">
+                <button class="btn" id="btnContact">Contact</button>
+                <button class="btn" id="btnAbout">À propos</button>
                 <button class="btn" id="btnFacebook">Facebook</button>
                 <button class="btn" id="btnInstagram">Instagram</button>
-                <button class="btn" id="btnAbout">À propos</button>
-                <!-- Ajout de la photo rotation.png sous le bouton À propos -->
-                <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" />
             </div>
         </div>
     </main>
 
-    <!-- MODALES -->
-    <div id="modalAbout" class="modal">
+    <!-- MODALE CONTACT -->
+    <div id="modalContact" class="modal" data-aos="zoom-in">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" data-close="modalContact">&times;</span>
+            <div id="alienTextContact" class="alien-text"></div>
+            <form id="contactForm" action="https://formspree.io/f/xnnbbzwb" method="POST">
+                <label>Nom :</label>
+                <input type="text" name="name" required>
+                <label>Email :</label>
+                <input type="email" name="email" required>
+                <label>Message :</label>
+                <textarea name="message" rows="4" required></textarea>
+                <input type="submit" value="Envoyer">
+            </form>
+            <div id="successMessage">✅ Votre message a bien été envoyé !</div>
+        </div>
+    </div>
+
+    <!-- MODALE A PROPOS -->
+    <div id="modalAbout" class="modal" data-aos="zoom-in">
+        <div class="modal-content">
+            <span class="close" data-close="modalAbout">&times;</span>
             <div id="alienTextAbout" class="alien-text"></div>
         </div>
     </div>
 
-    <div id="modalGeneric" class="modal">
+    <!-- MODALE GÉNÉRIQUE (Facebook / Instagram / Artmajeur) -->
+    <div id="modalGeneric" class="modal" data-aos="zoom-in">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="alienText" class="alien-text"></div>
-            <a id="modalLink" class="modal-link" target="_blank">Accéder</a>
+            <span class="close" data-close="modalGeneric">&times;</span>
+            <div id="alienTextGeneric" class="alien-text"></div>
+            <a id="modalLink" class="modal-link" target="_blank" rel="noopener">Accéder</a>
         </div>
     </div>
 
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
         function typeEffect(element, textArray, callback) {
             let i = 0, j = 0;
             function typing() {
@@ -243,54 +293,127 @@
                         i++; j = 0;
                         setTimeout(typing, 300);
                     }
-                } else if(callback) callback();
+                } else if (callback) {
+                    callback();
+                }
             }
             typing();
         }
 
-        function openModal(modal, textArray, linkUrl=null) {
-            const alienText = modal.querySelector('.alien-text');
-            const modalLink = modal.querySelector('.modal-link');
+        function openModal(modalId, messages, linkUrl = null) {
+            const modal = document.getElementById(modalId);
+            const textEl =
+                modal.querySelector(".alien-text") ||
+                modal.querySelector("#alienTextGeneric") ||
+                modal.querySelector("#alienTextAbout") ||
+                modal.querySelector("#alienTextContact");
 
-            alienText.textContent = "";
-            if(modalLink) modalLink.style.display = "none";
+            const linkEl = modal.querySelector(".modal-link");
+
+            if (textEl) textEl.textContent = "";
+            if (linkEl) linkEl.style.display = "none";
 
             modal.style.display = "flex";
 
-            typeEffect(alienText, textArray, () => {
-                if(linkUrl && modalLink){
-                    modalLink.href = linkUrl;
-                    modalLink.textContent = "Cliquez ici pour visiter";
-                    modalLink.style.display = "block";
+            typeEffect(textEl, messages, () => {
+                if (linkUrl && linkEl) {
+                    linkEl.href = linkUrl;
+                    linkEl.textContent = "Cliquez ici pour visiter";
+                    linkEl.style.display = "block";
                 }
             });
 
-            modal.querySelectorAll('.close').forEach(btn => btn.onclick = () => modal.style.display = 'none');
-            modal.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                    const contactForm = document.getElementById("contactForm");
+                    if (contactForm) contactForm.style.display = "none";
+                    const success = document.getElementById("successMessage");
+                    if (success) success.style.display = "none";
+                }
+            };
         }
 
-        document.getElementById('btnAbout').onclick = () => {
-            openModal(document.getElementById('modalAbout'), [
+        document.getElementById("btnContact").addEventListener("click", () => {
+            openModal("modalContact", [
                 "Chargement...",
-                "site evzone.fr version 1.0",
-                "création & codage par Francis De Faccio",
-                "copyright © Francis De Faccio _ 01/09/2025"
+                "Veuillez saisir vos informations de contact"
             ]);
-        };
+            setTimeout(() => {
+                document.getElementById("contactForm").style.display = "block";
+            }, 1000);
+        });
 
-        document.getElementById('btnFacebook').onclick = () => {
-            openModal(document.getElementById('modalGeneric'), [
+        document.getElementById("btnAbout").addEventListener("click", () => {
+            openModal("modalAbout", [
                 "Chargement...",
-                "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"
-            ], "https://www.facebook.com/fanfan.francisd");
-        };
+                "Deux arts, un seul regard et la nature pour atelier: evzone.fr",
+                "Site : evzone.fr - Version 1.0",
+                "Création & Codage : Francis De Faccio",
+                "Copyright © Francis De Faccio _ 01/09/2025"
+            ]);
+        });
 
-        document.getElementById('btnInstagram').onclick = () => {
-            openModal(document.getElementById('modalGeneric'), [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"
-            ], "https://www.instagram.com/evzone87");
-        };
+        document.getElementById("btnFacebook").addEventListener("click", () => {
+            openModal(
+                "modalGeneric",
+                [
+                    "Chargement...",
+                    "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien"
+                ],
+                "https://www.facebook.com/fanfan.francisd"
+            );
+        });
+
+        document.getElementById("btnInstagram").addEventListener("click", () => {
+            openModal(
+                "modalGeneric",
+                [
+                    "Chargement...",
+                    "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien"
+                ],
+                "https://www.instagram.com/evzone87"
+            );
+        });
+
+        document.getElementById("btnArtmajeur").addEventListener("click", () => {
+            openModal(
+                "modalGeneric",
+                [
+                    "Chargement...",
+                    "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien"
+                ],
+                "https://www.artmajeur.com/francis-de-faccio"
+            );
+        });
+
+        const form = document.getElementById("contactForm");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok) {
+                form.style.display = "none";
+                document.getElementById("successMessage").style.display = "block";
+            } else {
+                alert("❌ Une erreur est survenue. Veuillez réessayer.");
+            }
+        });
+
+        document.querySelectorAll(".close").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const modal = btn.closest(".modal");
+                if (modal) modal.style.display = "none";
+                if (modal && modal.id === "modalContact") {
+                    form.style.display = "none";
+                    document.getElementById("successMessage").style.display = "none";
+                }
+            });
+        });
     </script>
 </body>
 </html>

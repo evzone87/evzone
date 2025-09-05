@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport ajusté pour webviews / fit cover -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Contact – Francis de Faccio</title>
     <meta name="description" content="Contactez Francis de Faccio, artiste peintre et photographe en Corrèze. Retrouvez ses réseaux sociaux et ses œuvres sur Artmajeur." />
     <meta name="author" content="Francis de Faccio" />
@@ -16,10 +17,16 @@
             --overlay: 0.15;
             --alien-green: #00ff80;
             --dark-bg: #000;
+
+            /* variables pour boutons / espaces (modifiables facilement) */
+            --btn-padding: 12px 24px;
+            --btn-font: 1rem;
+            --gap-cta: 14px;
+            --content-padding: 40px;
         }
 
         * { box-sizing: border-box; }
-        html, body { height: 100%; margin: 0; }
+        html, body { height: 100%; margin: 0; width:100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
 
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
@@ -86,7 +93,7 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            padding: 40px;
+            padding: var(--content-padding);
         }
 
         .hero { max-width: 640px; text-align: left; }
@@ -103,14 +110,14 @@
             margin-top: 40px;
             display: flex;
             flex-direction: row;
-            gap: 14px;
+            gap: var(--gap-cta);
             align-items: center;
             flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: var(--btn-padding);
             border-radius: 999px;
             background: rgba(255,255,255,.72);
             color: #111;
@@ -121,6 +128,7 @@
             box-shadow: 0 8px 24px rgba(0,0,0,.25);
             cursor: pointer;
             white-space: nowrap;
+            font-size: var(--btn-font);
         }
 
         .btn:hover {
@@ -230,10 +238,36 @@
             font-size: 1.1rem;
             text-decoration: underline;
         }
+
+        /* --- MODE COMPACT appliqué en paysage ou webview Facebook --- */
+        body.compact {
+            --btn-padding: 8px 14px;
+            --btn-font: 0.86rem;
+            --gap-cta: 8px;
+            --content-padding: 14px;
+        }
+
+        body.compact .hero { max-width: 420px; }
+        body.compact h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+        body.compact .tagline { font-size: 0.95rem; top: 12px; left: 12px; }
+        body.compact .rotation-img { width: 48px; height: 48px; margin-top: 10px; }
+        body.compact .back-home a { padding: 8px 16px; font-size: 0.9rem; border-radius: 22px; }
+
+        body.compact.narrow .hero { max-width: 360px; }
+        body.compact.narrow h1 { font-size: clamp(1.4rem, 3.6vw, 1.9rem); }
+
+        @media (max-width: 900px) {
+            .tagline { font-size: 1rem; top:12px; left:15px; }
+            .content { justify-content: flex-start; align-items: center; padding: 22px; height: 100vh; }
+            .hero { text-align: left; max-width: 90%; }
+            h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+            .cta { margin-top: 20px; gap: 12px; }
+            .rotation-img { width: 60px; height: 60px; margin-top: 12px; }
+        }
     </style>
 </head>
 <body>
-    <div class="tagline" data-aos="fade-down">Evzone.fr : deux arts, un regard, la nature pour atelier.</div>  <!-- emplacement de la phrase entete retirée -->
+    <div class="tagline" data-aos="fade-down">Evzone.fr : deux arts, un regard, la nature pour atelier.</div>
 
     <div class="back-home" data-aos="fade-down">
         <a href="index.html">← Retour à l'accueil</a>
@@ -248,168 +282,4 @@
                 <button class="btn" id="btnArtmajeur">Artmajeur</button>
 				<button class="btn" id="btnAbout">À propos / Mentions légales</button>
                 <!-- Image de rotation ajoutée sous les boutons -->
-                <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" data-aos="flip-left" />
-            </div>
-        </div>
-    </main>
-
-    <!-- MODALE CONTACT -->
-    <div id="modalContact" class="modal" data-aos="zoom-in">
-        <div class="modal-content">
-            <span class="close" data-close="modalContact">&times;</span>
-            <div id="alienTextContact" class="alien-text"></div>
-            <form id="contactForm" action="https://formspree.io/f/xnnbbzwb" method="POST">
-                <label>Nom :</label>
-                <input type="text" name="name" required>
-                <label>Email :</label>
-                <input type="email" name="email" required>
-                <label>Message :</label>
-                <textarea name="message" rows="4" required></textarea>
-                <input type="submit" value="Envoyer">
-            </form>
-            <div id="successMessage">✅ Votre message a bien été envoyé !</div>
-        </div>
-    </div>
-
-    <!-- MODALE A PROPOS -->
-    <div id="modalAbout" class="modal" data-aos="zoom-in">
-        <div class="modal-content">
-            <span class="close" data-close="modalAbout">&times;</span>
-            <div id="alienTextAbout" class="alien-text"></div>
-        </div>
-    </div>
-
-    <!-- MODALE GÉNÉRIQUE (Facebook / Instagram / Artmajeur) -->
-    <div id="modalGeneric" class="modal" data-aos="zoom-in">
-        <div class="modal-content">
-            <span class="close" data-close="modalGeneric">&times;</span>
-            <div id="alienTextGeneric" class="alien-text"></div>
-            <a id="modalLink" class="modal-link" target="_blank" rel="noopener">Accéder</a>
-        </div>
-    </div>
-
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-
-        function typeEffect(element, textArray, callback) {
-            let i = 0, j = 0;
-            function typing() {
-                if (i < textArray.length) {
-                    if (j < textArray[i].length) {
-                        element.textContent += textArray[i].charAt(j);
-                        j++;
-                        setTimeout(typing, 50);
-                    } else {
-                        element.textContent += "\n";
-                        i++; j = 0;
-                        setTimeout(typing, 300);
-                    }
-                } else if (callback) callback();
-            }
-            typing();
-        }
-
-        function openModal(modalId, messages, linkUrl = null) {
-            const modal = document.getElementById(modalId);
-            const textEl = modal.querySelector(".alien-text");
-            const linkEl = modal.querySelector(".modal-link");
-
-            if (textEl) textEl.textContent = "";
-            if (linkEl) linkEl.style.display = "none";
-
-            modal.style.display = "flex";
-
-            typeEffect(textEl, messages, () => {
-                if (linkUrl && linkEl) {
-                    linkEl.href = linkUrl;
-                    linkEl.textContent = "Cliquez ici pour visiter";
-                    linkEl.style.display = "block";
-                }
-            });
-
-            modal.onclick = (e) => {
-                if (e.target === modal) {
-                    modal.style.display = "none";
-                    const contactForm = document.getElementById("contactForm");
-                    if (contactForm) contactForm.style.display = "none";
-                    const success = document.getElementById("successMessage");
-                    if (success) success.style.display = "none";
-                }
-            };
-        }
-
-        document.getElementById("btnContact").addEventListener("click", () => {
-            openModal("modalContact", [
-                "Chargement...",
-				"Bonjour,",
-				"Vous avez un projet artistique de peintures, de photograpies?",
-                "Veuillez saisir vos informations pour me contacter:"
-            ]);
-            setTimeout(() => {
-                document.getElementById("contactForm").style.display = "block";
-            }, 1000);
-        });
-
-        document.getElementById("btnAbout").addEventListener("click", () => {
-            openModal("modalAbout", [
-                "Chargement...",
-                "Éditeur du site - Copyright © Francis De Faccio",
-                "SIRET : 424896660 ",
-				"Site : evzone.fr - Version 1.7",
-                "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
-            ]);
-        });
-
-        document.getElementById("btnFacebook").addEventListener("click", () => {
-            openModal("modalGeneric", [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
-            ], "https://www.facebook.com/fanfan.francisd");
-        });
-
-        document.getElementById("btnInstagram").addEventListener("click", () => {
-            openModal("modalGeneric", [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
-            ], "https://www.instagram.com/evzone87");
-        });
-
-        document.getElementById("btnArtmajeur").addEventListener("click", () => {
-            openModal("modalGeneric", [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
-            ], "https://www.artmajeur.com/francis-de-faccio");
-        });
-
-        const form = document.getElementById("contactForm");
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const data = new FormData(form);
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { "Accept": "application/json" }
-            });
-            if (response.ok) {
-                form.style.display = "none";
-                document.getElementById("successMessage").style.display = "block";
-            } else {
-                alert("❌ Une erreur est survenue. Veuillez réessayer.");
-            }
-        });
-
-        document.querySelectorAll(".close").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const modal = btn.closest(".modal");
-                if (modal) modal.style.display = "none";
-                if (modal && modal.id === "modalContact") {
-                    form.style.display = "none";
-                    document.getElementById("successMessage").style.display = "none";
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                <img src="images/photo

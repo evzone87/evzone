@@ -16,19 +16,9 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.css" rel="stylesheet">
 
     <style>
-        :root {
-            --overlay: 0.15;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
+        :root { --overlay: 0.15; --accent: #00ffea; }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
 
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
@@ -71,96 +61,50 @@
             padding: 40px;
         }
 
-        .hero {
-            max-width: 640px;
-            text-align: right;
-        }
+        .hero { max-width: 640px; text-align: right; }
+        h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin: 0; font-weight: 800; text-shadow: 0 8px 24px rgba(0,0,0,.45); letter-spacing:.02em; }
 
-        h1 {
-            font-size: clamp(2.2rem, 4vw, 3.4rem);
-            margin: 0;
-            font-weight: 800;
-            text-shadow: 0 8px 24px rgba(0, 0, 0, .45);
-            letter-spacing: .02em;
-        }
-
-        .cta {
-            margin-top: 80px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
+        .cta { margin-top: 80px; display:flex; flex-direction:column; gap:12px; align-items:flex-end; }
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .72);
-            color: #111;
-            text-decoration: none;
-            font-weight: 800;
-            letter-spacing: .02em;
+            display:inline-block; padding:12px 24px; border-radius:999px;
+            background: rgba(255,255,255,.72); color:#111; text-decoration:none; font-weight:800;
             transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+        }
+        .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.9); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+
+        .rotation-icon { margin-top:18px; max-width:80px; height:auto; opacity:.9; cursor:default; transition: transform .3s ease; }
+        .rotation-icon:hover { transform: rotate(10deg) scale(1.05); opacity:1; }
+
+        /* Modal d'information pour utilisateurs FB/IG */
+        .fb-modal-backdrop {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999;
+            display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .fb-modal-backdrop.show { display: flex; }
+
+        .fb-modal {
+            max-width: 520px; width: 100%; background: linear-gradient(180deg,#081016, #07111a);
+            border-radius: 12px; padding: 22px; box-shadow: 0 12px 40px rgba(0,0,0,.6);
+            color: #e9ffff; font-family: Arial, sans-serif; text-align: center;
+            border: 1px solid rgba(0,255,234,0.08);
         }
 
-        .btn:hover {
-            transform: translateY(-1px);
-            background: rgba(255, 255, 255, .9);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+        .fb-modal h2 { margin: 0 0 10px 0; font-size: 1.2rem; color: var(--accent); }
+        .fb-modal p { margin: 8px 0 16px 0; line-height:1.4; color: #dff7f3; }
+        .fb-actions { display:flex; gap:12px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
+        .fb-btn {
+            padding:10px 18px; border-radius: 999px; border: none; cursor: pointer; font-weight:700;
+            background: var(--accent); color:#001; box-shadow: 0 8px 20px rgba(0,255,234,.12);
         }
+        .fb-btn.secondary { background: rgba(255,255,255,.12); color:#fff; }
 
-        .rotation-icon {
-            margin-top: 18px;
-            max-width: 80px;
-            height: auto;
-            opacity: 0.9;
-            cursor: default;
-            transition: transform 0.3s ease;
-        }
-
-        .rotation-icon:hover {
-            transform: rotate(10deg) scale(1.05);
-            opacity: 1;
-        }
-
-        @media (max-width: 900px) {
-            .tagline {
-                font-size: 1rem;
-                top: 12px;
-                right: 15px;
-                max-width: 60%;
-                text-align: right;
-            }
-
-            .content {
-                justify-content: flex-end;
-                align-items: center;
-                padding: 22px;
-                height: 100vh;
-            }
-
-            .hero {
-                text-align: right;
-                max-width: 90%;
-            }
-
-            h1 {
-                font-size: clamp(1.8rem, 6vw, 2.8rem);
-            }
-
-            .cta {
-                margin-top: 32px;
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 12px;
-            }
-
-            .rotation-icon {
-                max-width: 60px;
-                margin-top: 12px;
-            }
+        @media (max-width:900px) {
+            .tagline { font-size:1rem; top:12px; right:15px; max-width:60%; text-align:right; }
+            .content { padding:22px; height:100vh; align-items:center; }
+            .hero { max-width:90%; text-align:right; }
+            .cta { margin-top:32px; }
+            .rotation-icon { max-width:60px; margin-top:12px; }
         }
     </style>
 </head>
@@ -188,20 +132,124 @@
         </div>
     </main>
 
+    <!-- MODAL pour forcer sortie du WebView si détection -->
+    <div id="fbModalBackdrop" class="fb-modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fb-modal" role="document" aria-labelledby="fbModalTitle">
+            <h2 id="fbModalTitle">Ouvrir dans votre navigateur</h2>
+            <p>Vous avez ouvert ce lien depuis l'application Facebook/Instagram. Pour une meilleure expérience (plein écran, navigation complète), ouvrez ce site dans votre navigateur (Chrome, Safari, etc.).</p>
+            <div class="fb-actions">
+                <button id="fbOpenBtn" class="fb-btn">Ouvrir dans le navigateur</button>
+                <button id="fbStayBtn" class="fb-btn secondary">Rester ici</button>
+            </div>
+            <p style="margin-top:12px; font-size:.85rem; color: #9ee8de;">Si le bouton ne fonctionne pas, utilisez le menu de partage Facebook puis “Ouvrir dans le navigateur”.</p>
+        </div>
+    </div>
+
     <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true, easing: 'ease-out-cubic' });
-    </script>
+    <script> AOS.init({ once: true, easing: 'ease-out-cubic' }); </script>
 
-    <!-- SCRIPT ANTI-FACEBOOK / INSTAGRAM -->
+    <!-- SCRIPT ANTI-FACEBOOK / INSTAGRAM AMÉLIORÉ -->
     <script>
         (function () {
-            var ua = navigator.userAgent || navigator.vendor || window.opera;
-            if (ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1 || ua.indexOf("Instagram") > -1) {
-                // Forcer l'ouverture dans le navigateur externe
-                window.top.location.href = window.location.href;
+            // Détection d'un in-app browser Facebook/Instagram (UA + referrer + iframe check)
+            var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+            var ref = (document.referrer || '').toLowerCase();
+
+            var isFbUA = /FBAN|FBAV|FB_IAB|FB4A|FBAV|FBV|FB_IOS|FBSV/i.test(ua);
+            var isInstaUA = /Instagram/i.test(ua);
+            var fromFacebookRef = /facebook\.com|l\.facebook\.com|lm\.facebook\.com|m\.facebook\.com/.test(ref);
+
+            // window.self !== window.top souvent vrai dans iframe, utile comme indicateur
+            var inIframe = (window.self !== window.top);
+
+            var inApp = isFbUA || isInstaUA || fromFacebookRef || inIframe;
+
+            // If not in-app, do nothing
+            if (!inApp) return;
+
+            // Try quick automatic escapes (may fail if blocked)
+            try {
+                // If we are in a frame and can set top location, do it.
+                if (window.top && window.top !== window) {
+                    window.top.location.href = window.location.href;
+                    // Give browser a bit to act — then continue to show fallback if still inside
+                    setTimeout(checkStillInApp, 700);
+                    return;
+                }
+            } catch (e) {
+                // Cross-origin or blocked — continue to fallback UI
             }
+
+            // If we reach here, either redirect was blocked or not possible.
+            // Show a clear modal with an explicit button (user gesture) to open externally.
+            var backdrop = document.getElementById('fbModalBackdrop');
+            var openBtn = document.getElementById('fbOpenBtn');
+            var stayBtn = document.getElementById('fbStayBtn');
+
+            function showModal() {
+                backdrop.classList.add('show');
+                backdrop.setAttribute('aria-hidden', 'false');
+            }
+            function hideModal() {
+                backdrop.classList.remove('show');
+                backdrop.setAttribute('aria-hidden', 'true');
+            }
+
+            // Attempt to open externally with a user gesture — works in most cases.
+            function openExternally() {
+                // 1) Try window.open in a new tab/window (user-initiated click)
+                var opened = null;
+                try {
+                    opened = window.open(window.location.href, '_blank', 'noopener,noreferrer');
+                } catch (e) { opened = null; }
+
+                // 2) If popup blocked or returned null, create an <a> and click it (also user gesture)
+                if (!opened) {
+                    var a = document.createElement('a');
+                    a.href = window.location.href;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+
+                // Hide modal after trying to open externally
+                hideModal();
+
+                // As a last fallback, attempt to replace location (may stay in webview)
+                setTimeout(function () {
+                    try { window.location.replace(window.location.href); } catch(e){}
+                }, 500);
+            }
+
+            // Check if still inside an iframe/webview: if window.top === window or referrer changed
+            function checkStillInApp() {
+                var stillInIframe = (window.self !== window.top);
+                if (stillInIframe) {
+                    showModal();
+                }
+            }
+
+            // Hook button events
+            openBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                openExternally();
+            });
+
+            stayBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                hideModal();
+            });
+
+            // Show modal automatically after a short delay (to allow automatic redirect attempts first)
+            setTimeout(showModal, 700);
+
+            // Also provide a visible small hint at top right (optional)
+            // (you can remove if you don't want it)
+            // var hint = document.createElement('div'); hint.textContent = "Ouvrir dans le navigateur"; ...
         })();
     </script>
 </body>

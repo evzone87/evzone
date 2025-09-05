@@ -16,51 +16,16 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.css" rel="stylesheet">
 
     <style>
-        :root {
-            --overlay: 0.15;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
+        :root { --overlay: 0.15; }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
 
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
             color: #fff;
+            background: url('images/photos/confolens01.jpg') center center / cover no-repeat;
             position: relative;
             min-height: 100vh;
-            overflow: hidden;
-        }
-
-        /* CONTAINER POUR LES DEUX IMAGES */
-        #background-slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        #background-slideshow img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 2s ease-in-out;
-            opacity: 0;
-        }
-
-        #background-slideshow img.active {
-            opacity: 1;
         }
 
         body::before {
@@ -96,10 +61,7 @@
             padding: 40px;
         }
 
-        .hero {
-            max-width: 640px;
-            text-align: right;
-        }
+        .hero { max-width: 640px; text-align: right; }
 
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.4rem);
@@ -158,45 +120,21 @@
                 max-width: 60%;
                 text-align: right;
             }
-
             .content {
                 justify-content: flex-end;
                 align-items: center;
                 padding: 22px;
                 height: 100vh;
             }
-
-            .hero {
-                text-align: right;
-                max-width: 90%;
-            }
-
-            h1 {
-                font-size: clamp(1.8rem, 6vw, 2.8rem);
-            }
-
-            .cta {
-                margin-top: 32px;
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 12px;
-            }
-
-            .rotation-icon {
-                max-width: 60px;
-                margin-top: 12px;
-            }
+            .hero { text-align: right; max-width: 90%; }
+            h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+            .cta { margin-top: 32px; flex-direction: column; align-items: flex-end; gap: 12px; }
+            .rotation-icon { max-width: 60px; margin-top: 12px; }
         }
     </style>
 </head>
 
 <body>
-    <!-- SLIDESHOW -->
-    <div id="background-slideshow">
-        <img src="images/photos/confolens01.jpg" class="active" alt="Photo Confolens" />
-        <img src="images/photos/32.2athena.jpg" alt="Photo Athena" />
-    </div>
-
     <!-- PHRASE EN HAUT À DROITE -->
     <div class="tagline" data-aos="fade-down" data-aos-duration="1200">
         "Je peins la lumière et photographie les rêves." Francis De Faccio
@@ -205,17 +143,13 @@
     <main class="content">
         <div class="hero" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
             <h1 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">Evzone.fr</h1>
-            <p>v10</p>
-            <img class="rotation-icon" src="images/photos/rotation.png" alt="Rotation smartphone"
-                title="Tournez votre smartphone pour une meilleure expérience" data-aos="zoom-in"
-                data-aos-duration="1200" data-aos-delay="1200" />
+			<p>v1.8</p>
+				<img class="rotation-icon" src="images/photos/rotation.png" alt="Rotation smartphone" title="Tournez votre smartphone pour une meilleure expérience"
+                data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="1200"/>				
             <div class="cta">
-                <a class="btn" href="peinture.html" data-aos="fade-right" data-aos-duration="1200"
-                    data-aos-delay="600">Peinture</a>
-                <a class="btn" href="photographie.html" data-aos="fade-right" data-aos-duration="1200"
-                    data-aos-delay="800">Photo</a>
-                <a class="btn" href="contact.html" data-aos="fade-right" data-aos-duration="1200"
-                    data-aos-delay="1000">Contact</a>
+                <a class="btn" href="peinture.html" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="600">Peinture</a>
+                <a class="btn" href="photographie.html" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="800">Photo</a>
+                <a class="btn" href="contact.html" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="1000">Contact</a>
             </div>
         </div>
     </main>
@@ -224,15 +158,6 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, easing: 'ease-out-cubic' });
-
-        // SLIDESHOW FONDU ENTRE 2 IMAGES
-        const images = document.querySelectorAll('#background-slideshow img');
-        let current = 0;
-        setInterval(() => {
-            images[current].classList.remove('active');
-            current = (current + 1) % images.length;
-            images[current].classList.add('active');
-        }, 10000); // Changement toutes les 10 secondes
     </script>
 </body>
 </html>

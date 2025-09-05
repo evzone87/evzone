@@ -35,6 +35,32 @@
             position: relative;
             min-height: 100vh;
         }
+		
+		/* AJOUT : Conteneur d'arrière-plan pour transition */
+.background-container {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Les deux images de fond superposées */
+.background-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    transition: opacity 2.5s ease-in-out;
+    opacity: 1;
+}
+
+/* Image cachée */
+.background-container img.hidden {
+    opacity: 0;
+}
+
 
         body::before {
             content: "";
@@ -267,6 +293,16 @@
     </style>
 </head>
 <body>
+
+
+<!-- AJOUT : Conteneur pour les deux images de fond -->
+<div class="background-container">
+    <img src="images/photos/etang-correze.jpg" id="bg1" />
+    <img src="images/photos/tour-de-masseret-heure-bleue.jpg" id="bg2" class="hidden" />
+</div>
+
+
+
     <div class="tagline" data-aos="fade-down">Evzone.fr : deux arts, un regard, la nature pour atelier.</div>
 
     <div class="back-home" data-aos="fade-down">
@@ -391,7 +427,7 @@
                 "Chargement...",
                 "Éditeur du site - Copyright © Francis De Faccio",
                 "SIRET : 424896660 ",
-				"Site : evzone.fr - Version 15",
+				"Site : evzone.fr - Version 16",
                 "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
             ]);
         });
@@ -471,6 +507,23 @@
                 setTimeout(update, 600);
             });
         })();
+		
+		// --- AJOUT : Slideshow des deux images de fond ---
+const bg1 = document.getElementById("bg1");
+const bg2 = document.getElementById("bg2");
+let showFirst = true;
+
+setInterval(() => {
+    if (showFirst) {
+        bg1.classList.add("hidden");
+        bg2.classList.remove("hidden");
+    } else {
+        bg2.classList.add("hidden");
+        bg1.classList.remove("hidden");
+    }
+    showFirst = !showFirst;
+}, 10000); // toutes les 10 secondes
+
     </script>
 </body>
 </html>

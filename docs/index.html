@@ -17,19 +17,34 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@3.0.0-beta.6/dist/aos.css" rel="stylesheet">
 
     <style>
-        :root { --overlay: 0.15; --btn-padding: 12px 24px; --btn-font: 1rem; --gap-cta: 12px; }
-        * { box-sizing: border-box; }
-        html, body { height: 100%; width:100%; margin: 0; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+        :root {
+            --overlay: 0.15;
+            --btn-padding: 12px 24px;
+            --btn-font: 1rem;
+            --gap-cta: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
 
         body {
             font-family: "Helvetica Neue", Arial, sans-serif;
             color: #fff;
             position: relative;
             min-height: 100vh;
-            /* plus d'image en background ici : on utilise le slideshow */
         }
 
-        /* SLIDESHOW ARRIERE-PLAN (2 IMAGES) */
+        /* SLIDESHOW ARRIERE-PLAN */
         #background-slideshow {
             position: fixed;
             inset: 0;
@@ -37,6 +52,7 @@
             height: 100%;
             z-index: -2;
         }
+
         #background-slideshow img {
             position: absolute;
             inset: 0;
@@ -47,7 +63,10 @@
             opacity: 0;
             will-change: opacity;
         }
-        #background-slideshow img.active { opacity: 1; }
+
+        #background-slideshow img.active {
+            opacity: 1;
+        }
 
         /* légère couche sombre pour lisibilité */
         body::before {
@@ -55,7 +74,7 @@
             position: absolute;
             inset: 0;
             z-index: -1;
-            background: rgba(0,0,0,var(--overlay));
+            background: rgba(0, 0, 0, var(--overlay));
             pointer-events: none;
         }
 
@@ -64,10 +83,10 @@
             top: 20px;
             right: 30px;
             z-index: 10;
-            font-size: 1.8rem; /* ← AUGMENTATION DE LA TAILLE DU TEXTE */
+            font-size: 1.8rem;
             font-weight: 600;
             color: #fff;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
             font-style: italic;
             letter-spacing: 0.5px;
             opacity: 0.95;
@@ -85,13 +104,16 @@
             padding: 40px;
         }
 
-        .hero { max-width: 640px; text-align: right; }
+        .hero {
+            max-width: 640px;
+            text-align: right;
+        }
 
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.4rem);
             margin: 0;
             font-weight: 800;
-            text-shadow: 0 8px 24px rgba(0,0,0,.45);
+            text-shadow: 0 8px 24px rgba(0, 0, 0, .45);
             letter-spacing: .02em;
         }
 
@@ -107,21 +129,21 @@
             display: inline-block;
             padding: var(--btn-padding);
             border-radius: 999px;
-            background: rgba(255,255,255,.72);
+            background: rgba(255, 255, 255, .72);
             color: #111;
             text-decoration: none;
             font-weight: 800;
             letter-spacing: .02em;
             transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
             font-size: var(--btn-font);
             white-space: nowrap;
         }
 
         .btn:hover {
             transform: translateY(-1px);
-            background: rgba(255,255,255,.9);
-            box-shadow: 0 12px 30px rgba(0,0,0,.3);
+            background: rgba(255, 255, 255, .9);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
         }
 
         .rotation-icon {
@@ -138,32 +160,87 @@
             opacity: 1;
         }
 
-        /* --- MODE COMPACT appliqué en paysage ou webview Facebook --- */
+        /* --- MODE COMPACT --- */
         body.compact {
-            /* variables pour la version compacte */
             --btn-padding: 8px 14px;
             --btn-font: 0.86rem;
             --gap-cta: 8px;
         }
 
-        body.compact .content { padding: 14px; }
-        body.compact .hero { max-width: 420px; }
-        body.compact h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
-        body.compact .tagline { font-size: 1.4rem; top: 12px; right: 12px; max-width: 55%; }
-        body.compact .rotation-icon { max-width: 48px; margin-top: 10px; }
-        body.compact .cta { margin-top: 20px; gap: var(--gap-cta); align-items: flex-end; }
+        body.compact .content {
+            padding: 14px;
+        }
 
-        /* plus compact encore pour très petits espaces (p.ex. landscape narrow) */
-        body.compact.narrow .hero { max-width: 360px; }
-        body.compact.narrow h1 { font-size: clamp(1.4rem, 3.6vw, 1.9rem); }
+        body.compact .hero {
+            max-width: 420px;
+        }
+
+        body.compact h1 {
+            font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+        }
+
+        body.compact .tagline {
+            font-size: 1.4rem;
+            top: 12px;
+            right: 12px;
+            max-width: 55%;
+        }
+
+        body.compact .rotation-icon {
+            max-width: 48px;
+            margin-top: 10px;
+        }
+
+        body.compact .cta {
+            margin-top: 20px;
+            gap: var(--gap-cta);
+            align-items: flex-end;
+        }
+
+        body.compact.narrow .hero {
+            max-width: 360px;
+        }
+
+        body.compact.narrow h1 {
+            font-size: clamp(1.4rem, 3.6vw, 1.9rem);
+        }
 
         @media (max-width: 900px) {
-            .tagline { font-size: 1.5rem; top:12px; right:15px; max-width:60%; text-align:right; }
-            .content { justify-content: flex-end; align-items: center; padding: 22px; height: 100vh; }
-            .hero { text-align: right; max-width: 90%; }
-            h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
-            .cta { margin-top: 32px; flex-direction: column; align-items: flex-end; gap: 12px; }
-            .rotation-icon { max-width: 60px; margin-top: 12px; }
+            .tagline {
+                font-size: 1.5rem;
+                top: 12px;
+                right: 15px;
+                max-width: 60%;
+                text-align: right;
+            }
+
+            .content {
+                justify-content: flex-end;
+                align-items: center;
+                padding: 22px;
+                height: 100vh;
+            }
+
+            .hero {
+                text-align: right;
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+            }
+
+            .cta {
+                margin-top: 32px;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 12px;
+            }
+
+            .rotation-icon {
+                max-width: 60px;
+                margin-top: 12px;
+            }
         }
     </style>
 </head>
@@ -171,13 +248,13 @@
 <body>
     <!-- ARRIERE-PLAN SLIDESHOW -->
     <div id="background-slideshow" aria-hidden="true">
-		<img src="images/photos/32.2athena.jpg" alt="Athena" />
-        <img src="images/photos/confolens01.jpg" class="active" alt="Confolens" />
+        <img src="images/photos/32.2athena.jpg" alt="Athena" class="active" />
+        <img src="images/photos/confolens01.jpg" alt="Confolens" />
     </div>
 
     <!-- PHRASE EN HAUT À DROITE -->
     <div class="tagline" data-aos="fade-down" data-aos-duration="1200">
-        "Je peins la lumière et photographie les rêves." Francis De Faccio
+        "Peindre la lumière, photographier les rêves." Francis De Faccio
     </div>
 
     <main class="content">
@@ -196,7 +273,7 @@
     <script>
         AOS.init({ once: true, easing: 'ease-out-cubic' });
 
-        // SLIDESHOW : change toutes les 10s (fondu géré en CSS)
+        // SLIDESHOW : toutes les transitions durent 10s, y compris la première
         (function slideshow() {
             const imgs = document.querySelectorAll('#background-slideshow img');
             let idx = 0;
@@ -207,7 +284,7 @@
             }, 10000);
         })();
 
-        // --- MODE COMPACT selon orientation / webview Facebook / petite largeur
+        // MODE COMPACT
         (function compactMode() {
             const body = document.body;
             const ua = navigator.userAgent || '';
@@ -218,7 +295,8 @@
                 const isLandscape = w > h;
                 if (isLandscape || (inFacebookWebview && w < 900)) {
                     body.classList.add('compact');
-                    if (w < 420) body.classList.add('narrow'); else body.classList.remove('narrow');
+                    if (w < 420) body.classList.add('narrow');
+                    else body.classList.remove('narrow');
                 } else {
                     body.classList.remove('compact', 'narrow');
                 }

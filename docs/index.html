@@ -64,7 +64,7 @@
             top: 20px;
             right: 30px;
             z-index: 10;
-            font-size: 1.2rem;
+            font-size: 1.8rem; /* ← AUGMENTATION DE LA TAILLE DU TEXTE */
             font-weight: 600;
             color: #fff;
             text-shadow: 0 4px 12px rgba(0,0,0,0.6);
@@ -149,7 +149,7 @@
         body.compact .content { padding: 14px; }
         body.compact .hero { max-width: 420px; }
         body.compact h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
-        body.compact .tagline { font-size: 0.95rem; top: 12px; right: 12px; max-width: 55%; }
+        body.compact .tagline { font-size: 1.4rem; top: 12px; right: 12px; max-width: 55%; }
         body.compact .rotation-icon { max-width: 48px; margin-top: 10px; }
         body.compact .cta { margin-top: 20px; gap: var(--gap-cta); align-items: flex-end; }
 
@@ -158,7 +158,7 @@
         body.compact.narrow h1 { font-size: clamp(1.4rem, 3.6vw, 1.9rem); }
 
         @media (max-width: 900px) {
-            .tagline { font-size: 1rem; top:12px; right:15px; max-width:60%; text-align:right; }
+            .tagline { font-size: 1.5rem; top:12px; right:15px; max-width:60%; text-align:right; }
             .content { justify-content: flex-end; align-items: center; padding: 22px; height: 100vh; }
             .hero { text-align: right; max-width: 90%; }
             h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
@@ -173,7 +173,6 @@
     <div id="background-slideshow" aria-hidden="true">
 		<img src="images/photos/32.2athena.jpg" alt="Athena" />
         <img src="images/photos/confolens01.jpg" class="active" alt="Confolens" />
-        
     </div>
 
     <!-- PHRASE EN HAUT À DROITE -->
@@ -212,28 +211,24 @@
         (function compactMode() {
             const body = document.body;
             const ua = navigator.userAgent || '';
-            const inFacebookWebview = /FBAN|FBAV|Instagram|Messenger/.test(ua); // inclut Instagram/Messenger webviews
+            const inFacebookWebview = /FBAN|FBAV|Instagram|Messenger/.test(ua);
             function update() {
                 const w = window.innerWidth;
                 const h = window.innerHeight;
                 const isLandscape = w > h;
-                // active si paysage OU si webview Facebook (on force compacte si large < 900)
                 if (isLandscape || (inFacebookWebview && w < 900)) {
                     body.classList.add('compact');
-                    // si la largeur devient vraiment étroite en paysage, ajoute 'narrow'
                     if (w < 420) body.classList.add('narrow'); else body.classList.remove('narrow');
                 } else {
                     body.classList.remove('compact', 'narrow');
                 }
             }
-            // appels initiaux + temporisés (webviews peuvent recalculer différemment)
             window.addEventListener('resize', update, { passive: true });
             window.addEventListener('orientationchange', () => {
                 setTimeout(update, 300);
             }, { passive: true });
             document.addEventListener('DOMContentLoaded', () => {
                 update();
-                // double-check après 600ms (certaines webviews réajustent après le rendu)
                 setTimeout(update, 600);
             });
         })();

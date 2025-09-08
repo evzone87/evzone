@@ -17,8 +17,6 @@
             --overlay: 0.15;
             --alien-green: #00ff80;
             --dark-bg: #000;
-
-            /* variables pour boutons / espaces (modifiables facilement) */
             --btn-padding: 12px 24px;
             --btn-font: 1rem;
             --gap-cta: 14px;
@@ -35,32 +33,25 @@
             position: relative;
             min-height: 100vh;
         }
-		
-		/* AJOUT : Conteneur d'arrière-plan pour transition */
-.background-container {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-}
 
-/* Les deux images de fond superposées */
-.background-container img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    transition: opacity 2.5s ease-in-out;
-    opacity: 1;
-}
-
-/* Image cachée */
-.background-container img.hidden {
-    opacity: 0;
-}
-
+        /* Conteneur d'arrière-plan */
+        .background-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            transition: opacity 2.5s ease-in-out;
+            opacity: 1;
+        }
+        .background-container img.hidden { opacity: 0; }
 
         body::before {
             content: "";
@@ -75,7 +66,7 @@
             top: 20px;
             left: 30px;
             z-index: 10;
-            font-size: 1.8rem; /* ← AUGMENTÉ ICI */
+            font-size: 1.8rem;
             font-weight: 600;
             color: #fff;
             text-shadow: 0 4px 12px rgba(0,0,0,0.6);
@@ -89,7 +80,6 @@
             transform: translateX(-50%);
             z-index: 11;
         }
-
         .back-home a {
             display: inline-block;
             padding: 12px 26px;
@@ -103,7 +93,6 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
-
         .back-home a:hover {
             background: #fff;
             color: #111;
@@ -121,9 +110,7 @@
             justify-content: flex-start;
             padding: var(--content-padding);
         }
-
         .hero { max-width: 640px; text-align: left; }
-
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.4rem);
             margin: 0;
@@ -156,7 +143,6 @@
             white-space: nowrap;
             font-size: var(--btn-font);
         }
-
         .btn:hover {
             transform: translateY(-1px);
             background: rgba(255,255,255,.9);
@@ -171,26 +157,10 @@
             animation: rotation 8s linear infinite;
             cursor: pointer;
         }
-
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* MODALES */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.85);
-            justify-content: center;
-            align-items: center;
-        }
-
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
         .modal-content {
             background-color: #111;
             padding: 30px;
@@ -203,82 +173,24 @@
             box-shadow: 0 0 30px var(--alien-green);
             text-align: center;
         }
-
-        .close {
-            color: var(--alien-green);
-            float: right;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        .alien-text {
-            font-size: 1rem;
-            text-align: left;
-            white-space: pre-wrap;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+        .close { color: var(--alien-green); float: right; font-size: 28px; cursor: pointer; }
+        .alien-text { font-size: 1rem; text-align: left; white-space: pre-wrap; overflow: hidden; margin-bottom: 20px; }
 
         /* Formulaire */
-        form {
-            display: none;
-            text-align: left;
-        }
+        form { display: none; text-align: left; }
+        label { display: block; margin-top: 12px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 6px; background-color: #222; color: #00ff80; border: 1px solid #00ff80; border-radius: 5px; }
+        input[type="submit"] { background-color: #00ff80; color: #111; font-weight: bold; cursor: pointer; margin-top: 15px; border: none; }
+        #successMessage { display: none; color: var(--alien-green); margin-top: 15px; font-weight: bold; }
+        .modal-link { display: none; color: var(--alien-green); font-weight: bold; font-size: 1.1rem; text-decoration: underline; }
 
-        label {
-            display: block;
-            margin-top: 12px;
-            font-weight: bold;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            background-color: #222;
-            color: #00ff80;
-            border: 1px solid #00ff80;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #00ff80;
-            color: #111;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            border: none;
-        }
-
-        #successMessage {
-            display: none;
-            color: var(--alien-green);
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .modal-link {
-            display: none;
-            color: var(--alien-green);
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-decoration: underline;
-        }
-
-        /* --- MODE COMPACT appliqué en paysage ou webview Facebook --- */
-        body.compact {
-            --btn-padding: 8px 14px;
-            --btn-font: 0.86rem;
-            --gap-cta: 8px;
-            --content-padding: 14px;
-        }
-
+        /* COMPACT MODE */
+        body.compact { --btn-padding: 8px 14px; --btn-font: 0.86rem; --gap-cta: 8px; --content-padding: 14px; }
         body.compact .hero { max-width: 420px; }
         body.compact h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
         body.compact .tagline { font-size: 0.95rem; top: 12px; left: 12px; }
         body.compact .rotation-img { width: 48px; height: 48px; margin-top: 10px; }
         body.compact .back-home a { padding: 8px 16px; font-size: 0.9rem; border-radius: 22px; }
-
         body.compact.narrow .hero { max-width: 360px; }
         body.compact.narrow h1 { font-size: clamp(1.4rem, 3.6vw, 1.9rem); }
 
@@ -294,234 +206,199 @@
 </head>
 <body>
 
-
-<!-- AJOUT : Conteneur pour les deux images de fond -->
+<!-- Conteneur images fond -->
 <div class="background-container">
     <img src="images/photos/etang-correze.jpg" id="bg1" />
     <img src="images/photos/tour-de-masseret-heure-bleue.jpg" id="bg2" class="hidden" />
 </div>
 
-    <div class="tagline" data-aos="fade-down">Evzone.fr : deux arts, un regard, la nature pour atelier.</div>
+<div class="tagline" data-aos="fade-down" data-aos-duration="1400" data-aos-delay="100">Evzone.fr : deux arts, un regard, la nature pour atelier.</div>
 
-    <div class="back-home" data-aos="fade-down">
-        <a href="index.html">← Retour à l'accueil</a>
-    </div>
+<div class="back-home" data-aos="fade-down" data-aos-duration="1400" data-aos-delay="200">
+    <a href="index.html">← Retour à l'accueil</a>
+</div>
 
-    <main class="content">
-        <div class="hero" data-aos="fade-up">
-            <div class="cta">
-                <button class="btn" id="btnContact">Contact mail</button>
-                <button class="btn" id="btnFacebook">Facebook</button>
-                <button class="btn" id="btnInstagram">Instagram</button>
-                <button class="btn" id="btnArtmajeur">Artmajeur</button>
-				<button class="btn" id="btnAbout">À propos / Mentions légales</button>
-                <!-- Image de rotation ajoutée sous les boutons -->
-                <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" data-aos="flip-left" />
-            </div>
-        </div>
-    </main>
-
-    <!-- MODALE CONTACT -->
-    <div id="modalContact" class="modal" data-aos="zoom-in">
-        <div class="modal-content">
-            <span class="close" data-close="modalContact">&times;</span>
-            <div id="alienTextContact" class="alien-text"></div>
-            <form id="contactForm" action="https://formspree.io/f/xnnbbzwb" method="POST">
-                <label>Nom :</label>
-                <input type="text" name="name" required>
-                <label>Email :</label>
-                <input type="email" name="email" required>
-                <label>Message :</label>
-                <textarea name="message" rows="4" required></textarea>
-                <input type="submit" value="Envoyer">
-            </form>
-            <div id="successMessage">✅ Votre message a bien été envoyé !</div>
+<main class="content">
+    <div class="hero" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="300">
+        <div class="cta">
+            <button class="btn" id="btnContact" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="400">Contact mail</button>
+            <button class="btn" id="btnFacebook" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="500">Facebook</button>
+            <button class="btn" id="btnInstagram" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="600">Instagram</button>
+            <button class="btn" id="btnArtmajeur" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="700">Artmajeur</button>
+            <button class="btn" id="btnAbout" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="800">À propos / Mentions légales</button>
+            <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" data-aos="flip-left" data-aos-duration="1600" data-aos-delay="900" />
         </div>
     </div>
+</main>
 
-    <!-- MODALE A PROPOS -->
-    <div id="modalAbout" class="modal" data-aos="zoom-in">
-        <div class="modal-content">
-            <span class="close" data-close="modalAbout">&times;</span>
-            <div id="alienTextAbout" class="alien-text"></div>
-        </div>
+<!-- MODALES -->
+<div id="modalContact" class="modal" data-aos="zoom-in" data-aos-duration="1400">
+    <div class="modal-content">
+        <span class="close" data-close="modalContact">&times;</span>
+        <div id="alienTextContact" class="alien-text"></div>
+        <form id="contactForm" action="https://formspree.io/f/xnnbbzwb" method="POST">
+            <label>Nom :</label>
+            <input type="text" name="name" required>
+            <label>Email :</label>
+            <input type="email" name="email" required>
+            <label>Message :</label>
+            <textarea name="message" rows="4" required></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
+        <div id="successMessage">✅ Votre message a bien été envoyé !</div>
     </div>
+</div>
 
-    <!-- MODALE GÉNÉRIQUE (Facebook / Instagram / Artmajeur) -->
-    <div id="modalGeneric" class="modal" data-aos="zoom-in">
-        <div class="modal-content">
-            <span class="close" data-close="modalGeneric">&times;</span>
-            <div id="alienTextGeneric" class="alien-text"></div>
-            <a id="modalLink" class="modal-link" target="_blank" rel="noopener">Accéder</a>
-        </div>
+<div id="modalAbout" class="modal" data-aos="zoom-in" data-aos-duration="1400">
+    <div class="modal-content">
+        <span class="close" data-close="modalAbout">&times;</span>
+        <div id="alienTextAbout" class="alien-text"></div>
     </div>
+</div>
 
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+<div id="modalGeneric" class="modal" data-aos="zoom-in" data-aos-duration="1400">
+    <div class="modal-content">
+        <span class="close" data-close="modalGeneric">&times;</span>
+        <div id="alienTextGeneric" class="alien-text"></div>
+        <a id="modalLink" class="modal-link" target="_blank" rel="noopener">Accéder</a>
+    </div>
+</div>
 
-        function typeEffect(element, textArray, callback) {
-            let i = 0, j = 0;
-            function typing() {
-                if (i < textArray.length) {
-                    if (j < textArray[i].length) {
-                        element.textContent += textArray[i].charAt(j);
-                        j++;
-                        setTimeout(typing, 50);
-                    } else {
-                        element.textContent += "\n";
-                        i++; j = 0;
-                        setTimeout(typing, 300);
-                    }
-                } else if (callback) callback();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init({ duration: 1400, easing: 'ease-in-out', once: true });
+
+function typeEffect(element, textArray, callback) {
+    let i=0,j=0;
+    function typing() {
+        if(i<textArray.length){
+            if(j<textArray[i].length){
+                element.textContent += textArray[i].charAt(j);
+                j++;
+                setTimeout(typing, 50);
+            }else{
+                element.textContent += "\n"; i++; j=0;
+                setTimeout(typing, 300);
             }
-            typing();
-        }
-
-        function openModal(modalId, messages, linkUrl = null) {
-            const modal = document.getElementById(modalId);
-            const textEl = modal.querySelector(".alien-text");
-            const linkEl = modal.querySelector(".modal-link");
-
-            if (textEl) textEl.textContent = "";
-            if (linkEl) linkEl.style.display = "none";
-
-            modal.style.display = "flex";
-
-            typeEffect(textEl, messages, () => {
-                if (linkUrl && linkEl) {
-                    linkEl.href = linkUrl;
-                    linkEl.textContent = "Cliquez ici pour visiter";
-                    linkEl.style.display = "block";
-                }
-            });
-
-            modal.onclick = (e) => {
-                if (e.target === modal) {
-                    modal.style.display = "none";
-                    const contactForm = document.getElementById("contactForm");
-                    if (contactForm) contactForm.style.display = "none";
-                    const success = document.getElementById("successMessage");
-                    if (success) success.style.display = "none";
-                }
-            };
-        }
-
-        document.getElementById("btnContact").addEventListener("click", () => {
-            openModal("modalContact", [
-                "Chargement...",
-				"Bonjour,",
-				"Vous avez un projet artistique de peintures, de photograpies?",
-                "Veuillez saisir vos informations pour me contacter:"
-            ]);
-            setTimeout(() => {
-                document.getElementById("contactForm").style.display = "block";
-            }, 1000);
-        });
-
-        document.getElementById("btnAbout").addEventListener("click", () => {
-            openModal("modalAbout", [
-                "Chargement...",
-                "Éditeur du site - Copyright © Francis De Faccio",
-                "SIRET : 424896660 ",
-				"Site : evzone.fr - Version 18", 
-                "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
-            ]);
-        });
-
-        document.getElementById("btnFacebook").addEventListener("click", () => {
-            openModal("modalGeneric", [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
-            ], "https://www.facebook.com/fanfan.francisd");
-        });
-
-        document.getElementById("btnInstagram").addEventListener("click", () => {
-            openModal("modalGeneric", [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
-            ], "https://www.instagram.com/evzone87");
-        });
-
-        document.getElementById("btnArtmajeur").addEventListener("click", () => {
-            openModal("modalGeneric", [
-                "Chargement...",
-                "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
-            ], "https://www.artmajeur.com/francis-de-faccio");
-        });
-
-        const form = document.getElementById("contactForm");
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const data = new FormData(form);
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { "Accept": "application/json" }
-            });
-            if (response.ok) {
-                form.style.display = "none";
-                document.getElementById("successMessage").style.display = "block";
-            } else {
-                alert("❌ Une erreur est survenue. Veuillez réessayer.");
-            }
-        });
-
-        document.querySelectorAll(".close").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const modal = btn.closest(".modal");
-                if (modal) modal.style.display = "none";
-                if (modal && modal.id === "modalContact") {
-                    form.style.display = "none";
-                    document.getElementById("successMessage").style.display = "none";
-                }
-            });
-        });
-
-        // --- MODE COMPACT selon orientation / webview Facebook / petite largeur
-        (function compactMode() {
-            const body = document.body;
-            const ua = navigator.userAgent || '';
-            const inFacebookWebview = /FBAN|FBAV|Instagram|Messenger/.test(ua); // inclut Instagram/Messenger webviews
-            function update() {
-                const w = window.innerWidth;
-                const h = window.innerHeight;
-                const isLandscape = w > h;
-                if (isLandscape || (inFacebookWebview && w < 900)) {
-                    body.classList.add('compact');
-                    if (w < 420) body.classList.add('narrow'); else body.classList.remove('narrow');
-                } else {
-                    body.classList.remove('compact', 'narrow');
-                }
-            }
-            window.addEventListener('resize', update, { passive: true });
-            window.addEventListener('orientationchange', () => {
-                setTimeout(update, 300);
-            }, { passive: true });
-            document.addEventListener('DOMContentLoaded', () => {
-                update();
-                // double-check après quelques instants (webviews réajustent parfois)
-                setTimeout(update, 600);
-            });
-        })();
-		
-		// --- AJOUT : Slideshow des deux images de fond ---
-const bg1 = document.getElementById("bg1");
-const bg2 = document.getElementById("bg2");
-let showFirst = true;
-
-setInterval(() => {
-    if (showFirst) {
-        bg1.classList.add("hidden");
-        bg2.classList.remove("hidden");
-    } else {
-        bg2.classList.add("hidden");
-        bg1.classList.remove("hidden");
+        } else if(callback) callback();
     }
-    showFirst = !showFirst;
-}, 10000); // toutes les 10 secondes
+    typing();
+}
 
-    </script>
+function openModal(modalId, messages, linkUrl=null){
+    const modal = document.getElementById(modalId);
+    const textEl = modal.querySelector(".alien-text");
+    const linkEl = modal.querySelector(".modal-link");
+
+    if(textEl) textEl.textContent="";
+    if(linkEl) linkEl.style.display="none";
+
+    modal.style.display="flex";
+
+    typeEffect(textEl, messages, () => {
+        if(linkUrl && linkEl){
+            linkEl.href=linkUrl;
+            linkEl.textContent="Cliquez ici pour visiter";
+            linkEl.style.display="block";
+        }
+    });
+
+    modal.onclick = e=>{
+        if(e.target===modal){
+            modal.style.display="none";
+            const contactForm=document.getElementById("contactForm");
+            if(contactForm) contactForm.style.display="none";
+            const success=document.getElementById("successMessage");
+            if(success) success.style.display="none";
+        }
+    };
+}
+
+// Boutons
+document.getElementById("btnContact").addEventListener("click", ()=>{
+    openModal("modalContact", [
+        "Chargement...","Bonjour,","Vous avez un projet artistique de peintures, de photograpies?","Veuillez saisir vos informations pour me contacter:"
+    ]);
+    setTimeout(()=>{document.getElementById("contactForm").style.display="block";},1000);
+});
+document.getElementById("btnAbout").addEventListener("click", ()=>{
+    openModal("modalAbout", [
+        "Chargement...",
+        "Éditeur du site - Copyright © Francis De Faccio",
+        "SIRET : 424896660",
+        "Site : evzone.fr - Version 19",
+        "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
+    ]);
+});
+document.getElementById("btnFacebook").addEventListener("click", ()=>{
+    openModal("modalGeneric", [
+        "Chargement...",
+        "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
+    ], "https://www.facebook.com/fanfan.francisd");
+});
+document.getElementById("btnInstagram").addEventListener("click", ()=>{
+    openModal("modalGeneric", [
+        "Chargement...",
+        "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
+    ], "https://www.instagram.com/evzone87");
+});
+document.getElementById("btnArtmajeur").addEventListener("click", ()=>{
+    openModal("modalGeneric", [
+        "Chargement...",
+        "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
+    ], "https://www.artmajeur.com/francis-de-faccio");
+});
+
+// Formulaire
+const form=document.getElementById("contactForm");
+form.addEventListener("submit", async e=>{
+    e.preventDefault();
+    const data=new FormData(form);
+    const response=await fetch(form.action,{method: form.method, body: data, headers:{ "Accept":"application/json"}});
+    if(response.ok){
+        form.style.display="none";
+        document.getElementById("successMessage").style.display="block";
+    } else { alert("❌ Une erreur est survenue. Veuillez réessayer."); }
+});
+
+// Close modals
+document.querySelectorAll(".close").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        const modal=btn.closest(".modal");
+        if(modal) modal.style.display="none";
+        if(modal && modal.id==="modalContact"){
+            form.style.display="none";
+            document.getElementById("successMessage").style.display="none";
+        }
+    });
+});
+
+// Compact mode
+(function(){
+    const body=document.body;
+    const ua=navigator.userAgent||'';
+    const inFacebookWebview=/FBAN|FBAV|Instagram|Messenger/.test(ua);
+    function update(){
+        const w=window.innerWidth, h=window.innerHeight;
+        if(w>h || (inFacebookWebview && w<900)){
+            body.classList.add('compact');
+            if(w<420) body.classList.add('narrow'); else body.classList.remove('narrow');
+        } else { body.classList.remove('compact','narrow'); }
+    }
+    window.addEventListener('resize',update,{passive:true});
+    window.addEventListener('orientationchange',()=>{ setTimeout(update,300);},{passive:true});
+    document.addEventListener('DOMContentLoaded',()=>{ update(); setTimeout(update,600); });
+})();
+
+// Slideshow des images de fond (sans opacité supplémentaire)
+const bg1=document.getElementById("bg1"), bg2=document.getElementById("bg2");
+let showFirst=true;
+setInterval(()=>{
+    if(showFirst){ bg1.classList.add("hidden"); bg2.classList.remove("hidden"); }
+    else { bg2.classList.add("hidden"); bg1.classList.remove("hidden"); }
+    showFirst=!showFirst;
+},10000);
+</script>
+
 </body>
 </html>

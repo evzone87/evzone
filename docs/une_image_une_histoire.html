@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Une image - Une histoire | Épisode 1 - Animation Alien</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Découvrez 'Une image - Une histoire' a partir des photographies de Francis de Faccio. Des histoires à suivre, immersives et des récits mystérieux." />
+<meta name="keywords" content="science-fiction, animation, Francis de Faccio, histoire audio, fiction immersive, transmission, extraterrestre, photographie" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  body { margin: 0; padding: 0; font-family: monospace; color: lime; background: black; text-align: center; }
+
+  h1 {
+    font-size: 3rem;
+    margin: 40px 0 20px 0;
+    color: #00ff80;
+  }
+
+  p.subtitle {
+    font-size: 1.3rem;
+    margin: 15px 0;
+    color: #00ff80;
+  }
+
+  button#btn1, a#backPhoto {
+    margin: 20px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid #00ff80;
+    border-radius: 6px;
+    background: rgba(0,255,128,0.06);
+    color: #00ff80;
+    text-decoration: none;
+    display: inline-block;
+    transition: background .12s, color .12s;
+  }
+  button#btn1:hover, a#backPhoto:hover {
+    background: #00ff80;
+    color: #001;
+  }
+
+  .popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    overflow: hidden;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .popup .bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45);
+    z-index: 1000;
+  }
+
+  .popup .text {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+    text-align: center;
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
+    letter-spacing: 0.12em;
+    color: #00ff80;
+    white-space: pre-wrap;
+    z-index: 1002;
+    opacity: 0;
+  }
+
+  .close-btn,
+  .return-link {
+    position: absolute;
+    top: 2%;
+    padding: 6px 10px;
+    font-size: 1.05rem;
+    border-radius: 6px;
+    border: 1px solid #00ff80;
+    background: rgba(0,255,128,0.06);
+    color: #00ff80;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 1003;
+    transition: background .12s, color .12s;
+  }
+  .close-btn:hover,
+  .return-link:hover { background: #00ff80; color: #001; }
+
+  .close-btn { right: 2%; }
+  .return-link { left: 2%; padding-left: 12px; padding-right: 12px; }
+
+  .popup audio {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1002;
+    width: min(90%, 720px);
+  }
+
+  @media (max-width:600px){
+    h1 { font-size: 2rem; margin: 25px 0 15px 0; }
+    p.subtitle { font-size: 1rem; }
+    .popup .text { font-size: 1.1rem; bottom: 12%; padding: 0 8px; }
+    .close-btn, .return-link { font-size: 0.95rem; padding: 6px 8px; }
+    button#btn1, a#backPhoto { font-size: 0.95rem; padding: 8px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Une image - Une histoire</h1>
+<button id="btn1">▶ Épisode 1</button>
+<p class="subtitle">Histoires à suivre...</p>
+<a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
+
+<div id="popup1" class="popup" aria-hidden="true" role="dialog" aria-label="Episode 1 - Transmission">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn">✖</button>
+  <img class="bg" src="images/episodes/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" />
+  <div class="text" id="text1"></div>
+  <audio id="audio1" preload="auto"></audio>
+</div>
+
+<script>
+const scenarios = [
+  ">>> Transmission Alien activée…\n>>> Connexion établie : Coordonnées 45.540210, 1.520049\n>>> Tour de surveillance repérée à 535m d’altitude\n>>> Panorama stratégique confirmé\n>>> Ouverture du canal niveau 1...",
+  ">>> Signal retrouvé…\n>>> Balise terrienne dissimulée dans la tour…\n>>> Les anciens observateurs ont quitté la zone.\n>>> Notre surveillance reprend.",
+  ">>> Scan atmosphérique en cours…\n>>> Résonance détectée : heure bleue\n>>> La tour diffuse\n>>> Connexion activée\n>>> Transmission...",
+  ">>> Point stratégique identifié : Tour de Masseret\n>>> Altitude 535m : visibilité totale\n>>> Secteurs : Millevaches, Monédières\n>>> Surveillance engagée…",
+  ">>> Accès mémoire : Table d’orientation terrienne\n>>> observation du ciel\n>>> altitude 535m",
+  ">>> Transmission en clair : pour ceux qui lisent\n>>> La tour de Masseret est un phare entre deux mondes\n>>> ouverture du passage\n>>> RDV au sommet"
+];
+
+const sounds = [
+  "images/episodes/contact_balise.wav",
+  "images/episodes/son_episode1.wav"
+];
+
+const episodeDelay = 80;
+let typeTimeout = null;
+
+function openPopup(n) {
+  const pop = document.getElementById("popup" + n);
+  const audio = document.getElementById("audio" + n);
+  const txtElem = document.getElementById("text" + n);
+  if (!pop || !txtElem || !audio) return;
+
+  const text = scenarios[Math.floor(Math.random() * scenarios.length)];
+  txtElem.textContent = "";
+  txtElem.style.opacity = 1;
+
+  audio.src = sounds[Math.floor(Math.random() * sounds.length)];
+  audio.play().catch(()=>{});
+
+  pop.style.display = "flex";
+  pop.setAttribute('aria-hidden','false');
+
+  let i = 0;
+  function step() {
+    if (i < text.length) {
+      txtElem.textContent = text.slice(0, i+1);
+      i++;
+      typeTimeout = setTimeout(step, episodeDelay);
+    } else typeTimeout = null;
+  }
+  step();
+}
+
+function closePopup(n) {
+  const pop = document.getElementById("popup" + n);
+  const audio = document.getElementById("audio" + n);
+  const txtElem = document.getElementById("text" + n);
+
+  if (typeTimeout) { clearTimeout(typeTimeout); typeTimeout = null; }
+  if (audio) { audio.pause(); audio.currentTime = 0; }
+  if (pop) { pop.style.display = "none"; pop.setAttribute('aria-hidden','true'); }
+  if (txtElem) txtElem.textContent = "";
+}
+
+document.getElementById("btn1").addEventListener('click', ()=> openPopup(1));
+document.getElementById("closeBtn").addEventListener('click', ()=> closePopup(1));
+window.addEventListener('keydown', (e)=>{ if (e.key === "Escape") closePopup(1); });
+</script>
+</body>
+</html>

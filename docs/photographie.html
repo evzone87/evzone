@@ -57,7 +57,7 @@
 
         .category img {
             width: 100%;
-            height: 300px;
+            height: 300px; /* hauteur par défaut */
             object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
@@ -74,12 +74,12 @@
 
         /* BOUTONS EN BAS */
         .back-home {
-            margin-top: 60px;
+            margin-top: 40px; /* réduit pour mobiles */
             text-align: center;
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: nowrap; /* reste côte à côte */
+            flex-wrap: nowrap;
         }
 
         .back-home a {
@@ -101,6 +101,25 @@
             color: #111;
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* RESPONSIVE : réduire la hauteur des vignettes en mode portrait mobile */
+        @media (max-width: 600px) {
+            .category img {
+                height: 200px; /* plus petite hauteur */
+            }
+            .overlay {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            .back-home {
+                margin-top: 20px;
+                flex-wrap: wrap; /* les boutons peuvent passer à la ligne */
+            }
+            .back-home a {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
         }
 
         /* LIGHTBOX */
@@ -214,12 +233,10 @@
             mpa: [
                "images/photos/mariage-portrait-animalier/03-confolens.jpg",
                "images/photos/mariage-portrait-animalier/01.2-portrait-femme-gabonaise.jpg"
-               // ... autres images ...
             ],
             epd: [
                 "images/photos/evenement-paysage-divers/01-cascade.jpg",
                 "images/photos/evenement-paysage-divers/02-gouffre-de-padirac.jpg"
-                // ... autres images ...
             ]
         };
 

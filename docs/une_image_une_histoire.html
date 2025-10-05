@@ -39,7 +39,6 @@
     justify-content: center;
   }
 
-  /* ✅ Correction : image centrée, sans déformation */
   .popup .bg {
     position: absolute;
     top: 50%;
@@ -112,38 +111,21 @@
 <button id="btn1">▶ Épisode 1</button>
 <button id="btn2">▶ Épisode 2</button>
 <button id="btn3">▶ Épisode 3</button>
+<button id="btn3b">▶ Épisode 3 bis</button>
 <p class="subtitle">Histoires, fictions à suivre...</p>
 <a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
 
-<!-- Popup Épisode 1 -->
-<div id="popup1" class="popup" aria-hidden="true" role="dialog" aria-label="Episode 1 - Transmission">
-  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
-  <button class="close-btn" id="closeBtn1">✖</button>
-  <img class="bg" src="images/episodes/episode1/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" />
-  <div class="text" id="text1"></div>
-  <audio id="audio1" preload="auto"></audio>
-</div>
+<!-- Popups existants -->
+<div id="popup1" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn1">✖</button><img class="bg" src="images/episodes/episode1/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" /><div class="text" id="text1"></div><audio id="audio1" preload="auto"></audio></div>
 
-<!-- Popup Épisode 2 -->
-<div id="popup2" class="popup" aria-hidden="true" role="dialog" aria-label="Episode 2 - Gouffre de Padirac">
-  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
-  <button class="close-btn" id="closeBtn2">✖</button>
-  <img class="bg" src="images/episodes/episode2/episode_02-gouffre-de-padirac.jpg" alt="Fond épisode 2" />
-  <div class="text" id="text2"></div>
-  <audio id="audio2" preload="auto"></audio>
-</div>
+<div id="popup2" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn2">✖</button><img class="bg" src="images/episodes/episode2/episode_02-gouffre-de-padirac.jpg" alt="Fond épisode 2" /><div class="text" id="text2"></div><audio id="audio2" preload="auto"></audio></div>
 
-<!-- Popup Épisode 3 -->
-<div id="popup3" class="popup" aria-hidden="true" role="dialog" aria-label="Episode 3 - Mont Gargan">
-  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
-  <button class="close-btn" id="closeBtn3">✖</button>
-  <img class="bg" src="images/episodes/episode3/mont_gargan.jpg" alt="Fond épisode 3" />
-  <div class="text" id="text3"></div>
-  <audio id="audio3" preload="auto"></audio>
-</div>
+<div id="popup3" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn3">✖</button><img class="bg" src="images/episodes/episode3/mont_gargan.jpg" alt="Fond épisode 3" /><div class="text" id="text3"></div><audio id="audio3" preload="auto"></audio></div>
+
+<div id="popup3b" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn3b">✖</button><img class="bg" src="images/episodes/episode3_bis/cloche.jpg" alt="Fond épisode 3 bis" /><div class="text" id="text3b"></div><audio id="audio3b" preload="auto"></audio></div>
 
 <script>
-// ÉPISODE 1 ---------------------------------------------------
+// Épisodes et sons
 const scenarios1 = [
   ">>> Transmission Alien activée…\n>>> Coordonnées 45.540210, 1.520049\n>>> Tour de surveillance repérée à 535m d’altitude\n>>> Panorama stratégique confirmé\n>>> Ouverture du canal niveau 1...",
   ">>> Signal retrouvé…\n>>> Balise terrienne dissimulée dans la tour…\n>>> Les anciens observateurs ont quitté la zone.\n>>> Notre surveillance reprend.",
@@ -157,7 +139,6 @@ const sounds1 = [
   "images/episodes/episode1/son_episode1.wav"
 ];
 
-// ÉPISODE 2 ---------------------------------------------------
 const scenarios2 = [
   ">>> Ce point d’accès détecté se nommait Gouffre de Padirac\n>>> Structures métalliques terriennes confirmées\n>>> Nous progressons dans la profondeur\n>>> Transmission : le passage mène encore plus bas",
   ">>> Archive terrienne : année 1889\n>>> Edouard-Alfred Martel part à la découverte du Gouffre de Padirac\n>>> Descente des premiers humains par corde\n>>> Ils ne savaient pas ce qui les attendait\n>>> construction métallique 36 mètres, octobre 1898",
@@ -173,15 +154,13 @@ const sounds2 = [
   "images/episodes/episode2/space-trave.mp3"
 ];
 
-// ÉPISODE 3 ---------------------------------------------------
-const scenarios3 = [
-  ">>> Activité cosmique détectée\n>>> Alignement : Mont Gargan ↔ Voie lactée"
-];
-const sounds3 = [
-  "images/episodes/episode3/son_mont_gargan.mp3"
-];
+const scenarios3 = [">>> Activité cosmique détectée\n>>> Alignement : Mont Gargan ↔ Voie lactée"];
+const sounds3 = ["images/episodes/episode3/son_mont_gargan.mp3"];
 
-// --- fonctions génériques ---
+const scenarios3b = [">>> la cloche du Mont Gargan\n>>> cet artefact rayonne sur toute la vallée"];
+const sounds3b = ["images/episodes/episode3_bis/cloche.mp3"];
+
+// --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
   const audio = document.getElementById("audio" + n);
@@ -198,10 +177,24 @@ function openPopup(n, scenarios, sounds) {
   pop.style.display = "flex";
   pop.setAttribute('aria-hidden','false');
 
+  // Sons de lettre et retour
+  const lettreSound = new Audio("images/interface/lettre.mp3");
+  const retourSound = new Audio("images/interface/retour.mp3");
+
   let i = 0;
   function step() {
     if (i < text.length) {
       txtElem.textContent = text.slice(0, i+1);
+
+      const char = text[i];
+      if (char === "\n") {
+        retourSound.currentTime = 0;
+        retourSound.play().catch(()=>{});
+      } else {
+        lettreSound.currentTime = 0;
+        lettreSound.play().catch(()=>{});
+      }
+
       i++;
       setTimeout(step, 80);
     }
@@ -222,14 +215,16 @@ function closePopup(n) {
 document.getElementById("btn1").addEventListener('click', ()=> openPopup(1, scenarios1, sounds1));
 document.getElementById("btn2").addEventListener('click', ()=> openPopup(2, scenarios2, sounds2));
 document.getElementById("btn3").addEventListener('click', ()=> openPopup(3, scenarios3, sounds3));
+document.getElementById("btn3b").addEventListener('click', ()=> openPopup("3b", scenarios3b, sounds3b));
 
 document.getElementById("closeBtn1").addEventListener('click', ()=> closePopup(1));
 document.getElementById("closeBtn2").addEventListener('click', ()=> closePopup(2));
 document.getElementById("closeBtn3").addEventListener('click', ()=> closePopup(3));
+document.getElementById("closeBtn3b").addEventListener('click', ()=> closePopup("3b"));
 
 window.addEventListener('keydown', (e)=>{
   if (e.key === "Escape") {
-    closePopup(1); closePopup(2); closePopup(3);
+    closePopup(1); closePopup(2); closePopup(3); closePopup("3b");
   }
 });
 </script>

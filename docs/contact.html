@@ -268,23 +268,106 @@
 <script>
 AOS.init({ duration: 1400, easing: 'ease-in-out', once: true });
 
+/* ---------- Audio : préparation buffers + fallback ---------- */
+let audioCtx = null;
+let letterBuffer = null;
+let retourBuffer = null;
+
+function createAudioContext() {
+    if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+function loadBuffer(url) {
+    if (!window.fetch || !audioCtx) return Promise.reject('no-audio-context');
+    return fetch(url)
+        .then(resp => {
+            if (!resp.ok) throw new Error('fetch failed ' + url);
+            return resp.arrayBuffer();
+        })
+        .then(arr => new Promise((resolve, reject) => {
+            audioCtx.decodeAudioData(arr, resolve, reject);
+        }));
+}
+
+function initLetterSounds() {
+    createAudioContext();
+    if (!audioCtx) return;
+    // paths expected (change if yours are elsewhere)
+    loadBuffer('images/interface/lettre.mp3').then(buf => { letterBuffer = buf; }).catch(()=>{ console.warn('lettre.mp3 load failed'); });
+    loadBuffer('images/interface/retour.mp3').then(buf => { retourBuffer = buf; }).catch(()=>{ console.warn('retour.mp3 load failed'); });
+}
+initLetterSounds();
+
+function playBuffer(buf, volume=0.8) {
+    if (!audioCtx || !buf) return;
+    try {
+        const src = audioCtx.createBufferSource();
+        src.buffer = buf;
+        const gain = audioCtx.createGain();
+        gain.gain.value = volume;
+        src.connect(gain);
+        gain.connect(audioCtx.destination);
+        src.start(0);
+    } catch (e) {
+        // silent fail
+        console.warn('playBuffer error', e);
+    }
+}
+
+/* ---------- Typing function — maintenant avec son par lettre / son retour de ligne ---------- */
 function typeEffect(element, textArray, callback) {
-    let i=0,j=0;
+    let i = 0, j = 0;
     function typing() {
-        if(i<textArray.length){
-            if(j<textArray[i].length){
+        if (i < textArray.length) {
+            if (j < textArray[i].length) {
                 element.textContent += textArray[i].charAt(j);
+
+                // try resume audio context on first user gesture (safe)
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume().catch(()=>{});
+                }
+
+                // Play letter sound (prefer buffer)
+                if (audioCtx && letterBuffer) {
+                    playBuffer(letterBuffer, 0.9);
+                } else {
+                    // fallback: use quick Audio() - works if file exists
+                    try {
+                        const a = new Audio('images/interface/lettre.mp3');
+                        a.volume = 0.7;
+                        a.play().catch(()=>{});
+                    } catch (e) { /* ignore */ }
+                }
+
                 j++;
                 setTimeout(typing, 50);
-            }else{
-                element.textContent += "\n"; i++; j=0;
+            } else {
+                // end of current string => newline + "retour" sound
+                element.textContent += "\n";
+
+                if (audioCtx && retourBuffer) {
+                    playBuffer(retourBuffer, 0.9);
+                } else {
+                    try {
+                        const a = new Audio('images/interface/retour.mp3');
+                        a.volume = 0.85;
+                        a.play().catch(()=>{});
+                    } catch (e) { /* ignore */ }
+                }
+
+                i++; j = 0;
                 setTimeout(typing, 300);
             }
-        } else if(callback) callback();
+        } else if (callback) {
+            callback();
+        }
     }
     typing();
 }
 
+/* ---------- Open modal / attach typing (unchanged behavior otherwise) ---------- */
 function openModal(modalId, messages, linkUrl=null){
     const modal = document.getElementById(modalId);
     const textEl = modal.querySelector(".alien-text");
@@ -294,6 +377,14 @@ function openModal(modalId, messages, linkUrl=null){
     if(linkEl) linkEl.style.display="none";
 
     modal.style.display="flex";
+
+    // ensure audio context allowed (user gesture: openModal called from click)
+    if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(()=>{});
+    } else {
+        // create if null on first gesture
+        if (!audioCtx) initLetterSounds();
+    }
 
     typeEffect(textEl, messages, () => {
         if(linkUrl && linkEl){
@@ -326,7 +417,7 @@ document.getElementById("btnAbout").addEventListener("click", ()=>{
         "Chargement...",
         "Éditeur du site - Copyright © Francis De Faccio",
         "SIRET : 424896660",
-        "Site : evzone.fr - Version 22",
+        "Site : evzone.fr - Version 24",
         "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
     ]);
 });

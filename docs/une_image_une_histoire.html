@@ -113,26 +113,58 @@
 <button id="btn3">▶ Épisode 3</button>
 <button id="btn3b">▶ Épisode 3 bis</button>
 <button id="btn4">▶ Épisode 4</button>
+<button id="btn5">▶ Épisode 5</button>
 <p class="subtitle">Regardez, imaginez, suivez evzone.fr</p>
 <p class="subtitle">Francis De Faccio propose un terrain de jeu pour votre imagination.</p>
 <a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
 
 <!-- Popups existants -->
-<div id="popup1" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn1">✖</button><img class="bg" src="images/episodes/episode1/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" /><div class="text" id="text1"></div><audio id="audio1" preload="auto"></audio></div>
+<div id="popup1" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn1">✖</button>
+  <img class="bg" src="images/episodes/episode1/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" />
+  <div class="text" id="text1"></div>
+  <audio id="audio1" preload="auto"></audio>
+</div>
 
-<div id="popup2" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn2">✖</button><img class="bg" src="images/episodes/episode2/episode_02-gouffre-de-padirac.jpg" alt="Fond épisode 2" /><div class="text" id="text2"></div><audio id="audio2" preload="auto"></audio></div>
+<div id="popup2" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn2">✖</button>
+  <img class="bg" src="images/episodes/episode2/episode_02-gouffre-de-padirac.jpg" alt="Fond épisode 2" />
+  <div class="text" id="text2"></div>
+  <audio id="audio2" preload="auto"></audio>
+</div>
 
-<div id="popup3" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn3">✖</button><img class="bg" src="images/episodes/episode3/mont_gargan.jpg" alt="Fond épisode 3" /><div class="text" id="text3"></div><audio id="audio3" preload="auto"></audio></div>
+<div id="popup3" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn3">✖</button>
+  <img class="bg" src="images/episodes/episode3/mont_gargan.jpg" alt="Fond épisode 3" />
+  <div class="text" id="text3"></div>
+  <audio id="audio3" preload="auto"></audio>
+</div>
 
-<div id="popup3b" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn3b">✖</button><img class="bg" src="images/episodes/episode3_bis/cloche.jpg" alt="Fond épisode 3 bis" /><div class="text" id="text3b"></div><audio id="audio3b" preload="auto"></audio></div>
+<div id="popup3b" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn3b">✖</button>
+  <img class="bg" src="images/episodes/episode3_bis/cloche.jpg" alt="Fond épisode 3 bis" />
+  <div class="text" id="text3b"></div>
+  <audio id="audio3b" preload="auto"></audio>
+</div>
 
-<!-- === NOUVEL ÉPISODE 4 === -->
 <div id="popup4" class="popup" aria-hidden="true" role="dialog">
   <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
   <button class="close-btn" id="closeBtn4">✖</button>
   <img class="bg" src="images/episodes/episode4/chapelle_rocamadour.jpg" alt="Chapelle de Rocamadour" />
   <div class="text" id="text4"></div>
   <audio id="audio4" preload="auto"></audio>
+</div>
+
+<div id="popup5" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn5">✖</button>
+  <img class="bg" src="images/episodes/episode5/plage_tamarissiere.jpg" alt="Plage Tamarissière" />
+  <div class="text" id="text5"></div>
+  <audio id="audio5" preload="auto"></audio>
 </div>
 
 <script>
@@ -168,7 +200,6 @@ const sounds3 = ["images/episodes/episode3/son_mont_gargan.mp3"];
 const scenarios3b = [">>> la cloche du Mont Gargan\n>>> cet artefact rayonne sur toute la vallée"];
 const sounds3b = ["images/episodes/episode3_bis/cloche.mp3"];
 
-// --- NOUVEL ÉPISODE 4 --- 
 const scenarios4 = [
   ">>> la chapelle s’ouvre sur la Voie Sainte de 216 marches\n>>> abritée sous le rocher\n>>> alors la statue de la Vierge Noire apparaît",
   ">>> il n’y a plus d’épée visible aujourd’hui\n>>> plus de traces fiables\n>>> mais la légende imprègne le lieu"
@@ -179,6 +210,16 @@ const sounds4 = [
   "images/episodes/episode4/rocamadour03.mp3",
   "images/episodes/episode4/rocamadour04.mp3",
   "images/episodes/episode4/rocamadour05.mp3"
+];
+
+const scenarios5 = [
+  ">>> La lumière ne dort jamais\n>>> Elle glisse sous la mer\n>>> renaître ailleurs",
+  ">>> Entre le jour et la nuit, il y a un passage.\n>>> Ce moment s’appelle l’Aurore…",
+  ">>> Le crépuscule ouvre parfois des portes.\n>>> Si tu écoutes le ressac…"
+];
+const sounds5 = [
+  "images/episodes/episode5/plage_tamarissiere01.mp3",
+  "images/episodes/episode5/plage_tamarissiere02.wav"
 ];
 
 // --- Fonction principale ---
@@ -237,16 +278,18 @@ document.getElementById("btn2").addEventListener('click', ()=> openPopup(2, scen
 document.getElementById("btn3").addEventListener('click', ()=> openPopup(3, scenarios3, sounds3));
 document.getElementById("btn3b").addEventListener('click', ()=> openPopup("3b", scenarios3b, sounds3b));
 document.getElementById("btn4").addEventListener('click', ()=> openPopup(4, scenarios4, sounds4));
+document.getElementById("btn5").addEventListener('click', ()=> openPopup(5, scenarios5, sounds5));
 
 document.getElementById("closeBtn1").addEventListener('click', ()=> closePopup(1));
 document.getElementById("closeBtn2").addEventListener('click', ()=> closePopup(2));
 document.getElementById("closeBtn3").addEventListener('click', ()=> closePopup(3));
 document.getElementById("closeBtn3b").addEventListener('click', ()=> closePopup("3b"));
 document.getElementById("closeBtn4").addEventListener('click', ()=> closePopup(4));
+document.getElementById("closeBtn5").addEventListener('click', ()=> closePopup(5));
 
 window.addEventListener('keydown', (e)=>{
   if (e.key === "Escape") {
-    closePopup(1); closePopup(2); closePopup(3); closePopup("3b"); closePopup(4);
+    closePopup(1); closePopup(2); closePopup(3); closePopup("3b"); closePopup(4); closePopup(5);
   }
 });
 </script>

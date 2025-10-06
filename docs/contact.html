@@ -342,7 +342,7 @@ function typeEffect(element, textArray, callback) {
                 }
 
                 j++;
-                setTimeout(typing, 50);
+                setTimeout(typing, 95);
             } else {
                 // end of current string => newline + "retour" sound
                 element.textContent += "\n";
@@ -358,7 +358,7 @@ function typeEffect(element, textArray, callback) {
                 }
 
                 i++; j = 0;
-                setTimeout(typing, 300);
+                setTimeout(typing, 600);
             }
         } else if (callback) {
             callback();
@@ -417,7 +417,7 @@ document.getElementById("btnAbout").addEventListener("click", ()=>{
         "Chargement...",
         "Éditeur du site - Copyright © Francis De Faccio",
         "SIRET : 424896660",
-        "Site : evzone.fr - Version 25",
+        "Site : evzone.fr - Version 26",
         "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
     ]);
 });

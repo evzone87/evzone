@@ -114,8 +114,7 @@
 <button id="btn3b">▶ Épisode 3 bis</button>
 <button id="btn4">▶ Épisode 4</button>
 <button id="btn5">▶ Épisode 5</button>
-<p class="subtitle">Regardez, imaginez, suivez evzone.fr</p>
-<p class="subtitle">Francis De Faccio propose un terrain de jeu pour votre imagination.</p>
+<p class="subtitle">Evzone.fr propose un terrain de jeu pour notre imagination.</p>
 <a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
 
 <!-- Popups existants -->
@@ -233,8 +232,18 @@ function openPopup(n, scenarios, sounds) {
   txtElem.textContent = "";
   txtElem.style.opacity = 1;
 
-  audio.src = sounds[Math.floor(Math.random() * sounds.length)];
-  audio.play().catch(()=>{});
+const soundFile = sounds[Math.floor(Math.random() * sounds.length)];
+audio.src = soundFile;
+
+// Réduction du volume si c’est le son trop fort
+if (soundFile.includes("plage_tamarissiere02")) {
+  audio.volume = 0.1; // 🔉 ajuste ici (0.3 = plus doux, 0.5 = moitié)
+} else {
+  audio.volume = 1.0;
+}
+
+audio.play().catch(()=>{});
+
 
   pop.style.display = "flex";
   pop.setAttribute('aria-hidden','false');

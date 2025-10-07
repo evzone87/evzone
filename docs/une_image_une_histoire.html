@@ -108,16 +108,20 @@
 <body>
 
 <h1>Une image - Une histoire</h1>
+<p class="subtitle">Evzone.fr propose un terrain de jeu pour notre imagination.</p>
+<p class="subtitle">Chaque image émet un signal… à qui sait l’écouter. — Francis de Faccio</p>
+<a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
+
+<!-- Boutons -->
 <button id="btn1">▶ Épisode 1</button>
 <button id="btn2">▶ Épisode 2</button>
 <button id="btn3">▶ Épisode 3</button>
 <button id="btn3b">▶ Épisode 3 bis</button>
 <button id="btn4">▶ Épisode 4</button>
 <button id="btn5">▶ Épisode 5</button>
-<p class="subtitle">Evzone.fr propose un terrain de jeu pour notre imagination.</p>
-<a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
+<button id="btn6">▶ Épisode 6</button>
 
-<!-- Popups existants -->
+<!-- Popups -->
 <div id="popup1" class="popup" aria-hidden="true" role="dialog">
   <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
   <button class="close-btn" id="closeBtn1">✖</button>
@@ -166,8 +170,15 @@
   <audio id="audio5" preload="auto"></audio>
 </div>
 
+<div id="popup6" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn6">✖</button>
+  <img class="bg" src="images/episodes/episode6/statue_poetique.jpg" alt="Statue poétique de Masseret" />
+  <div class="text" id="text6"></div>
+  <audio id="audio6" preload="auto"></audio>
+</div>
+
 <script>
-// Épisodes et sons existants
 const scenarios1 = [
   ">>> Transmission Alien activée…\n>>> Coordonnées 45.540210, 1.520049\n>>> Tour de surveillance repérée à 535m d’altitude\n>>> Panorama stratégique confirmé\n>>> Ouverture du canal niveau 1...",
   ">>> Signal retrouvé…\n>>> Balise terrienne dissimulée dans la tour…\n>>> Les anciens observateurs ont quitté la zone.\n>>> Notre surveillance reprend.",
@@ -212,13 +223,31 @@ const sounds4 = [
 ];
 
 const scenarios5 = [
-  ">>> La lumière ne dort jamais\n>>> Elle glisse sous la mer\n>>>pour renaître ailleurs",
+  ">>> La lumière ne dort jamais\n>>> Elle glisse sous la mer\n>>> pour renaître ailleurs",
   ">>> Entre le jour et la nuit, il y a un passage.\n>>> Ce moment s’appelle l’Aurore…",
   ">>> Le crépuscule ouvre parfois des portes.\n>>> Si tu écoutes le ressac…"
 ];
 const sounds5 = [
   "images/episodes/episode5/plage_tamarissiere01.mp3",
   "images/episodes/episode5/plage_tamarissiere02.wav"
+];
+
+// ÉPISODE 6 – Statue poétique
+const scenarios6 = [
+  ">>> Transmission activée…\n>>> Coordonnées : X 45.533329  |  Y 1.51667\n>>> Localisation : Bourg de Masseret, zone rurale stable\n>>> Scan en cours…",
+  ">>> Nouvel artefact\n>>> mémoire ancienne détectée.\n>>> Analyse morphologique : figure féminine\n>>> Origine : art humain, période indéterminée.",
+  ">>> Les capteurs détectent un écho faible\n>>> comme une onde qui traverse le temps\n>>> Peut-être une pensée, figée dans la pierre\n>>> Artefact confirmé : trace d’humanité.\n>>> Transmission terminée.",
+  ">>> Transmission activée…\n>>> Données reçues : structure pierreuse, densité stable.\n>>> Sculpture d’origine humaine, époque imprécise.\n>>> Anomalie : fréquence émotionnelle détectée à 3.2 Hz.\n>>> Hypothèse : empreinte mentale d’un créateur.\n>>> Observation : l’art survit mieux que l’espèce.\n>>> Fin de l’analyse.",
+  ">>> Signal faible en provenance du secteur Masseret.\n>>> Artefact visuel : forme anthropomorphe féminine.\n>>> Traces d’érosion, altération minimale.\n>>> Détection d’un champ mémoriel statique.\n>>> Conclusion : objet rituel ou témoignage artistique.\n>>> Données archivées.",
+  ">>> Scan complet.\n>>> combinaison typique des civilisations terriennes.\n>>> Anomalie : concentration émotionnelle au-dessus de la norme.\n>>> Système émotionnel inactif depuis 2000 cycles.\n>>> Artefact conservé.",
+  ">>> [Données corrompues]\n>>> ...forme féminine détectée...\n>>> ...émission d’un champ émotionnel...\n>>> ...mémoire humaine... persistante...\n>>> // Erreur de décodage //\n>>> Reconnexion en cours…",
+  ">>> Coordonnées instables.\n>>> Image floue. Mouvement dans la pierre.\n>>> …Non, pas possible.\n>>> Redémarrage des capteurs.\n>>> Fin de séquence.",
+  ">>> === WARNING ===\n>>> Transmission en boucle depuis 223 ans.\n>>> Message répété :\n>>> “Je me souviens.”\n>>> “Je me souviens.”\n>>> “Je…”\n>>> Fin de transmission."
+];
+const sounds6 = [
+  "images/episodes/episode6/statue_poetique01.mp3",
+  "images/episodes/episode6/statue_poetique02.mp3",
+  "images/episodes/episode6/statue_poetique03.mp3"
 ];
 
 // --- Fonction principale ---
@@ -232,18 +261,10 @@ function openPopup(n, scenarios, sounds) {
   txtElem.textContent = "";
   txtElem.style.opacity = 1;
 
-const soundFile = sounds[Math.floor(Math.random() * sounds.length)];
-audio.src = soundFile;
-
-// Réduction du volume si c’est le son trop fort
-if (soundFile.includes("plage_tamarissiere02")) {
-  audio.volume = 0.1; // 🔉 ajuste ici (0.3 = plus doux, 0.5 = moitié)
-} else {
+  const soundFile = sounds[Math.floor(Math.random() * sounds.length)];
+  audio.src = soundFile;
   audio.volume = 1.0;
-}
-
-audio.play().catch(()=>{});
-
+  audio.play().catch(()=>{});
 
   pop.style.display = "flex";
   pop.setAttribute('aria-hidden','false');
@@ -255,7 +276,6 @@ audio.play().catch(()=>{});
   function step() {
     if (i < text.length) {
       txtElem.textContent = text.slice(0, i+1);
-
       const char = text[i];
       if (char === "\n") {
         retourSound.currentTime = 0;
@@ -264,7 +284,6 @@ audio.play().catch(()=>{});
         lettreSound.currentTime = 0;
         lettreSound.play().catch(()=>{});
       }
-
       i++;
       setTimeout(step, 80);
     }
@@ -282,24 +301,17 @@ function closePopup(n) {
 }
 
 // --- boutons ---
-document.getElementById("btn1").addEventListener('click', ()=> openPopup(1, scenarios1, sounds1));
-document.getElementById("btn2").addEventListener('click', ()=> openPopup(2, scenarios2, sounds2));
-document.getElementById("btn3").addEventListener('click', ()=> openPopup(3, scenarios3, sounds3));
-document.getElementById("btn3b").addEventListener('click', ()=> openPopup("3b", scenarios3b, sounds3b));
-document.getElementById("btn4").addEventListener('click', ()=> openPopup(4, scenarios4, sounds4));
-document.getElementById("btn5").addEventListener('click', ()=> openPopup(5, scenarios5, sounds5));
+document.getElementById("btn1").addEventListener('click', ()=> openPopup(1,scenarios1,sounds1));
+document.getElementById("btn2").addEventListener('click', ()=> openPopup(2,scenarios2,sounds2));
+document.getElementById("btn3").addEventListener('click', ()=> openPopup(3,scenarios3,sounds3));
+document.getElementById("btn3b").addEventListener('click', ()=> openPopup("3b",scenarios3b,sounds3b));
+document.getElementById("btn4").addEventListener('click', ()=> openPopup(4,scenarios4,sounds4));
+document.getElementById("btn5").addEventListener('click', ()=> openPopup(5,scenarios5,sounds5));
+document.getElementById("btn6").addEventListener('click', ()=> openPopup(6,scenarios6,sounds6));
 
-document.getElementById("closeBtn1").addEventListener('click', ()=> closePopup(1));
-document.getElementById("closeBtn2").addEventListener('click', ()=> closePopup(2));
-document.getElementById("closeBtn3").addEventListener('click', ()=> closePopup(3));
-document.getElementById("closeBtn3b").addEventListener('click', ()=> closePopup("3b"));
-document.getElementById("closeBtn4").addEventListener('click', ()=> closePopup(4));
-document.getElementById("closeBtn5").addEventListener('click', ()=> closePopup(5));
-
-window.addEventListener('keydown', (e)=>{
-  if (e.key === "Escape") {
-    closePopup(1); closePopup(2); closePopup(3); closePopup("3b"); closePopup(4); closePopup(5);
-  }
+["1","2","3","3b","4","5","6"].forEach(n=>{
+  const btn = document.getElementById("closeBtn"+n);
+  if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });
 </script>
 </body>

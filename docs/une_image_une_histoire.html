@@ -28,23 +28,6 @@
   }
   button:hover, a#backPhoto:hover { background: #00ff80; color: #001; }
 
-  /* Tooltip simple (effet du bouton 1) */
-  .tooltip-simple {
-    position: fixed;
-    background: rgba(0,255,128,0.1);
-    color: #00ff80;
-    border: 1px solid #00ff80;
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 0.95rem;
-    pointer-events: none;
-    white-space: nowrap;
-    transform: translate(12px, 12px);
-    opacity: 0;
-    transition: opacity .15s;
-    z-index: 2000;
-  }
-
   .popup {
     display: none;
     position: fixed;
@@ -126,57 +109,76 @@
 
 <h1>Une image - Une histoire</h1>
 <p class="subtitle">Evzone.fr propose un terrain de jeu pour notre imagination.</p>
+<p class="subtitle">Mes images émettent un signal… à qui sait l’écouter. — Francis de Faccio</p>
 <a id="backPhoto" href="photographie.html">← Retour page Photographie</a>
 
 <!-- Boutons -->
-<button id="btn1" data-tooltip="Le passage des mondes">▶ Heure bleue</button>
-<button id="btn2" data-tooltip="Exploration,descente dans le Gouffre de Padirac.">▶ Abîme</button>
-<button id="btn3" data-tooltip="L’écho du Mont Gargan.">▶ Voie lactée</button>
-<button id="btn3b" data-tooltip="La cloche du souvenir.">▶ Artefact</button>
-<button id="btn4" data-tooltip="Le village de Rocamadour">▶ Sanctuaire</button>
-<button id="btn5" data-tooltip="L’appel du crépuscule à plage de La Tamarissière.">▶ Écume</button>
-<button id="btn6" data-tooltip="Mémoire d’un monde ancien.">▶ Sentinelle</button>
-
-<div class="tooltip-simple" id="tooltipSimple"></div>
+<button id="btn1">▶ Heure bleue</button>
+<button id="btn2">▶ Abîme</button>
+<button id="btn3">▶ Voie lactée</button>
+<button id="btn3b">▶ Artefact</button>
+<button id="btn4">▶ Sanctuaire</button>
+<button id="btn5">▶ Écume</button>
+<button id="btn6">▶ Sentinelle</button>
 
 <!-- Popups -->
-<div id="popup1" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn1">✖</button><img class="bg" src="images/episodes/episode1/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" /><div class="text" id="text1"></div><audio id="audio1" preload="auto"></audio></div>
+<div id="popup1" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn1">✖</button>
+  <img class="bg" src="images/episodes/episode1/ta_photo_heure_bleue.jpg" alt="Fond épisode 1" />
+  <div class="text" id="text1"></div>
+  <audio id="audio1" preload="auto"></audio>
+</div>
 
-<div id="popup2" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn2">✖</button><img class="bg" src="images/episodes/episode2/episode_02-gouffre-de-padirac.jpg" alt="Fond épisode 2" /><div class="text" id="text2"></div><audio id="audio2" preload="auto"></audio></div>
+<div id="popup2" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn2">✖</button>
+  <img class="bg" src="images/episodes/episode2/episode_02-gouffre-de-padirac.jpg" alt="Fond épisode 2" />
+  <div class="text" id="text2"></div>
+  <audio id="audio2" preload="auto"></audio>
+</div>
 
-<div id="popup3" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn3">✖</button><img class="bg" src="images/episodes/episode3/mont_gargan.jpg" alt="Fond épisode 3" /><div class="text" id="text3"></div><audio id="audio3" preload="auto"></audio></div>
+<div id="popup3" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn3">✖</button>
+  <img class="bg" src="images/episodes/episode3/mont_gargan.jpg" alt="Fond épisode 3" />
+  <div class="text" id="text3"></div>
+  <audio id="audio3" preload="auto"></audio>
+</div>
 
-<div id="popup3b" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn3b">✖</button><img class="bg" src="images/episodes/episode3_bis/cloche.jpg" alt="Fond épisode 3 bis" /><div class="text" id="text3b"></div><audio id="audio3b" preload="auto"></audio></div>
+<div id="popup3b" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn3b">✖</button>
+  <img class="bg" src="images/episodes/episode3_bis/cloche.jpg" alt="Fond épisode 3 bis" />
+  <div class="text" id="text3b"></div>
+  <audio id="audio3b" preload="auto"></audio>
+</div>
 
-<div id="popup4" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn4">✖</button><img class="bg" src="images/episodes/episode4/chapelle_rocamadour.jpg" alt="Chapelle de Rocamadour" /><div class="text" id="text4"></div><audio id="audio4" preload="auto"></audio></div>
+<div id="popup4" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn4">✖</button>
+  <img class="bg" src="images/episodes/episode4/chapelle_rocamadour.jpg" alt="Chapelle de Rocamadour" />
+  <div class="text" id="text4"></div>
+  <audio id="audio4" preload="auto"></audio>
+</div>
 
-<div id="popup5" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn5">✖</button><img class="bg" src="images/episodes/episode5/plage_tamarissiere.jpg" alt="Plage Tamarissière" /><div class="text" id="text5"></div><audio id="audio5" preload="auto"></audio></div>
+<div id="popup5" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn5">✖</button>
+  <img class="bg" src="images/episodes/episode5/plage_tamarissiere.jpg" alt="Plage Tamarissière" />
+  <div class="text" id="text5"></div>
+  <audio id="audio5" preload="auto"></audio>
+</div>
 
-<div id="popup6" class="popup" aria-hidden="true" role="dialog"><a class="return-link" href="une_image_une_histoire.html">← Retour</a><button class="close-btn" id="closeBtn6">✖</button><img class="bg" src="images/episodes/episode6/statue_poetique.jpg" alt="Statue poétique de Masseret" /><div class="text" id="text6"></div><audio id="audio6" preload="auto"></audio></div>
+<div id="popup6" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn6">✖</button>
+  <img class="bg" src="images/episodes/episode6/statue_poetique.jpg" alt="Statue poétique de Masseret" />
+  <div class="text" id="text6"></div>
+  <audio id="audio6" preload="auto"></audio>
+</div>
 
 <script>
-/* ======= TOOLTIP SIMPLE (appliqué seulement aux boutons id^="btn") ======= */
-(function(){
-  const tooltipSimple = document.getElementById('tooltipSimple');
-  // n'appliquer qu'aux boutons d'épisodes (id commençant par "btn")
-  document.querySelectorAll('button[id^="btn"]').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-      const txt = btn.dataset.tooltip || "";
-      tooltipSimple.textContent = txt;
-      tooltipSimple.style.opacity = txt ? 1 : 0;
-    });
-    btn.addEventListener('mousemove', (e) => {
-      // positionner légèrement décalé par rapport au curseur
-      tooltipSimple.style.left = (e.pageX + 12) + 'px';
-      tooltipSimple.style.top = (e.pageY + 12) + 'px';
-    });
-    btn.addEventListener('mouseleave', () => {
-      tooltipSimple.style.opacity = 0;
-    });
-  });
-})();
-
-/* ======= SCRIPT ORIGINAL (inchangé dans sa logique) ======= */
 const scenarios1 = [
   ">>> Transmission Alien activée…\n>>> Coordonnées 45.540210, 1.520049\n>>> Tour de surveillance repérée à 535m d’altitude\n>>> Panorama stratégique confirmé\n>>> Ouverture du canal niveau 1...",
   ">>> Signal retrouvé…\n>>> Balise terrienne dissimulée dans la tour…\n>>> Les anciens observateurs ont quitté la zone.\n>>> Notre surveillance reprend.",
@@ -307,18 +309,9 @@ document.getElementById("btn4").addEventListener('click', ()=> openPopup(4,scena
 document.getElementById("btn5").addEventListener('click', ()=> openPopup(5,scenarios5,sounds5));
 document.getElementById("btn6").addEventListener('click', ()=> openPopup(6,scenarios6,sounds6));
 
-document.getElementById("closeBtn1").addEventListener('click', ()=> closePopup(1));
-document.getElementById("closeBtn2").addEventListener('click', ()=> closePopup(2));
-document.getElementById("closeBtn3").addEventListener('click', ()=> closePopup(3));
-document.getElementById("closeBtn3b").addEventListener('click', ()=> closePopup("3b"));
-document.getElementById("closeBtn4").addEventListener('click', ()=> closePopup(4));
-document.getElementById("closeBtn5").addEventListener('click', ()=> closePopup(5));
-document.getElementById("closeBtn6").addEventListener('click', ()=> closePopup(6));
-
-window.addEventListener('keydown', (e)=>{
-  if (e.key === "Escape") {
-    closePopup(1); closePopup(2); closePopup(3); closePopup("3b"); closePopup(4); closePopup(5); closePopup(6);
-  }
+["1","2","3","3b","4","5","6"].forEach(n=>{
+  const btn = document.getElementById("closeBtn"+n);
+  if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });
 </script>
 </body>

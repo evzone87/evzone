@@ -6,107 +6,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Découvrez 'Une image - Une histoire' à partir des photographies de Francis de Faccio. Des histoires à suivre, immersives et des récits mystérieux." />
 <meta name="keywords" content="science-fiction, animation, Francis de Faccio, histoire audio, fiction immersive, transmission, extraterrestre, photographie" />
-
 <style>
-  body { margin: 0; padding: 0; font-family: monospace; color: lime; background: black; text-align: center; }
-
-  h1 { font-size: 3rem; margin: 40px 0 20px 0; color: #00ff80; }
-  p.subtitle { font-size: 1.3rem; margin: 15px 0; color: #00ff80; }
-
-  button, a#backPhoto {
-    margin: 20px;
-    padding: 10px 18px;
-    font-size: 1rem;
-    cursor: pointer;
-    border: 1px solid #00ff80;
-    border-radius: 6px;
-    background: rgba(0,255,128,0.06);
-    color: #00ff80;
-    text-decoration: none;
-    display: inline-block;
-    transition: background .12s, color .12s;
-  }
-  button:hover, a#backPhoto:hover { background: #00ff80; color: #001; }
-
-  .popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 1000;
-    overflow: hidden;
-    align-items: stretch;
-    justify-content: center;
-  }
-
-  .popup .bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 100%;
-    width: auto;
-    transform: translate(-50%, -50%);
-    object-fit: contain;
-    filter: none;
-    background-color: black;
-    z-index: 1000;
-  }
-
-  .popup .text {
-    position: absolute;
-    bottom: 10%;
-    left: 5%;
-    right: 5%;
-    text-align: center;
-    font-size: clamp(1.2rem, 2.4vw, 2rem);
-    letter-spacing: 0.12em;
-    color: #00ff80;
-    white-space: pre-wrap;
-    z-index: 1002;
-    opacity: 0;
-  }
-
-  .close-btn,
-  .return-link {
-    position: absolute;
-    top: 2%;
-    padding: 6px 10px;
-    font-size: 1.05rem;
-    border-radius: 6px;
-    border: 1px solid #00ff80;
-    background: rgba(0,255,128,0.06);
-    color: #00ff80;
-    text-decoration: none;
-    cursor: pointer;
-    z-index: 1003;
-    transition: background .12s, color .12s;
-  }
-  .close-btn:hover,
-  .return-link:hover { background: #00ff80; color: #001; }
-
-  .close-btn { right: 2%; }
-  .return-link { left: 2%; padding-left: 12px; padding-right: 12px; }
-
-  .popup audio {
-    position: absolute;
-    bottom: 6%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1002;
-    width: min(90%, 720px);
-  }
-
-  @media (max-width:600px){
-    h1 { font-size: 2rem; margin: 25px 0 15px 0; }
-    p.subtitle { font-size: 1rem; }
-    .popup .text { font-size: 1.1rem; bottom: 12%; padding: 0 8px; }
-    .close-btn, .return-link { font-size: 0.95rem; padding: 6px 8px; }
-    button, a#backPhoto { font-size: 0.95rem; padding: 8px 16px; }
-  }
+body { margin: 0; padding: 0; font-family: monospace; color: lime; background: black; text-align: center; }
+h1 { font-size: 3rem; margin: 40px 0 20px 0; color: #00ff80; }
+p.subtitle { font-size: 1.3rem; margin: 15px 0; color: #00ff80; }
+button, a#backPhoto { margin: 20px; padding: 10px 18px; font-size: 1rem; cursor: pointer; border: 1px solid #00ff80; border-radius: 6px; background: rgba(0,255,128,0.06); color: #00ff80; text-decoration: none; display: inline-block; transition: background .12s, color .12s; }
+button:hover, a#backPhoto:hover { background: #00ff80; color: #001; }
+.popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; overflow: hidden; align-items: stretch; justify-content: center; }
+.popup .bg { position: absolute; top: 50%; left: 50%; height: 100%; width: auto; transform: translate(-50%, -50%); object-fit: contain; filter: none; background-color: black; z-index: 1000; }
+.popup .text { position: absolute; bottom: 10%; left: 5%; right: 5%; text-align: center; font-size: clamp(1.2rem, 2.4vw, 2rem); letter-spacing: 0.12em; color: #00ff80; white-space: pre-wrap; z-index: 1002; opacity: 0; }
+.close-btn, .return-link { position: absolute; top: 2%; padding: 6px 10px; font-size: 1.05rem; border-radius: 6px; border: 1px solid #00ff80; background: rgba(0,255,128,0.06); color: #00ff80; text-decoration: none; cursor: pointer; z-index: 1003; transition: background .12s, color .12s; }
+.close-btn:hover, .return-link:hover { background: #00ff80; color: #001; }
+.close-btn { right: 2%; }
+.return-link { left: 2%; padding-left: 12px; padding-right: 12px; }
+.popup audio { position: absolute; bottom: 6%; left: 50%; transform: translateX(-50%); z-index: 1002; width: min(90%, 720px); }
+@media (max-width:600px){
+  h1 { font-size: 2rem; margin: 25px 0 15px 0; }
+  p.subtitle { font-size: 1rem; }
+  .popup .text { font-size: 1.1rem; bottom: 12%; padding: 0 8px; }
+  .close-btn, .return-link { font-size: 0.95rem; padding: 6px 8px; }
+  button, a#backPhoto { font-size: 0.95rem; padding: 8px 16px; }
+}
 </style>
 </head>
 <body>
-
 <h1>Une image - Une histoire</h1>
 <p class="subtitle">Evzone.fr propose un terrain de jeu pour notre imagination.</p>
 <p class="subtitle">Mes images émettent un signal… à qui sait l’écouter. — Francis de Faccio</p>
@@ -120,6 +43,7 @@
 <button id="btn4">▶ Sanctuaire</button>
 <button id="btn5">▶ Écume</button>
 <button id="btn6">▶ Sentinelle</button>
+<button id="btn7">▶ Lune du Chasseur</button>
 
 <!-- Popups -->
 <div id="popup1" class="popup" aria-hidden="true" role="dialog">
@@ -178,7 +102,16 @@
   <audio id="audio6" preload="auto"></audio>
 </div>
 
+<div id="popup7" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn7">✖</button>
+  <img class="bg" src="images/episodes/episode7/super_lune_du_chasseur.jpg" alt="Super Lune du Chasseur" />
+  <div class="text" id="text7"></div>
+  <audio id="audio7" preload="auto"></audio>
+</div>
+
 <script>
+// --- Scénarios et sons ---
 const scenarios1 = [
   ">>> Transmission Alien activée…\n>>> Coordonnées 45.540210, 1.520049\n>>> Tour de surveillance repérée à 535m d’altitude\n>>> Panorama stratégique confirmé\n>>> Ouverture du canal niveau 1...",
   ">>> Signal retrouvé…\n>>> Balise terrienne dissimulée dans la tour…\n>>> Les anciens observateurs ont quitté la zone.\n>>> Notre surveillance reprend.",
@@ -232,9 +165,8 @@ const sounds5 = [
   "images/episodes/episode5/plage_tamarissiere02.wav"
 ];
 
-// ÉPISODE 6 – Statue poétique
 const scenarios6 = [
-  ">>> Transmission activée…\n>>> Coordonnées : X 45.533329  |  Y 1.51667\n>>> Localisation : Bourg de Masseret, zone rurale stable\n>>> Scan en cours…",
+  ">>> Transmission activée…\n>>> Coordonnées : X 45.533329 | Y 1.51667\n>>> Localisation : Bourg de Masseret, zone rurale stable\n>>> Scan en cours…",
   ">>> Nouvel artefact\n>>> mémoire ancienne détectée.\n>>> Analyse morphologique : figure féminine\n>>> Origine : art humain, période indéterminée.",
   ">>> Les capteurs détectent un écho faible\n>>> comme une onde qui traverse le temps\n>>> Peut-être une pensée, figée dans la pierre\n>>> Artefact confirmé : trace d’humanité.\n>>> Transmission terminée.",
   ">>> Transmission activée…\n>>> Données reçues : structure pierreuse, densité stable.\n>>> Sculpture d’origine humaine, époque imprécise.\n>>> Anomalie : fréquence émotionnelle détectée à 3.2 Hz.\n>>> Hypothèse : empreinte mentale d’un créateur.\n>>> Observation : l’art survit mieux que l’espèce.\n>>> Fin de l’analyse.",
@@ -250,40 +182,48 @@ const sounds6 = [
   "images/episodes/episode6/statue_poetique03.mp3"
 ];
 
+const scenarios7 = [
+  ">>>Transmission activée…\n>>> Source optique : Evzone Orbiter\n>>>La Lune, fidèle compagne de la Terre\n>>>la Lune montre Toujours la même face à la Terre.\n>>>sa face cachée a été photographiée pour la première fois en 1959 par la sonde soviétique Luna 3.\n>>>Elle est plus rugueuse, criblée de cratères, et dépourvue de mers lunaires\n>>>l’attraction gravitationnelle de la Lune tire sur les océans d’où deux marées hautes par jour.\n>>> Fin de transmission.",
+  ">>>Transmission activée…\n>>> La Lune est la complice du Soleil.\n>>>Il pruduit la lumière,\n>>>Elle donne le rythme.\n>>>Ensemble, ils ont créé le cycle de la vie.\n>>>Fin de transmission.",
+  ">>>Transmission activée…\n>>>Vitesse moyenne : 3 680 km/h.\n>>>Distance : 384 400 km\n>>>Phase : Lune du Chasseur\n>>>shootée avec un canon r6 mark II le 07 10 2025 à 21h55\n>>>Fin de transmission.",
+  ">>>Transmission activée…\n>>>Lune s’est formée il y a environ 4,5 milliards d’années\n>>>très peu de temps après la formation de la Terre\n>>>elle est inhospitalière à la vie\n>>>elle est essentielle à la vie sur Terre\n>>>Jour lunaire +127 °C Jour lunaire –173 °C\n>>>Ces écarts de 300 °C entre le jour et la nuit sont énormes.\n>>>Fin de transmission."
+];
+const sounds7 = [
+  "images/episodes/episode7/lune_du_chasseur_01.mp3",
+  "images/episodes/episode7/lune_du_chasseur_02.mp3",
+  "images/episodes/episode7/lune_du_chasseur_03.mp3",
+  "images/episodes/episode7/lune_du_chasseur_04.mp3",
+  "images/episodes/episode7/lune_du_chasseur_05.mp3",
+  "images/episodes/episode7/lune_du_chasseur_06.mp3",
+  "images/episodes/episode7/lune_du_chasseur_07.mp3",
+  "images/episodes/episode7/lune_du_chasseur_08.mp3"
+];
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
   const audio = document.getElementById("audio" + n);
   const txtElem = document.getElementById("text" + n);
   if (!pop || !txtElem || !audio) return;
-
   const text = scenarios[Math.floor(Math.random() * scenarios.length)];
   txtElem.textContent = "";
   txtElem.style.opacity = 1;
-
   const soundFile = sounds[Math.floor(Math.random() * sounds.length)];
   audio.src = soundFile;
   audio.volume = 1.0;
   audio.play().catch(()=>{});
-
   pop.style.display = "flex";
   pop.setAttribute('aria-hidden','false');
 
   const lettreSound = new Audio("images/interface/lettre.mp3");
   const retourSound = new Audio("images/interface/retour.mp3");
-
   let i = 0;
   function step() {
     if (i < text.length) {
       txtElem.textContent = text.slice(0, i+1);
       const char = text[i];
-      if (char === "\n") {
-        retourSound.currentTime = 0;
-        retourSound.play().catch(()=>{});
-      } else {
-        lettreSound.currentTime = 0;
-        lettreSound.play().catch(()=>{});
-      }
+      if (char === "\n") { retourSound.currentTime = 0; retourSound.play().catch(()=>{}); }
+      else { lettreSound.currentTime = 0; lettreSound.play().catch(()=>{}); }
       i++;
       setTimeout(step, 80);
     }
@@ -300,7 +240,7 @@ function closePopup(n) {
   if (txtElem) txtElem.textContent = "";
 }
 
-// --- boutons ---
+// --- Boutons ---
 document.getElementById("btn1").addEventListener('click', ()=> openPopup(1,scenarios1,sounds1));
 document.getElementById("btn2").addEventListener('click', ()=> openPopup(2,scenarios2,sounds2));
 document.getElementById("btn3").addEventListener('click', ()=> openPopup(3,scenarios3,sounds3));
@@ -308,8 +248,9 @@ document.getElementById("btn3b").addEventListener('click', ()=> openPopup("3b",s
 document.getElementById("btn4").addEventListener('click', ()=> openPopup(4,scenarios4,sounds4));
 document.getElementById("btn5").addEventListener('click', ()=> openPopup(5,scenarios5,sounds5));
 document.getElementById("btn6").addEventListener('click', ()=> openPopup(6,scenarios6,sounds6));
+document.getElementById("btn7").addEventListener('click', ()=> openPopup(7,scenarios7,sounds7));
 
-["1","2","3","3b","4","5","6"].forEach(n=>{
+["1","2","3","3b","4","5","6","7"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

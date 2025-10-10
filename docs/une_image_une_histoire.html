@@ -27,10 +27,23 @@ button:hover, a#backPhoto:hover { background: #00ff80; color: #001; }
   .close-btn, .return-link { font-size: 0.95rem; padding: 6px 8px; }
   button, a#backPhoto { font-size: 0.95rem; padding: 8px 16px; }
 }
+
+/* Image tournante ajoutée */
+img.rotation {
+  display: block;
+  margin: 0 auto 10px auto;
+  width: 40px;
+  animation: spin 10s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 </style>
 </head>
 <body>
 <h1>Une image - Une histoire</h1>
+<img src="images/episodes/rotation_verte.png" alt="rotation verte" class="rotation" />
 <p class="subtitle">Evzone.fr propose un terrain de jeu pour notre imagination.</p>
 <p class="subtitle">Mes images émettent un signal… à qui sait l’écouter. — Francis de Faccio</p>
 <a id="backPhoto" href="photographie.html">← Retour page Photographie</a>

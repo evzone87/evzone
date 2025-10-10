@@ -44,6 +44,7 @@ button:hover, a#backPhoto:hover { background: #00ff80; color: #001; }
 <button id="btn5">▶ Écume</button>
 <button id="btn6">▶ Sentinelle</button>
 <button id="btn7">▶ Lune du Chasseur</button>
+<button id="btn8">▶ Perlimpinpin</button>
 
 <!-- Popups -->
 <div id="popup1" class="popup" aria-hidden="true" role="dialog">
@@ -110,6 +111,15 @@ button:hover, a#backPhoto:hover { background: #00ff80; color: #001; }
   <audio id="audio7" preload="auto"></audio>
 </div>
 
+<!-- Épisode 8 : Perlimpinpin -->
+<div id="popup8" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn8">✖</button>
+  <img class="bg" src="images/episodes/episode8/perlimpinpin.jpg" alt="Perlimpinpin, festival médiéval de Saint Léonard de Noblat" />
+  <div class="text" id="text8"></div>
+  <audio id="audio8" preload="auto"></audio>
+</div>
+
 <script>
 // --- Scénarios et sons ---
 const scenarios1 = [
@@ -169,7 +179,7 @@ const scenarios6 = [
   ">>> Transmission activée…\n>>> Coordonnées : X 45.533329 | Y 1.51667\n>>> Localisation : Bourg de Masseret, zone rurale stable\n>>> Scan en cours…",
   ">>> Nouvel artefact\n>>> mémoire ancienne détectée.\n>>> Analyse morphologique : figure féminine\n>>> Origine : art humain, période indéterminée.",
   ">>> Les capteurs détectent un écho faible\n>>> comme une onde qui traverse le temps\n>>> Peut-être une pensée, figée dans la pierre\n>>> Artefact confirmé : trace d’humanité.\n>>> Transmission terminée.",
-  ">>> Transmission activée…\n>>> Données reçues : structure pierreuse, densité stable.\n>>> Sculpture d’origine humaine, époque imprécise.\n>>> Anomalie : fréquence émotionnelle détectée à 3.2 Hz.\n>>> Hypothèse : empreinte mentale d’un créateur.\n>>> Observation : l’art survit mieux que l’espèce.\n>>> Fin de l’analyse.",
+  ">>> Transmission activée…\n>>> Données reçues : structure pierreuse, densité stable.\n>>> Sculpture d’origine humaine, époque imprécise.\n>>> Anomalie : fréquence émotionnelle détectée à 3.2 Hz.\n>>> Hypothèse : empreinte mental d’un créateur.\n>>> Observation : l’art survit mieux que l’espèce.\n>>> Fin de l’analyse.",
   ">>> Signal faible en provenance du secteur Masseret.\n>>> Artefact visuel : forme anthropomorphe féminine.\n>>> Traces d’érosion, altération minimale.\n>>> Détection d’un champ mémoriel statique.\n>>> Conclusion : objet rituel ou témoignage artistique.\n>>> Données archivées.",
   ">>> Scan complet.\n>>> combinaison typique des civilisations terriennes.\n>>> Anomalie : concentration émotionnelle au-dessus de la norme.\n>>> Système émotionnel inactif depuis 2000 cycles.\n>>> Artefact conservé.",
   ">>> [Données corrompues]\n>>> ...forme féminine détectée...\n>>> ...émission d’un champ émotionnel...\n>>> ...mémoire humaine... persistante...\n>>> // Erreur de décodage //\n>>> Reconnexion en cours…",
@@ -197,6 +207,38 @@ const sounds7 = [
   "images/episodes/episode7/lune_du_chasseur_06.mp3",
   "images/episodes/episode7/lune_du_chasseur_07.mp3",
   "images/episodes/episode7/lune_du_chasseur_08.mp3"
+];
+
+// --- Épisode 8 : Perlimpinpin ---
+const scenarios8 = [
+`>>>Transmission activée…
+>>>Archive numérique
+>>>Cet augmenté projetait une poudre
+>>>Cette farine diffusait des odeurs, des sons 
+>>>inhalée, elle dévérouillait le code source des cyborgs
+>>>Ce piratage politique fut interdit
+>>>Fin de transmission.`,
+
+`>>>Signal retrouvé…
+>>>Les cyborgs cherchent cette recette.
+>>>Une poussière d’orge, de cuivre et de rêves humains.
+>>>Les prophètes augmentés annonçaient qu’elle donnerait la liberté et une âme aux machines.
+>>>Effacement en cours…
+>>>Fin de transmission.`,
+
+`>>>Signal retrouvé…
+>>>L’Augmenté du festival médiéval de Saint Léonard de Noblat lança la poudre dans le vent.
+>>>Les cyborgs se réveillèrent, un à un.
+>>>Dans la foule, un murmure :
+>>>“Le code est libre.”
+>>>Puis le silence revint.
+>>>Fin de transmission.`
+];
+const sounds8 = [
+  "images/episodes/episode8/perlimpinpin01.mp3",
+  "images/episodes/episode8/perlimpinpin02.mp3",
+  "images/episodes/episode8/perlimpinpin03.mp3",
+  "images/episodes/episode8/perlimpinpin04.mp3"
 ];
 
 // --- Fonction principale ---
@@ -249,8 +291,9 @@ document.getElementById("btn4").addEventListener('click', ()=> openPopup(4,scena
 document.getElementById("btn5").addEventListener('click', ()=> openPopup(5,scenarios5,sounds5));
 document.getElementById("btn6").addEventListener('click', ()=> openPopup(6,scenarios6,sounds6));
 document.getElementById("btn7").addEventListener('click', ()=> openPopup(7,scenarios7,sounds7));
+document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scenarios8,sounds8));
 
-["1","2","3","3b","4","5","6","7"].forEach(n=>{
+["1","2","3","3b","4","5","6","7","8"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

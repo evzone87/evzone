@@ -57,6 +57,7 @@ img.rotation {
 <button id="btn6">▶ Sentinelle</button>
 <button id="btn7">▶ Lune du Chasseur</button>
 <button id="btn8">▶ Perlimpinpin</button>
+<button id="btn9">▶ Le Cerbère</button>
 
 <!-- Popups -->
 <div id="popup1" class="popup" aria-hidden="true" role="dialog">
@@ -130,6 +131,21 @@ img.rotation {
   <img class="bg" src="images/episodes/episode8/perlimpinpin.jpg" alt="Perlimpinpin, festival médiéval de Saint Léonard de Noblat" />
   <div class="text" id="text8"></div>
   <audio id="audio8" preload="auto"></audio>
+</div>
+
+<!-- Épisode 9 : Le Cerbère (AJOUT) -->
+<div id="popup9" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn9">✖</button>
+
+  <!-- Vidéo de fond -->
+  <video class="bg" autoplay muted loop playsinline>
+    <source src="images/episodes/episode9/mont_gargan.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo HTML5.
+  </video>
+
+  <div class="text" id="text9"></div>
+  <audio id="audio9" preload="auto"></audio>
 </div>
 
 <script>
@@ -253,6 +269,22 @@ const sounds8 = [
   "images/episodes/episode8/perlimpinpin04.mp3"
 ];
 
+// --- Épisode 9 : Le Cerbère (AJOUT) ---
+const scenarios9 = [
+`
+>>>Grésillements, mouvements…
+>>>Les ondes de l'artéfact perturbent les appareils.
+>>>Transmission coupée...`
+];
+const sounds9 = [
+  "images/episodes/episode9/_Musique libre de droits_ Eunoia - Nothing Left (152kbit_Opus).ogg",
+  "images/episodes/episode9/dark-ambient-background-music-polluted-horizons-244007.mp3",
+  "images/episodes/episode9/disembodied-consciousness-the-silence-before-the-haunting-371105.mp3",
+  "images/episodes/episode9/horror-dark-cinematic-music-255259.mp3",
+  "images/episodes/episode9/voices-from-within-akira-yamaoka-gathering-mix-392840.mp3",
+  "images/episodes/episode9/a-psychotronic-childhood-245995.mp3"
+];
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
@@ -304,8 +336,9 @@ document.getElementById("btn5").addEventListener('click', ()=> openPopup(5,scena
 document.getElementById("btn6").addEventListener('click', ()=> openPopup(6,scenarios6,sounds6));
 document.getElementById("btn7").addEventListener('click', ()=> openPopup(7,scenarios7,sounds7));
 document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scenarios8,sounds8));
+document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scenarios9,sounds9));
 
-["1","2","3","3b","4","5","6","7","8"].forEach(n=>{
+["1","2","3","3b","4","5","6","7","8","9"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

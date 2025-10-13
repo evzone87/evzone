@@ -59,6 +59,9 @@ img.rotation {
 <button id="btn8">▶ Perlimpinpin</button>
 <button id="btn9">▶ Le Cerbère</button>
 <button id="btn10">▶ Braque de Weimar</button>
+<button id="btn11">▶ Jolie Fille</button>
+
+
 
 
 <!-- Popups -->
@@ -161,6 +164,15 @@ img.rotation {
 </div>
 <!-- fin popup10 -->
 
+<!-- Épisode 11 : Jolie Fille -->
+<div id="popup11" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn11">✖</button>
+  <img class="bg" src="images/episodes/episode11/jolie_fille.jpg" alt="BeerWoman - Jolie Fille" />
+  <div class="text" id="text11"></div>
+  <audio id="audio11" preload="auto"></audio>
+</div>
+<!-- fin popup11 -->
 
 <script>
 // --- Scénarios et sons ---
@@ -308,6 +320,15 @@ const sounds10 = [
   "images/episodes/episode10/simple-happy-life-353819.mp3"
 ];
 
+// --- Épisode 11 : Jolie Fille / BeerWoman ---
+const scenarios11 = [
+  ">>> Nouvelle super-héroïne détectée : BeerWoman\n>>> Pouvoirs : rire et recyclage",
+  ">>> Ce casque capte les signaux interstellaires… ou les publicités pour la bière."
+];
+const sounds11 = [
+  "images/episodes/episode11/jolie_fille01.mp3",
+  "images/episodes/episode11/jolie_fille02.mp3"
+];
 
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
@@ -362,9 +383,10 @@ document.getElementById("btn7").addEventListener('click', ()=> openPopup(7,scena
 document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scenarios8,sounds8));
 document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scenarios9,sounds9));
 document.getElementById("btn10").addEventListener('click', ()=> openPopup(10,scenarios10,sounds10));
+document.getElementById("btn11").addEventListener('click', ()=> openPopup(11,scenarios11,sounds11));
 
 
-["1","2","3","3b","4","5","6","7","8","9","10"].forEach(n=>{
+["1","2","3","3b","4","5","6","7","8","9","10","11"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

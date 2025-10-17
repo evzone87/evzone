@@ -60,7 +60,7 @@ img.rotation {
 <button id="btn9">▶ Le Cerbère</button>
 <button id="btn10">▶ Braque de Weimar</button>
 <button id="btn11">▶ Jolie Fille</button>
-
+<button id="btn12">▶ Émetteur</button>
 
 
 
@@ -173,6 +173,16 @@ img.rotation {
   <audio id="audio11" preload="auto"></audio>
 </div>
 <!-- fin popup11 -->
+
+<!-- Épisode 12 : Émetteur -->
+<div id="popup12" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn12">✖</button>
+  <img class="bg" src="images/episodes/episode12/tour_eiffel.jpg" alt="Émetteur - Tour Eiffel Paris" />
+  <div class="text" id="text12"></div>
+  <audio id="audio12" preload="auto"></audio>
+</div>
+<!-- fin popup12 -->
 
 <script>
 // --- Scénarios et sons ---
@@ -330,6 +340,22 @@ const sounds11 = [
   "images/episodes/episode11/jolie_fille02.mp3"
 ];
 
+// --- Épisode 12 : Émetteur ---
+const scenarios12 = [
+  ">>> Paris respire\n>>> la Tour Eiffel veille sur son écrin de verdure. (Photo avril 2022)",
+  ">>> Parc du Champ de Mars\n>>> 2 allée Adrienne-Lecouvreur, Paris 7e",
+  ">>> Le Champ de Mars, du nom du dieu romain de la guerre, était destiné aux manœuvres militaires",
+  ">>> Cette promenade sous des arbres remarquables et centenaires propose 24/24 h\n>>> Manèges, tables de ping-pong, points d'eau potable, aire de jeux, promenade à poney, Guignol"
+];
+
+const sounds12 = [
+  "images/episodes/episode12/explain-it-to-me-257505.mp3",
+  "images/episodes/episode12/happy-positive-energic-jazz-307939.mp3",
+  "images/episodes/episode12/mademoiselle-275980.mp3",
+  "images/episodes/episode12/midnight-stroll-happy-valentine-jazz-289654.mp3",
+  "images/episodes/episode12/unexpected-connection-strategy-risk-407229.mp3"
+];
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
@@ -384,9 +410,9 @@ document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scena
 document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scenarios9,sounds9));
 document.getElementById("btn10").addEventListener('click', ()=> openPopup(10,scenarios10,sounds10));
 document.getElementById("btn11").addEventListener('click', ()=> openPopup(11,scenarios11,sounds11));
+document.getElementById("btn12").addEventListener('click', ()=> openPopup(12, scenarios12, sounds12));
 
-
-["1","2","3","3b","4","5","6","7","8","9","10","11"].forEach(n=>{
+["1","2","3","3b","4","5","6","7","8","9","10","11","12"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

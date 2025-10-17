@@ -59,7 +59,7 @@ img.rotation {
 <button id="btn8">▶ Perlimpinpin</button>
 <button id="btn9">▶ Le Cerbère</button>
 <button id="btn12">▶ Émetteur</button>
-
+<button id="btn13">▶ Dodge Charger</button>
 
 
 <!-- Popups -->
@@ -163,6 +163,17 @@ img.rotation {
   <audio id="audio12" preload="auto"></audio>
 </div>
 <!-- fin popup12 -->
+
+<!-- Épisode 13 : Dodge Charger -->
+<div id="popup13" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn13">✖</button>
+  <img class="bg" src="images/episodes/episode13/charger.jpg" alt="Dodge Charger 1971" />
+  <div class="text" id="text13"></div>
+  <audio id="audio13" preload="auto"></audio>
+</div>
+<!-- fin popup13 -->
+
 
 <script>
 // --- Scénarios et sons ---
@@ -319,6 +330,17 @@ const sounds12 = [
   "images/episodes/episode12/unexpected-connection-strategy-risk-407229.mp3"
 ];
 
+// --- Épisode 13 : Dodge Charger ---
+const scenarios13 = [
+  ">>> Transmission activée…\n>>> Véhicule légendaire identifié : Dodge Charger",
+  ">>> La Dodge Charger de 1971 440 Magnum est équipée d’un moteur V8 de 7,2 litres qui développe une puissance impressionnante de 375 chevaux et un couple de 480 Nm."
+];
+
+const sounds13 = [
+  "images/episodes/episode13/doom-extreme-metal-rock-316396.mp3",
+  "images/episodes/episode13/driving-to-win-16372.mp3"
+];
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
@@ -372,8 +394,10 @@ document.getElementById("btn7").addEventListener('click', ()=> openPopup(7,scena
 document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scenarios8,sounds8));
 document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scenarios9,sounds9));
 document.getElementById("btn12").addEventListener('click', ()=> openPopup(12, scenarios12, sounds12));
+document.getElementById("btn13").addEventListener('click', ()=> openPopup(13, scenarios13, sounds13));
 
-["1","2","3","3b","4","5","6","7","8","9","12"].forEach(n=>{
+
+["1","2","3","3b","4","5","6","7","8","9","12","13"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

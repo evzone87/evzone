@@ -58,8 +58,6 @@ img.rotation {
 <button id="btn7">▶ Lune du Chasseur</button>
 <button id="btn8">▶ Perlimpinpin</button>
 <button id="btn9">▶ Le Cerbère</button>
-<!-- <button id="btn10">▶ Braque de Weimar</button>
-<button id="btn11">▶ Jolie Fille</button> -->
 <button id="btn12">▶ Émetteur</button>
 
 
@@ -154,25 +152,7 @@ img.rotation {
 </div>
 <!-- fin popup9 -->
 
-<!-- Épisode 10 : Braque de Weimar -->
-<div id="popup10" class="popup" aria-hidden="true" role="dialog">
-  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
-  <button class="close-btn" id="closeBtn10">✖</button>
-  <img class="bg" src="images/episodes/episode10/braque_de_weimar.jpg" alt="Chien Braque de Weimar" />
-  <div class="text" id="text10"></div>
-  <audio id="audio10" preload="auto"></audio>
-</div>
-<!-- fin popup10 -->
 
-<!-- Épisode 11 : Jolie Fille -->
-<div id="popup11" class="popup" aria-hidden="true" role="dialog">
-  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
-  <button class="close-btn" id="closeBtn11">✖</button>
-  <img class="bg" src="images/episodes/episode11/jolie_fille.jpg" alt="BeerWoman - Jolie Fille" />
-  <div class="text" id="text11"></div>
-  <audio id="audio11" preload="auto"></audio>
-</div>
-<!-- fin popup11 -->
 
 <!-- Épisode 12 : Émetteur -->
 <div id="popup12" class="popup" aria-hidden="true" role="dialog">
@@ -321,24 +301,7 @@ const sounds9 = [
   "images/episodes/episode9/a-psychotronic-childhood-245995.mp3"
 ];
 
-// --- Épisode 10 : Braque de Weimar ---
-const scenarios10 = [
-  ">>> ce type de posture signifiait le bonheur!"
-];
-const sounds10 = [
-  "images/episodes/episode10/happy-kids-background-music-364459.mp3",
-  "images/episodes/episode10/simple-happy-life-353819.mp3"
-];
 
-// --- Épisode 11 : Jolie Fille / BeerWoman ---
-const scenarios11 = [
-  ">>> Nouvelle super-héroïne détectée : BeerWoman\n>>> Pouvoirs : rire et recyclage",
-  ">>> Ce casque capte les signaux interstellaires… ou les publicités pour la bière."
-];
-const sounds11 = [
-  "images/episodes/episode11/jolie_fille01.mp3",
-  "images/episodes/episode11/jolie_fille02.mp3"
-];
 
 // --- Épisode 12 : Émetteur ---
 const scenarios12 = [
@@ -408,11 +371,9 @@ document.getElementById("btn6").addEventListener('click', ()=> openPopup(6,scena
 document.getElementById("btn7").addEventListener('click', ()=> openPopup(7,scenarios7,sounds7));
 document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scenarios8,sounds8));
 document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scenarios9,sounds9));
-document.getElementById("btn10").addEventListener('click', ()=> openPopup(10,scenarios10,sounds10));
-document.getElementById("btn11").addEventListener('click', ()=> openPopup(11,scenarios11,sounds11));
 document.getElementById("btn12").addEventListener('click', ()=> openPopup(12, scenarios12, sounds12));
 
-["1","2","3","3b","4","5","6","7","8","9","10","11","12"].forEach(n=>{
+["1","2","3","3b","4","5","6","7","8","9","12"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

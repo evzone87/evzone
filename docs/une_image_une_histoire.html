@@ -60,6 +60,7 @@ img.rotation {
 <button id="btn9">▶ Le Cerbère</button>
 <button id="btn12">▶ Émetteur</button>
 <button id="btn13">▶ V8</button>
+<button id="btn14">▶ Cyberpunk</button>
 
 
 <!-- Popups -->
@@ -173,6 +174,17 @@ img.rotation {
   <audio id="audio13" preload="auto"></audio>
 </div>
 <!-- fin popup13 -->
+
+<!-- Épisode 14 : Cyberpunk -->
+<div id="popup14" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn14">✖</button>
+  <img class="bg" id="slideshow14" src="images/episodes/episode14/01_confolens.jpg" alt="Cyberpunk diaporama" />
+  <div class="text" id="text14"></div>
+  <audio id="audio14" preload="auto"></audio>
+</div>
+<!-- fin popup14 -->
+
 
 
 <script>
@@ -341,6 +353,75 @@ const sounds13 = [
   "images/episodes/episode13/driving-to-win-16372.mp3"
 ];
 
+// --- Épisode 14 : Cyberpunk ---
+const scenarios14 = [
+`>>> Archive retrouvée : 'Les Peintres du Silence'
+>>> Ces êtres cyborgs recouvraient leur peau pour canaliser leur mémoire
+>>> Chaque ligne de peinture raconte une époque disparue
+>>> festival confolens 2025
+>>> Fin de transmission.`,
+
+`>>> Présence confirmée : Gardiens de la Transition
+>>> Leur mission : protéger le passage entre les cycles
+>>> festival confolens 2025
+>>> Transmission stabilisée.`,
+
+`>>> Les capteurs s’affolent
+>>> Les pigments réagissent à la lumière
+>>> Chaque couleur correspond à une fréquence sonore
+>>> festival confolens 2025
+>>> Synchronisation des plans… effectuée.`,
+
+`« Cyborg » est la contraction de « cybernetic organism »,
+>>> un terme inventé dans les années 1960 par deux chercheurs new-yorkais : Manfred Clynes et Nathan S. Kline.
+>>> Il désigne l'hybridité d'un organisme biologique relié avec des prothèses.
+>>> Le cyborg est un humain greffé avec de la mécanique, de l'électronique.
+>>> festival confolens 2025`
+];
+
+const sounds14 = [
+  "images/episodes/episode14/01_cyberpunk.mp3",
+  "images/episodes/episode14/02_cyberpunk.mp3",
+  "images/episodes/episode14/03_cyberpunk.mp3",
+  "images/episodes/episode14/04_cyberpunk.mp3",
+  "images/episodes/episode14/05_cyberpunk.mp3",
+  "images/episodes/episode14/06_cyberpunk.mp3",
+  "images/episodes/episode14/07_cyberpunk.mp3",
+  "images/episodes/episode14/08_cyberpunk.mp3",
+  "images/episodes/episode14/09_cyberpunk.mp3",
+  "images/episodes/episode14/10_cyberpunk.mp3",
+  "images/episodes/episode14/11_cyberpunk.mp3",
+  "images/episodes/episode14/12_cyberpunk.mp3",
+  "images/episodes/episode14/13_cyberpunk.mp3",
+  "images/episodes/episode14/14_cyberpunk.mp3",
+  "images/episodes/episode14/15_cyberpunk.mp3",
+  "images/episodes/episode14/16_cyberpunk.mp3",
+  "images/episodes/episode14/17_cyberpunk.mp3",
+  "images/episodes/episode14/18_cyberpunk.mp3",
+  "images/episodes/episode14/19_cyberpunk.mp3",
+  "images/episodes/episode14/20_cyberpunk.mp3",
+  "images/episodes/episode14/21_cyberpunk.mp3",
+  "images/episodes/episode14/22_cyberpunk.mp3"
+];
+
+// Liste d’images du diaporama
+const slideshow14Images = [
+  "images/episodes/episode14/01_confolens.jpg",
+  "images/episodes/episode14/02_confolens.jpg",
+  "images/episodes/episode14/03_confolens.jpg",
+  "images/episodes/episode14/04_confolens.jpg",
+  "images/episodes/episode14/05_confolens.jpg",
+  "images/episodes/episode14/06_confolens.jpg",
+  "images/episodes/episode14/07_confolens.jpg",
+  "images/episodes/episode14/08_confolens.jpg",
+  "images/episodes/episode14/09_confolens.jpg",
+  "images/episodes/episode14/10_confolens.jpg",
+  "images/episodes/episode14/12_confolens.jpg",
+  "images/episodes/episode14/13_confolens.jpg",
+  "images/episodes/episode14/14_confolens.jpg"
+];
+
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
@@ -395,7 +476,63 @@ document.getElementById("btn8").addEventListener('click', ()=> openPopup(8,scena
 document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scenarios9,sounds9));
 document.getElementById("btn12").addEventListener('click', ()=> openPopup(12, scenarios12, sounds12));
 document.getElementById("btn13").addEventListener('click', ()=> openPopup(13, scenarios13, sounds13));
+document.getElementById("btn14").addEventListener('click', ()=> openPopup14());
 
+function openPopup14() {
+  const pop = document.getElementById("popup14");
+  const audio = document.getElementById("audio14");
+  const txtElem = document.getElementById("text14");
+  const img = document.getElementById("slideshow14");
+  let i = 0;
+
+  // texte
+  const text = scenarios14[Math.floor(Math.random() * scenarios14.length)];
+  txtElem.textContent = "";
+  txtElem.style.opacity = 1;
+
+  // son
+  const soundFile = sounds14[Math.floor(Math.random() * sounds14.length)];
+  audio.src = soundFile;
+  audio.play().catch(()=>{});
+
+  // popup visible
+  pop.style.display = "flex";
+  pop.setAttribute('aria-hidden','false');
+
+  // affichage progressif du texte (même effet que les autres)
+  const lettreSound = new Audio("images/interface/lettre.mp3");
+  const retourSound = new Audio("images/interface/retour.mp3");
+  let j = 0;
+  function step() {
+    if (j < text.length) {
+      txtElem.textContent = text.slice(0, j + 1);
+      const char = text[j];
+      if (char === "\n") { retourSound.currentTime = 0; retourSound.play().catch(()=>{}); }
+      else { lettreSound.currentTime = 0; lettreSound.play().catch(()=>{}); }
+      j++;
+      setTimeout(step, 80);
+    }
+  }
+  step();
+
+  // diaporama automatique
+  let slideIndex = 0;
+  function nextSlide() {
+    slideIndex = (slideIndex + 1) % slideshow14Images.length;
+    img.src = slideshow14Images[slideIndex];
+  }
+  const interval = setInterval(nextSlide, 10000); // 10 secondes
+
+  // fermeture
+  document.getElementById("closeBtn14").onclick = function() {
+    clearInterval(interval);
+    audio.pause();
+    audio.currentTime = 0;
+    txtElem.textContent = "";
+    pop.style.display = "none";
+    pop.setAttribute('aria-hidden','true');
+  };
+}
 
 ["1","2","3","3b","4","5","6","7","8","9","12","13"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);

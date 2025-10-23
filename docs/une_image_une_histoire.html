@@ -62,6 +62,7 @@ img.rotation {
 <button id="btn13">▶ V8</button>
 <button id="btn14">▶ Cyberpunk</button>
 <button id="btn15">▶ Haussmann</button>
+<button id="btn16">▶ Place Jourdan</button>
 
 
 <!-- Popups -->
@@ -195,6 +196,16 @@ img.rotation {
   <audio id="audio15" preload="auto"></audio>
 </div>
 <!-- fin popup15 -->
+
+<div id="popup16" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn16">✖</button>
+  <img class="bg" src="images/episodes/episode16/place_jourdan.jpg" alt="Place Jourdan, Limoges" />
+  <div class="text" id="text16"></div>
+  <audio id="audio16" preload="auto"></audio>
+</div>
+<!-- fin popup16 --> 
+
 
 
 <script>
@@ -451,6 +462,22 @@ const sounds15 = [
 ];
 
 
+const scenarios16 = [
+  ">>> Transmission activée…\n>>> Localisation : Limoges, Place Jourdan\n>>> Signature architecturale : style Haussmannien local\n>>> Influence parisienne adaptée aux provinces\n>>> shoot photo depuis la place Jourdan",
+  
+  ">>> Analyse des structures :\n>>> Façades élégantes, balcons filants, symétrie étudiée\n>>> Mélange pierre claire et détails ornementaux\n>>> 3 à 5 niveaux – volume harmonieux\n>>> shoot photo depuis la place Jourdan",
+  
+  ">>> Données historiques :\n>>> Expansion de Limoges grâce au chemin de fer\n>>> Développement d’une bourgeoisie commerçante et administrative\n>>> Adoption du style Haussmannien pour afficher prestige et ordre urbain\n>>> shoot photo depuis la gare de Limoges",
+  
+  ">>> Transformation confirmée :\n>>> Ouverture de nouvelles artères : boulevard Carnot, rue Jean Jaurès\n>>> Mise en valeur des places et bâtiments clés\n>>> Limoges modernisée dans l’esprit parisien\n>>> Fin de la transmission\n>>> shoot photo depuis un point haut sur la place Jourdan"
+];
+
+const sounds16 = [
+  "images/episodes/episode16/cyberpunk.mp3"
+];  
+
+
+
 
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
@@ -516,7 +543,16 @@ document.getElementById("closeBtn15").addEventListener("click", () => {
   document.getElementById("audio15").pause();
 });
 
+// Bouton Épisode 16
+document.getElementById("btn16").addEventListener("click", () => {
+  openPopup(16, scenarios16, sounds16);
+});
 
+document.getElementById("closeBtn16").addEventListener("click", () => {
+  document.getElementById("popup16").style.display = "none";
+  const audio = document.getElementById("audio16");
+  if(audio){ audio.pause(); audio.currentTime=0; }
+});
 
 
 function openPopup14() {
@@ -575,7 +611,7 @@ function openPopup14() {
   };
 }
 
-["1","2","3","3b","4","5","6","7","8","9","12","13"].forEach(n=>{
+["1","2","3","3b","4","5","6","7","8","9","12","13","15"].forEach(n=>{
   const btn = document.getElementById("closeBtn"+n);
   if (btn) btn.addEventListener('click', ()=> closePopup(n));
 });

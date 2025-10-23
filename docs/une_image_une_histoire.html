@@ -61,6 +61,7 @@ img.rotation {
 <button id="btn12">▶ Émetteur</button>
 <button id="btn13">▶ V8</button>
 <button id="btn14">▶ Cyberpunk</button>
+<button id="btn15">▶ Haussmann</button>
 
 
 <!-- Popups -->
@@ -185,6 +186,15 @@ img.rotation {
 </div>
 <!-- fin popup14 -->
 
+<!-- Épisode 15 : Haussmann -->
+<div id="popup15" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn15">✖</button>
+  <img class="bg" src="images/episodes/episode15/Haussmann.jpg" alt="Bâtiments Haussmanniens Paris" />
+  <div class="text" id="text15"></div>
+  <audio id="audio15" preload="auto"></audio>
+</div>
+<!-- fin popup15 -->
 
 
 <script>
@@ -422,6 +432,26 @@ const slideshow14Images = [
 ];
 
 
+// --- Épisode 15 : Haussmann ---
+const scenarios15 = [
+  ">>> Transmission activée…\n>>> Localisation : Paris, secteur central\n>>> Signature architecturale identifiée : style Haussmannien\n>>> Transformation majeure entre 1853 et 1870\n>>> Objectif : rendre la ville plus saine, plus belle, plus ordonnée.\n>>> shoot photo depuis l’étage de la tour Eiffel le 18/04/2022",
+  
+  ">>> Analyse des structures :\n>>> Alignement parfait des façades\n>>> Pierre claire, balcons filants, toits en zinc bleuté\n>>> 5 à 7 niveaux : une symétrie calculée\n>>> Lucarnes et cheminées dessinent la carte du ciel parisien\n>>> C'est le style Haussmannien\n>>> shoot photo depuis l’étage de la tour Eiffel le 18/04/2022",
+  
+  ">>> Données historiques : avant 1853\n>>> Paris étouffait sous ses ruelles sombres\n>>> absence d’air, d’égouts, de lumière\n>>> épidémies récurrentes – structure urbaine instable\n>>> La ville attendait sa mue grace au baron Haussmann.\n>>> shoot photo depuis l’étage de la tour Eiffel le 18/04/2022",
+  
+  ">>> Transformation confirmée :\n>>> Percement des boulevards – circulation d’air et de lumière\n>>> Égouts, eau potable, parcs urbains : système vital rétabli\n>>> Haussmann reprogramme la capitale\n>>> Paris devient un organisme respirant.\n>>> Fin de la transmission\n>>> shoot photo depuis l’étage de la tour Eiffel le 18/04/2022"
+];
+
+const sounds15 = [
+  "images/episodes/episode15/10_Haussmann.mp3",
+  "images/episodes/episode15/11_Haussmann.mp3",
+  "images/episodes/episode15/12_Haussmann.mp3",
+  "images/episodes/episode15/13_Haussmann.mp3"
+];
+
+
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
@@ -477,6 +507,17 @@ document.getElementById("btn9").addEventListener('click', ()=> openPopup(9,scena
 document.getElementById("btn12").addEventListener('click', ()=> openPopup(12, scenarios12, sounds12));
 document.getElementById("btn13").addEventListener('click', ()=> openPopup(13, scenarios13, sounds13));
 document.getElementById("btn14").addEventListener('click', ()=> openPopup14());
+// --- Bouton Épisode 15 ---
+document.getElementById("btn15").addEventListener("click", () => {
+  openPopup(15, scenarios15, sounds15);
+});
+document.getElementById("closeBtn15").addEventListener("click", () => {
+  document.getElementById("popup15").style.display = "none";
+  document.getElementById("audio15").pause();
+});
+
+
+
 
 function openPopup14() {
   const pop = document.getElementById("popup14");

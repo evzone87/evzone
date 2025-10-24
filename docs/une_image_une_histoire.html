@@ -89,6 +89,8 @@ img.rotation {
 <button id="btn14">▶ Cyberpunk</button>
 <button id="btn15">▶ Haussmann</button>
 <button id="btn16">▶ Place Jourdan</button>
+<button id="btn17">▶ Central Hôtel</button>
+
 
 
 <!-- Popups -->
@@ -231,6 +233,19 @@ img.rotation {
   <audio id="audio16" preload="auto"></audio>
 </div>
 <!-- fin popup16 --> 
+
+
+<!-- Épisode 17 : Central Hôtel -->
+<div id="popup17" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn17">✖</button>
+  <img class="bg" src="images/episodes/episode17/central_hotel_limoges.jpg" alt="Central Hôtel, Limoges" />
+  <div class="text" id="text17"></div>
+  <audio id="audio17" preload="auto"></audio>
+</div>
+<!-- fin popup17 -->
+
+
 
 <div class="scroll-indicator">▼</div>
 
@@ -504,6 +519,42 @@ const sounds16 = [
 ];  
 
 
+// --- Épisode 17 : Central Hôtel ---
+const scenarios17 = [
+`>>> Transmission activée…
+>>> Signature architecturale : style haussmannien
+>>> Influence parisienne
+
+>>> Données historiques :
+>>> Le bâtiment se situe au 29-31 place Jourdan, à Limoges
+>>> Construit entre 1898 et 1900 pour accueillir l’hôtel « Central Hôtel »
+>>> Architecte : Dominique Vergez
+>>> À son inauguration, en 1900, il devient le plus haut bâtiment civil de la ville
+
+>>> Fin de la première transmission`,
+
+`>>> Période : 1900 – 1930
+>>> Hôtel-restaurant et grande brasserie digne des établissements parisiens
+>>> Salon de réception prestigieux, plafond peint, clientèle bourgeoise
+>>> Les murs résonnent des sons de jazz bands
+>>> Des orchestres animent les soirées de la place Jourdan
+>>> Plus tard, l’établissement prend le nom de « Luk Hôtel »
+>>> Fin de la deuxième transmission`,
+
+`>>> Le style du Central Hôtel ne peut être strictement qualifié d’haussmannien
+>>> Mais il en conserve l’esprit :
+>>> Façades symétriques, balcons filants, pierre claire et décor raffiné
+>>> Une interprétation provinciale du prestige parisien
+
+>>> Fin de la transmission`
+];
+
+// --- je ne veux pas de son pour cet épisode 17 ---
+const sounds17 = [
+  "images/episodes/episode17/00.mp3",
+  "images/episodes/episode17/00.mp3",
+  "images/episodes/episode17/00.mp3"
+];
 
 
 // --- Fonction principale ---
@@ -580,6 +631,25 @@ document.getElementById("closeBtn16").addEventListener("click", () => {
   const audio = document.getElementById("audio16");
   if(audio){ audio.pause(); audio.currentTime=0; }
 });
+
+
+// --- Épisode 17 : Central Hôtel ---
+document.getElementById("btn17").addEventListener("click", () => {
+  openPopup(17, scenarios17, sounds17);
+});
+
+document.getElementById("closeBtn17").addEventListener("click", () => {
+  document.getElementById("popup17").style.display = "none";
+  const audio = document.getElementById("audio17");
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+});
+
+
+
+
 
 
 function openPopup14() {

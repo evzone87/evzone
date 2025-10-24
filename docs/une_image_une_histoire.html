@@ -573,20 +573,17 @@ function openPopup(n, scenarios, sounds) {
   pop.style.display = "flex";
   pop.setAttribute('aria-hidden','false');
 
-  const lettreSound = new Audio("images/interface/lettre.mp3");
-  const retourSound = new Audio("images/interface/retour.mp3");
-  let i = 0;
-  function step() {
-    if (i < text.length) {
-      txtElem.textContent = text.slice(0, i+1);
-      const char = text[i];
-      if (char === "\n") { retourSound.currentTime = 0; retourSound.play().catch(()=>{}); }
-      else { lettreSound.currentTime = 0; lettreSound.play().catch(()=>{}); }
-      i++;
-      setTimeout(step, 80);
-    }
+ // Affichage progressif du texte SANS son
+let i = 0;
+function step() {
+  if (i < text.length) {
+    txtElem.textContent = text.slice(0, i+1);
+    i++;
+    setTimeout(step, 80);
   }
-  step();
+}
+step();
+
 }
 
 function closePopup(n) {
@@ -673,21 +670,18 @@ function openPopup14() {
   pop.style.display = "flex";
   pop.setAttribute('aria-hidden','false');
 
-  // affichage progressif du texte (même effet que les autres)
-  const lettreSound = new Audio("images/interface/lettre.mp3");
-  const retourSound = new Audio("images/interface/retour.mp3");
-  let j = 0;
-  function step() {
-    if (j < text.length) {
-      txtElem.textContent = text.slice(0, j + 1);
-      const char = text[j];
-      if (char === "\n") { retourSound.currentTime = 0; retourSound.play().catch(()=>{}); }
-      else { lettreSound.currentTime = 0; lettreSound.play().catch(()=>{}); }
-      j++;
-      setTimeout(step, 80);
-    }
+
+  // Affichage progressif du texte SANS son
+let j = 0;
+function step() {
+  if (j < text.length) {
+    txtElem.textContent = text.slice(0, j + 1);
+    j++;
+    setTimeout(step, 80);
   }
-  step();
+}
+step();
+
 
   // diaporama automatique
   let slideIndex = 0;

@@ -90,6 +90,7 @@ img.rotation {
 <button id="btn15">▶ Haussmann</button>
 <button id="btn16">▶ Place Jourdan</button>
 <button id="btn17">▶ Central Hôtel</button>
+<button id="btn18">▶ Orpailleur</button>
 
 
 
@@ -244,6 +245,17 @@ img.rotation {
   <audio id="audio17" preload="auto"></audio>
 </div>
 <!-- fin popup17 -->
+
+
+<!-- 🔽 Épisode 18 : Orpailleur -->
+<div id="popup18" class="popup" aria-hidden="true" role="dialog">
+  <a class="return-link" href="une_image_une_histoire.html">← Retour</a>
+  <button class="close-btn" id="closeBtn18">✖</button>
+  <img class="bg" src="images/episodes/episode18/orpailleur.jpg" alt="Orpailleur - Makokou, Gabon" />
+  <div class="text" id="text18"></div>
+  <audio id="audio18" preload="auto"></audio>
+</div>
+
 
 
 
@@ -557,6 +569,26 @@ const sounds17 = [
 ];
 
 
+
+// --- Épisode 18 : Orpailleur ---
+const scenarios18 = [
+  ">>> prise de vue le 07 juillet 2025 à Makokou\n>>> Makokou, est une région du nord-est du Gabon connue pour ses rivières aurifères, notamment dans les zones de Belinga et le bassin de l’Ivindo.\n>>> L’or que l’on y trouve est souvent extrait de manière artisanale dans le lit ou les berges des rivières.",
+  ">>> l’or de rivière dans la région de Makokou varie souvent entre 88 % et 95 % de pureté, donc il nécessite un affinage pour atteindre la qualité « or fin » (99,9 %).\n>>> Valeur estimée environ 105 € / g. Même quelques grammes peuvent représenter une belle valeur.",
+  ">>> Tas de paillettes 60–75 g\n>>> Grosse pépite 25–35 g\n>>> Petite pépite 5–6 g\n>>> Total estimé ≈ 90–110 g d’or brut\n>>> Il y a 8 000 à 10 000 euros d’or sur cette photo selon la pureté réelle.",
+  ">>> Valeur refuge : L’or conserve sa valeur à travers les crises\n>>> Monnaie universelle : utilisé depuis plus de 5 000 ans comme moyen d’échange\n>>> Rareté : tout l’or jamais extrait sur Terre tiendrait dans un cube d’environ 22 mètres de côté seulement !\n>>> Usage : environ 50 % bijouterie, 40 % finance/réserve, 10 % industrie et médecine.",
+  ">>> Le 3 Types d’or brut :\n>>> l’Or primaire ou or de filon se trouve dans la roche mère. Son extraction nécessite casser et broyer la roche, puis traiter pour séparer l’or.\n>>> l’Or secondaire ou alluvionnaire comme sur cette photo se trouve dans les lits de rivières, les vallées, ou les zones d’érosion autour des filons.\n>>> l’Or résiduel ou éluvial se trouve juste au-dessus d’un gisement primaire, dans les sols altérés, entre le filon primaire et le dépôt de rivière alluvionnaire.",
+  ">>> Image documentaire valorisant le patrimoine naturel\n>>> or alluvionnaire trouvé dans les rivières gabonaises\n>>> Cette image est présentée à titre informatif\n>>> Aucune exploitation aurifère n’est menée par l’auteur de ce site."
+];
+
+const sounds18 = [
+  "images/episodes/episode18/01_orpailleur.mp3",
+  "images/episodes/episode18/02_orpailleur.mp3",
+  "images/episodes/episode18/03_orpailleur.mp3",
+  "images/episodes/episode18/04_orpailleur.mp3"
+];
+
+
+
 // --- Fonction principale ---
 function openPopup(n, scenarios, sounds) {
   const pop = document.getElementById("popup" + n);
@@ -644,6 +676,17 @@ document.getElementById("closeBtn17").addEventListener("click", () => {
   }
 });
 
+// Bouton Épisode 18
+document.getElementById("btn18").addEventListener('click', () => openPopup(18, scenarios18, sounds18));
+
+document.getElementById("closeBtn18").addEventListener('click', () => {
+  const pop = document.getElementById("popup18");
+  const audio = document.getElementById("audio18");
+  const txtElem = document.getElementById("text18");
+  if (audio) { audio.pause(); audio.currentTime = 0; }
+  if (pop) { pop.style.display = "none"; pop.setAttribute('aria-hidden','true'); }
+  if (txtElem) txtElem.textContent = "";
+});
 
 
 

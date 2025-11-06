@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <!-- viewport ajusté pour webviews / fit cover -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Contact – Francis de Faccio</title>
+    <meta name="description" content="Contactez Francis de Faccio, artiste peintre et photographe en Corrèze. Retrouvez ses réseaux sociaux et ses œuvres sur Artmajeur." />
+    <meta name="author" content="Francis de Faccio" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --overlay: 0.15;
+            --alien-green: #00ff80;
+            --dark-bg: #000;
+            --btn-padding: 12px 24px;
+            --btn-font: 1rem;
+            --gap-cta: 14px;
+            --content-padding: 40px;
+        }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; width:100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            color: #fff;
+            background: url('images/photos/etang-correze.jpg') center center / cover no-repeat;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Conteneur d'arrière-plan */
+        .background-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            transition: opacity 2.5s ease-in-out;
+            opacity: 1;
+        }
+        .background-container img.hidden { opacity: 0; }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: rgba(0, 0, 0, var(--overlay));
+        }
+
+        .tagline {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            z-index: 10;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            font-style: italic;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 11;
+        }
+        .back-home a {
+            display: inline-block;
+            padding: 12px 26px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background: #222;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        .back-home a:hover {
+            background: #fff;
+            color: #111;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: var(--content-padding);
+        }
+        .hero { max-width: 640px; text-align: left; }
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            margin: 0;
+            font-weight: 800;
+            text-shadow: 0 8px 24px rgba(0,0,0,.45);
+            letter-spacing: .02em;
+        }
+
+        .cta {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: row;
+            gap: var(--gap-cta);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--btn-padding);
+            border-radius: 999px;
+            background: rgba(255,255,255,.72);
+            color: #111;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: .02em;
+            transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: var(--btn-font);
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255,255,255,.9);
+            box-shadow: 0 12px 30px rgba(0,0,0,.3);
+        }
+
+        /* IMAGE ROTATION */
+        .rotation-img {
+            margin-top: 20px;
+            width: 80px;
+            height: 80px;
+            animation: rotation 8s linear infinite;
+            cursor: pointer;
+        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* MODALES */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal-content {
+            background-color: #111;
+            padding: 30px;
+            border: 2px solid var(--alien-green);
+            width: 90%;
+            max-width: 600px;
+            color: var(--alien-green);
+            font-family: monospace;
+            border-radius: 10px;
+            box-shadow: 0 0 30px var(--alien-green);
+            text-align: center;
+        }
+        .close { color: var(--alien-green); float: right; font-size: 28px; cursor: pointer; }
+        .alien-text { font-size: 1rem; text-align: left; white-space: pre-wrap; overflow: hidden; margin-bottom: 20px; }
+
+        /* Formulaire */
+        form { display: none; text-align: left; }
+        label { display: block; margin-top: 12px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 6px; background-color: #222; color: #00ff80; border: 1px solid #00ff80; border-radius: 5px; }
+        input[type="submit"] { background-color: #00ff80; color: #111; font-weight: bold; cursor: pointer; margin-top: 15px; border: none; }
+        #successMessage { display: none; color: var(--alien-green); margin-top: 15px; font-weight: bold; }
+        .modal-link { display: none; color: var(--alien-green); font-weight: bold; font-size: 1.1rem; text-decoration: underline; }
+
+        /* COMPACT MODE */
+        body.compact { --btn-padding: 8px 14px; --btn-font: 0.86rem; --gap-cta: 8px; --content-padding: 14px; }
+        body.compact .hero { max-width: 420px; }
+        body.compact h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+        body.compact .tagline { font-size: 0.95rem; top: 12px; left: 12px; }
+        body.compact .rotation-img { width: 48px; height: 48px; margin-top: 10px; }
+        body.compact .back-home a { padding: 8px 16px; font-size: 0.9rem; border-radius: 22px; }
+        body.compact.narrow .hero { max-width: 360px; }
+        body.compact.narrow h1 { font-size: clamp(1.4rem, 3.6vw, 1.9rem); }
+
+        @media (max-width: 900px) {
+            .tagline { font-size: 1.3rem; top:12px; left:15px; }
+            .content { justify-content: flex-start; align-items: center; padding: 22px; height: 100vh; }
+            .hero { text-align: left; max-width: 90%; }
+            h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+            .cta { margin-top: 20px; gap: 12px; }
+            .rotation-img { width: 60px; height: 60px; margin-top: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Conteneur images fond -->
+<div class="background-container">
+    <img src="images/photos/etang-correze.jpg" id="bg1" />
+    <img src="images/photos/tour-de-masseret-heure-bleue.jpg" id="bg2" class="hidden" />
+</div>
+
+<div class="tagline" data-aos="fade-down" data-aos-duration="2000" data-aos-delay="200">Evzone.fr : deux arts, un regard, la nature pour atelier.</div>
+
+<div class="back-home" data-aos="fade-down" data-aos-duration="2000" data-aos-delay="400">
+    <a href="index.html">← Retour à l'accueil</a>
+</div>
+
+<main class="content">
+    <div class="hero" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="600">
+        <div class="cta">
+            <button class="btn" id="btnContact" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="400">Contact mail</button>
+            <button class="btn" id="btnFacebook" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="500">Facebook</button>
+            <button class="btn" id="btnInstagram" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="600">Instagram</button>
+            <button class="btn" id="btnArtmajeur" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="700">Artmajeur</button>
+            <button class="btn" id="btnAbout" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="800">À propos / Mentions légales</button>
+            <img src="images/photos/rotation.png" alt="rotation" class="rotation-img" data-aos="flip-left" data-aos-duration="20000" data-aos-delay="3000" />
+        </div>
+    </div>
+</main>
+
+<!-- MODALES -->
+<div id="modalContact" class="modal" data-aos="zoom-in" data-aos-duration="1400">
+    <div class="modal-content">
+        <span class="close" data-close="modalContact">&times;</span>
+        <div id="alienTextContact" class="alien-text"></div>
+        <form id="contactForm" action="https://formspree.io/f/xnnbbzwb" method="POST">
+            <label>Nom :</label>
+            <input type="text" name="name" required>
+            <label>Email :</label>
+            <input type="email" name="email" required>
+            <label>Message :</label>
+            <textarea name="message" rows="4" required></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
+        <div id="successMessage">✅ Votre message a bien été envoyé !</div>
+    </div>
+</div>
+
+<div id="modalAbout" class="modal" data-aos="zoom-in" data-aos-duration="1400">
+    <div class="modal-content">
+        <span class="close" data-close="modalAbout">&times;</span>
+        <div id="alienTextAbout" class="alien-text"></div>
+    </div>
+</div>
+
+<div id="modalGeneric" class="modal" data-aos="zoom-in" data-aos-duration="1400">
+    <div class="modal-content">
+        <span class="close" data-close="modalGeneric">&times;</span>
+        <div id="alienTextGeneric" class="alien-text"></div>
+        <a id="modalLink" class="modal-link" target="_blank" rel="noopener">Accéder</a>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init({ duration: 1400, easing: 'ease-in-out', once: true });
+
+/* ---------- Audio : préparation buffers + fallback ---------- */
+let audioCtx = null;
+let letterBuffer = null;
+let retourBuffer = null;
+
+function createAudioContext() {
+    if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+function loadBuffer(url) {
+    if (!window.fetch || !audioCtx) return Promise.reject('no-audio-context');
+    return fetch(url)
+        .then(resp => {
+            if (!resp.ok) throw new Error('fetch failed ' + url);
+            return resp.arrayBuffer();
+        })
+        .then(arr => new Promise((resolve, reject) => {
+            audioCtx.decodeAudioData(arr, resolve, reject);
+        }));
+}
+
+function initLetterSounds() {
+    createAudioContext();
+    if (!audioCtx) return;
+    // paths expected (change if yours are elsewhere)
+    loadBuffer('images/interface/lettre.mp3').then(buf => { letterBuffer = buf; }).catch(()=>{ console.warn('lettre.mp3 load failed'); });
+    loadBuffer('images/interface/retour.mp3').then(buf => { retourBuffer = buf; }).catch(()=>{ console.warn('retour.mp3 load failed'); });
+}
+initLetterSounds();
+
+function playBuffer(buf, volume=0.8) {
+    if (!audioCtx || !buf) return;
+    try {
+        const src = audioCtx.createBufferSource();
+        src.buffer = buf;
+        const gain = audioCtx.createGain();
+        gain.gain.value = volume;
+        src.connect(gain);
+        gain.connect(audioCtx.destination);
+        src.start(0);
+    } catch (e) {
+        // silent fail
+        console.warn('playBuffer error', e);
+    }
+}
+
+/* ---------- Typing function — maintenant avec son par lettre / son retour de ligne ---------- */
+function typeEffect(element, textArray, callback) {
+    let i = 0, j = 0;
+    function typing() {
+        if (i < textArray.length) {
+            if (j < textArray[i].length) {
+                element.textContent += textArray[i].charAt(j);
+
+                // try resume audio context on first user gesture (safe)
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume().catch(()=>{});
+                }
+
+                // Play letter sound (prefer buffer)
+                if (audioCtx && letterBuffer) {
+                    playBuffer(letterBuffer, 0.9);
+                } else {
+                    // fallback: use quick Audio() - works if file exists
+                    try {
+                        const a = new Audio('images/interface/lettre.mp3');
+                        a.volume = 0.7;
+                        a.play().catch(()=>{});
+                    } catch (e) { /* ignore */ }
+                }
+
+                j++;
+                setTimeout(typing, 95);
+            } else {
+                // end of current string => newline + "retour" sound
+                element.textContent += "\n";
+
+                if (audioCtx && retourBuffer) {
+                    playBuffer(retourBuffer, 0.9);
+                } else {
+                    try {
+                        const a = new Audio('images/interface/retour.mp3');
+                        a.volume = 0.85;
+                        a.play().catch(()=>{});
+                    } catch (e) { /* ignore */ }
+                }
+
+                i++; j = 0;
+                setTimeout(typing, 600);
+            }
+        } else if (callback) {
+            callback();
+        }
+    }
+    typing();
+}
+
+/* ---------- Open modal / attach typing (unchanged behavior otherwise) ---------- */
+function openModal(modalId, messages, linkUrl=null){
+    const modal = document.getElementById(modalId);
+    const textEl = modal.querySelector(".alien-text");
+    const linkEl = modal.querySelector(".modal-link");
+
+    if(textEl) textEl.textContent="";
+    if(linkEl) linkEl.style.display="none";
+
+    modal.style.display="flex";
+
+    // ensure audio context allowed (user gesture: openModal called from click)
+    if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(()=>{});
+    } else {
+        // create if null on first gesture
+        if (!audioCtx) initLetterSounds();
+    }
+
+    typeEffect(textEl, messages, () => {
+        if(linkUrl && linkEl){
+            linkEl.href=linkUrl;
+            linkEl.textContent="Cliquez ici pour visiter";
+            linkEl.style.display="block";
+        }
+    });
+
+    modal.onclick = e=>{
+        if(e.target===modal){
+            modal.style.display="none";
+            const contactForm=document.getElementById("contactForm");
+            if(contactForm) contactForm.style.display="none";
+            const success=document.getElementById("successMessage");
+            if(success) success.style.display="none";
+        }
+    };
+}
+
+// Boutons
+document.getElementById("btnContact").addEventListener("click", ()=>{
+    openModal("modalContact", [
+        "Chargement...","Bonjour,","Vous avez un projet, une commande artistique de peinture","Veuillez saisir vos informations pour me contacter:"
+    ]);
+    setTimeout(()=>{document.getElementById("contactForm").style.display="block";},1000);
+});
+document.getElementById("btnAbout").addEventListener("click", ()=>{
+    openModal("modalAbout", [
+        "Chargement...",
+        "Éditeur du site - Copyright © Francis De Faccio",
+        "SIRET : 424896660",
+        "Site : evzone.fr - Version 50",
+        "Hébergeur du site : GitHub, 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis"
+    ]);
+});
+document.getElementById("btnFacebook").addEventListener("click", ()=>{
+    openModal("modalGeneric", [
+        "Chargement...",
+        "Vous allez pouvoir visiter ma page Facebook en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
+    ], "https://www.facebook.com/fanfan.francisd");
+});
+document.getElementById("btnInstagram").addEventListener("click", ()=>{
+    openModal("modalGeneric", [
+        "Chargement...",
+        "Vous allez pouvoir visiter ma page Instagram en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
+    ], "https://www.instagram.com/evzone87");
+});
+document.getElementById("btnArtmajeur").addEventListener("click", ()=>{
+    openModal("modalGeneric", [
+        "Chargement...",
+        "Vous allez pouvoir visiter ma page Artmajeur en cliquant sur ce lien ou restez sur evzone en cliquant à l'extérieur de cette fenêtre."
+    ], "https://www.artmajeur.com/francis-de-faccio");
+});
+
+// Formulaire
+const form=document.getElementById("contactForm");
+form.addEventListener("submit", async e=>{
+    e.preventDefault();
+    const data=new FormData(form);
+    const response=await fetch(form.action,{method: form.method, body: data, headers:{ "Accept":"application/json"}});
+    if(response.ok){
+        form.style.display="none";
+        document.getElementById("successMessage").style.display="block";
+    } else { alert("❌ Une erreur est survenue. Veuillez réessayer."); }
+});
+
+// Close modals
+document.querySelectorAll(".close").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        const modal=btn.closest(".modal");
+        if(modal) modal.style.display="none";
+        if(modal && modal.id==="modalContact"){
+            form.style.display="none";
+            document.getElementById("successMessage").style.display="none";
+        }
+    });
+});
+
+// Compact mode
+(function(){
+    const body=document.body;
+    const ua=navigator.userAgent||'';
+    const inFacebookWebview=/FBAN|FBAV|Instagram|Messenger/.test(ua);
+    function update(){
+        const w=window.innerWidth, h=window.innerHeight;
+        if(w>h || (inFacebookWebview && w<900)){
+            body.classList.add('compact');
+            if(w<420) body.classList.add('narrow'); else body.classList.remove('narrow');
+        } else { body.classList.remove('compact','narrow'); }
+    }
+    window.addEventListener('resize',update,{passive:true});
+    window.addEventListener('orientationchange',()=>{ setTimeout(update,300);},{passive:true});
+    document.addEventListener('DOMContentLoaded',()=>{ update(); setTimeout(update,600); });
+})();
+
+// Slideshow des images de fond (sans opacité supplémentaire)
+const bg1=document.getElementById("bg1"), bg2=document.getElementById("bg2");
+let showFirst=true;
+setInterval(()=>{
+    if(showFirst){ bg1.classList.add("hidden"); bg2.classList.remove("hidden"); }
+    else { bg2.classList.add("hidden"); bg1.classList.remove("hidden"); }
+    showFirst=!showFirst;
+},10000);
+</script>
+
+</body>
+</html>
